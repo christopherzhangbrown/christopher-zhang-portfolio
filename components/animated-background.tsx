@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 
-export function AnimatedBackground() {
+export function AnimatedBackground({ fadeOut = false }: { fadeOut?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -99,5 +99,11 @@ export function AnimatedBackground() {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className="fixed inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }} />
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`fixed inset-0 w-full h-full pointer-events-none transition-opacity duration-700 ${fadeOut ? "opacity-0" : "opacity-100"}`}
+      style={{ zIndex: 0 }}
+    />
+  )
 }
