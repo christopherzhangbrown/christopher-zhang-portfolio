@@ -53,13 +53,7 @@ export function Sidebar() {
             >
               Home
             </Link>
-            <Link
-              href="#about"
-              className="block text-2xl font-light text-white hover:text-[#3b82f6] transition-colors duration-300"
-              onClick={() => setIsOpen(false)}
-            >
-              About Me
-            </Link>
+
             <Link
               href="#stack"
               className="block text-2xl font-light text-white hover:text-[#3b82f6] transition-colors duration-300"

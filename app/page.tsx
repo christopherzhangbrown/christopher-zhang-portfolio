@@ -4,8 +4,9 @@ import { useState, useEffect } from "react"
 import { PersonalLogo } from "@/components/nevo-logo"
 import { Sidebar } from "@/components/sidebar"
 import { Hero } from "@/components/hero"
-import { About } from "@/components/about"
+
 import { Stack } from "@/components/stack"
+import { Education } from "@/components/education"
 import { Experience } from "@/components/experience"
 import { Projects } from "@/components/projects"
 import { Footer } from "@/components/footer"
@@ -35,8 +36,8 @@ export default function Home() {
       <Sidebar />
       <main className="relative z-10 text-foreground">
         <Hero />
-        <About />
         <Stack />
+        <Education />
         <Experience />
         <Projects />
       </main>

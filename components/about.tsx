@@ -55,8 +55,8 @@ export function About() {
           </div>
 
           <div className="flex justify-center">
-            <div className="w-64 h-64 md:w-80 md:h-80 bg-muted rounded-lg flex items-center justify-center hover:scale-105 transition-transform duration-500">
-              <span className="text-muted-foreground text-sm">Profile Image</span>
+            <div className="w-64 h-64 md:w-80 md:h-80 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-500">
+              <img src="/profilepic.jpg" alt="Christopher Zhang profile" className="w-full h-full object-cover scale-110" />
             </div>
           </div>
         </div>
