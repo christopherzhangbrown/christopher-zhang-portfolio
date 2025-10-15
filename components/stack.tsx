@@ -19,8 +19,8 @@ export function Stack() {
       const windowHeight = window.innerHeight
       
       // Conservative timing - start when section is well in view, spread out over longer scroll
-      const startPoint = windowHeight * 1  // Start when section is 50% into view
-      const endPoint = -windowHeight * 1   // End when section is 50% past
+      const startPoint = windowHeight * 1  
+      const endPoint = -windowHeight * 1   
       
       let sectionProgress = 0
       if (rect.top <= startPoint && rect.bottom >= endPoint) {
