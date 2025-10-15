@@ -2,28 +2,34 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useAnimation, useStaggeredAnimation } from "@/hooks/use-animation"
 
 const projects = [
   {
     number: "_01.",
+    id: "01",
     title: "AI Swim Start Analyzer",
     tags: ["React", "OpenCV", "MediaPipe"],
     hasImage: true,
   },
   {
     number: "_02.",
+    id: "02", 
     title: "Chris Swimzz Website", 
     tags: ["HTML", "CSS", "TypeScript", "Supabase"],
     hasImage: true,
   },
   {
     number: "_03.",
+    id: "03",
     title: "Snake Game",
     tags: ["C", "Data Structures", "Game Logic"],
     hasImage: true,
   },
   {
     number: "_04.",
+    id: "04",
     title: "FTC Robot Programming",
     tags: ["Java", "OpenCV", "PID Control"],
     hasImage: true,
@@ -34,6 +40,7 @@ export function Projects() {
   const sectionRef = useRef<HTMLElement>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [hoveredProject, setHoveredProject] = useState<string | null>(null)
+  const router = useRouter()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,11 +65,15 @@ export function Projects() {
     setMousePosition({ x: window.innerWidth / 2, y: e.clientY })
   }
 
+  const handleProjectClick = (projectId: string) => {
+    router.push(`/projects/${projectId}`)
+  }
+
   return (
     <section ref={sectionRef} id="projects" className="py-20 px-6 bg-card/50 backdrop-blur-sm opacity-0">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-2xl font-semibold mb-16 flex items-center gap-3">
-          <span className="text-3xl animate-spin-slow">✻</span> SELECTED PROJECTS
+          <span className="text-3xl animate-spin-slow animate-glow">✻</span> SELECTED PROJECTS
         </h2>
 
         <div className="relative" onMouseMove={handleMouseMove}>
@@ -72,6 +83,7 @@ export function Projects() {
               className="flex items-center justify-between py-8 border-b border-white/10 group hover:bg-white/5 transition-all duration-300 relative cursor-pointer"
               onMouseEnter={() => setHoveredProject(project.number)}
               onMouseLeave={() => setHoveredProject(null)}
+              onClick={() => handleProjectClick(project.id)}
             >
               {/* Left side - Project info */}
               <div className="flex items-center gap-8 flex-1">

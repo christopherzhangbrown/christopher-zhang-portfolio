@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { useAnimation, useStaggeredAnimation } from "@/hooks/use-animation"
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -30,7 +31,7 @@ export function Hero() {
         <div className="grid lg:grid-cols-3 gap-12 items-center">
           {/* Profile Picture */}
           <div className="flex justify-center lg:order-2">
-            <div className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full flex items-center justify-center shadow-2xl overflow-hidden hover:scale-105 transition-transform duration-500">
+            <div className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
               <img src="/profilepic.jpg" alt="Christopher Zhang profile" className="w-full h-full object-cover scale-195" />
             </div>
           </div>

@@ -80,7 +80,7 @@ export function Sidebar() {
           {/* Social Links */}
           <div className="space-y-4 pt-8 border-t border-[#3b82f6]/30">
             <a
-              href="https://github.com/christopherzhang1"
+              href="https://github.com/christopherzhangbrown"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-sm text-white/70 hover:text-[#3b82f6] transition-colors duration-300"

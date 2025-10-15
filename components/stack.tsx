@@ -3,12 +3,54 @@
 import { useEffect, useRef } from "react"
 import {
   SiHtml5, SiCss3, SiJavascript, SiTypescript, SiReact, SiGit, SiGithub,
-  SiJava, SiPython, SiC, SiNodedotjs, SiExpress, SiVisualstudiocode, 
+  SiPython, SiC, SiNodedotjs, SiExpress, 
   SiFirebase, SiMongodb, SiVercel
 } from "react-icons/si"
 
 export function Stack() {
   const sectionRef = useRef<HTMLElement>(null)
+  const allItemsRef = useRef<HTMLDivElement[]>([])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return
+
+      const rect = sectionRef.current.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+      
+      // Conservative timing - start when section is well in view, spread out over longer scroll
+      const startPoint = windowHeight * 1  // Start when section is 50% into view
+      const endPoint = -windowHeight * 1   // End when section is 50% past
+      
+      let sectionProgress = 0
+      if (rect.top <= startPoint && rect.bottom >= endPoint) {
+        sectionProgress = Math.max(0, Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)))
+      }
+      
+      // Show items at normal pace so you can see the full animation
+      const totalItems = allItemsRef.current.length
+      // Normal sequencing - items appear spread throughout the entire scroll
+      const itemsToShow = sectionProgress * (totalItems*3) // Normal pace with small buffer
+      
+      allItemsRef.current.forEach((item, index) => {
+        if (!item) return
+        
+        // Each item gets its own progress calculation with much faster transitions
+        const itemProgress = Math.max(0, Math.min(1, itemsToShow - index))
+        
+        item.style.opacity = itemProgress.toString()
+        item.style.transform = `translateY(${(1 - itemProgress) * 30}px)`
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Remove the effect that was hiding items
+  // useEffect removed - items should be visible by default
 
   const languages = [
     { name: "Java", icon: <span className="w-6 h-6 bg-[#ed8b00] rounded text-white text-xs flex items-center justify-center">J</span> },
@@ -36,64 +78,84 @@ export function Stack() {
     { name: "Vercel", icon: <SiVercel className="text-[#000000] text-2xl" /> },
   ]
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in-up")
-          }
-        })
-      },
-      { threshold: 0.1 },
-    )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
 
-    return () => observer.disconnect()
-  }, [])
+  // All items are now handled directly in the JSX with proper ref indexing
 
   return (
-    <section ref={sectionRef} className="py-20 px-6 bg-card/50 backdrop-blur-sm opacity-0">
+    <section ref={sectionRef} className="py-20 px-6 bg-card/50 backdrop-blur-sm">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-2xl font-semibold mb-16 flex items-center gap-3">
           <span className="text-3xl animate-spin-slow">✻</span> MY STACK
         </h2>
-        <div className="space-y-20">
+        <div className="space-y-12 md:space-y-20">
           {/* Languages */}
-          <div className="flex items-start gap-12">
-            <h3 className="text-4xl font-bold text-white w-1/3 text-left">LANGUAGES</h3>
-            <div className="flex flex-wrap gap-x-12 gap-y-8 w-2/3">
-              {languages.map((tech) => (
-                <div key={tech.name} className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
+            <div
+              ref={el => { if (el) allItemsRef.current[0] = el }}
+              className="opacity-0 transition-all duration-300 ease-out md:w-1/3"
+              style={{ transform: "translateY(30px)" }}
+            >
+              <h3 className="text-3xl md:text-4xl font-bold text-white text-left">LANGUAGES</h3>
+            </div>
+            <div className="flex flex-wrap gap-x-6 md:gap-x-12 gap-y-6 md:gap-y-8 md:w-2/3">
+              {languages.map((tech, index) => (
+                <div 
+                  key={tech.name}
+                  ref={el => { if (el) allItemsRef.current[index + 1] = el }}
+                  className="flex items-center gap-3 md:gap-4 hover:scale-110 transition-all duration-300 ease-out opacity-0"
+                  style={{ transform: "translateY(30px)" }}
+                >
                   {tech.icon}
-                  <span className="text-xl font-normal">{tech.name}</span>
+                  <span className="text-lg md:text-xl font-normal">{tech.name}</span>
                 </div>
               ))}
             </div>
           </div>
+          
           {/* Frameworks */}
-          <div className="flex items-start gap-12">
-            <h3 className="text-4xl font-bold text-white w-1/3 text-left">FRAMEWORKS</h3>
-            <div className="flex flex-wrap gap-x-12 gap-y-8 w-2/3">
-              {frameworks.map((tech) => (
-                <div key={tech.name} className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
+            <div
+              ref={el => { if (el) allItemsRef.current[languages.length + 1] = el }}
+              className="opacity-0 transition-all duration-300 ease-out md:w-1/3"
+              style={{ transform: "translateY(30px)" }}
+            >
+              <h3 className="text-3xl md:text-4xl font-bold text-white text-left">FRAMEWORKS</h3>
+            </div>
+            <div className="flex flex-wrap gap-x-6 md:gap-x-12 gap-y-6 md:gap-y-8 md:w-2/3">
+              {frameworks.map((tech, index) => (
+                <div 
+                  key={tech.name}
+                  ref={el => { if (el) allItemsRef.current[languages.length + 2 + index] = el }}
+                  className="flex items-center gap-3 md:gap-4 hover:scale-110 transition-all duration-300 ease-out opacity-0"
+                  style={{ transform: "translateY(30px)" }}
+                >
                   {tech.icon}
-                  <span className="text-xl font-normal">{tech.name}</span>
+                  <span className="text-lg md:text-xl font-normal">{tech.name}</span>
                 </div>
               ))}
             </div>
           </div>
+          
           {/* Tools */}
-          <div className="flex items-start gap-12">
-            <h3 className="text-4xl font-bold text-white w-1/3 text-left">TOOLS</h3>
-            <div className="flex flex-wrap gap-x-12 gap-y-8 w-2/3">
-              {tools.map((tool) => (
-                <div key={tool.name} className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
+            <div
+              ref={el => { if (el) allItemsRef.current[languages.length + frameworks.length + 2] = el }}
+              className="opacity-0 transition-all duration-300 ease-out md:w-1/3"
+              style={{ transform: "translateY(30px)" }}
+            >
+              <h3 className="text-3xl md:text-4xl font-bold text-white text-left">TOOLS</h3>
+            </div>
+            <div className="flex flex-wrap gap-x-6 md:gap-x-12 gap-y-6 md:gap-y-8 md:w-2/3">
+              {tools.map((tool, index) => (
+                <div 
+                  key={tool.name}
+                  ref={el => { if (el) allItemsRef.current[languages.length + frameworks.length + 3 + index] = el }}
+                  className="flex items-center gap-3 md:gap-4 hover:scale-110 transition-all duration-300 ease-out opacity-0"
+                  style={{ transform: "translateY(30px)" }}
+                >
                   {tool.icon}
-                  <span className="text-xl font-normal">{tool.name}</span>
+                  <span className="text-lg md:text-xl font-normal">{tool.name}</span>
                 </div>
               ))}
             </div>

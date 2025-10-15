@@ -1,28 +1,12 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { useAnimation, useStaggeredAnimation } from "@/hooks/use-animation"
 
 export function Experience() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in-up")
-          }
-        })
-      },
-      { threshold: 0.1 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+  const sectionRef = useAnimation<HTMLElement>("animate-fade-in-up")
+  const titleRef = useAnimation<HTMLHeadingElement>("animate-fade-in-right")
+  const experiencesRef = useStaggeredAnimation<HTMLDivElement>("animate-slide-in-scale", { staggerDelay: 300 })
 
   return (
     <section ref={sectionRef} id="experience" className="py-20 px-6 opacity-0">
