@@ -45,7 +45,7 @@ export function Hero() {
             </h1>
 
             <div className="space-y-4 max-w-2xl mx-auto text-center">
-              <p className="text-lg md:text-xl leading-relaxed">
+              <p className="text-xl md:text-[1.25rem] leading-relaxed">
                 Hi! I'm <span className="font-semibold">Christopher Zhang</span>, a{" "}
                 <span className="font-semibold">Brown University student</span> and Division 1 swimmer studying Computer Science & Business Economics, and aspiring software engineer with a passion for
                 building innovative, scalable, and user-friendly web solutions.

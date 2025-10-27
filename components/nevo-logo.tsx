@@ -24,22 +24,22 @@ export function PersonalLogo() {
         });
       }, i * 70);
     });
-    // Hold the logo longer before fading out
-    setTimeout(() => setFadeOut(true), letters.length * 90 + 1200);
+    // Hold the logo less long before fading out
+    setTimeout(() => setFadeOut(true), letters.length * 60 + 1200); // was 90+1200, now 60+700
   }, []);
 
   return (
-    <div className={`transition-opacity duration-700 ${fadeOut ? "opacity-0 blur-xl" : "opacity-100 blur-0"} bg-[#3b82f6] fixed inset-0 flex items-center justify-center z-50`}>
+    <div className={`transition-opacity duration-400 ${fadeOut ? "opacity-0 blur-xl" : "opacity-100 blur-0"} bg-[#3b82f6] fixed inset-0 flex items-center justify-center z-50`}>
       <div className="relative">
         <div className="text-[120px] md:text-[180px] lg:text-[220px] font-bold tracking-tight leading-none flex">
           {letters.map((l, i) => (
             <span
               key={i}
               className={
-                `${l.className} inline-block transition-all duration-500 ease-out ` +
+                `${l.className} inline-block transition-all duration-300 ease-out ` + // was 500ms, now 300ms
                 (visible[i] ? "translate-y-0 opacity-100" : "translate-y-32 opacity-0")
               }
-              style={{ transitionDelay: `${i * 80}ms` }}
+              style={{ transitionDelay: `${i * 40}ms` }} // was 80ms, now 40ms
             >
               {l.char}
             </span>

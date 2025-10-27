@@ -18,24 +18,24 @@ export default function Home() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const hasVisited = window.sessionStorage.getItem('hasVisited')
-    if (!hasVisited) {
-      // Only show logo animation on first visit
-      const timer = setTimeout(() => {
-        setShowContent(true)
-        window.sessionStorage.setItem('hasVisited', 'true')
-      }, 2500)
-      return () => clearTimeout(timer)
-    } else {
+    setShowContent(false)
+    const timer = setTimeout(() => {
       setShowContent(true)
-      setTimeout(() => {
-        if (window.location.hash) {
-          const el = document.getElementById(window.location.hash.replace('#', ''))
-          if (el) el.scrollIntoView({ behavior: 'smooth' })
-        }
-      }, 0)
-    }
+      window.sessionStorage.setItem('hasVisited', 'true')
+    }, 1500)
+    return () => clearTimeout(timer)
   }, [])
+
+  useEffect(() => {
+    if (!showContent) return
+    // Scroll to hash after content is rendered
+    setTimeout(() => {
+      if (window.location.hash) {
+        const el = document.getElementById(window.location.hash.replace('#', ''))
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      }
+    }, 0)
+  }, [showContent])
 
   useEffect(() => {
     if (!showContent) return
@@ -63,7 +63,9 @@ export default function Home() {
     return () => observer.disconnect()
   }, [showContent])
 
+  // Always render a consistent placeholder for SSR and client
   if (!showContent) {
+    // Show logo on every full page load (refresh), not on client-side navigation
     return (
       <main className="min-h-screen flex items-center justify-center bg-[#3b82f6]">
         <PersonalLogo />
