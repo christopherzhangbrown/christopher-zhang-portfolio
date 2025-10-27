@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import { useAnimation, useStaggeredAnimation } from "@/hooks/use-animation"
 import { FaFilePdf, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa"
+import { TypingNameHero } from "./TypingNameHero"
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -40,19 +41,17 @@ export function Hero() {
           {/* Main Content */}
           <div className="space-y-8 lg:col-span-2 lg:order-1">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter">
-              <span className="text-white">CHRISTOPHER</span>
-              <br />
-              <span className="text-[#3b82f6]">ZHANG</span>
+              <TypingNameHero />
             </h1>
 
-            <div className="space-y-4 max-w-2xl">
+            <div className="space-y-4 max-w-2xl mx-auto text-center">
               <p className="text-lg md:text-xl leading-relaxed">
                 Hi! I'm <span className="font-semibold">Christopher Zhang</span>, a{" "}
                 <span className="font-semibold">Brown University student</span> and Division 1 swimmer studying Computer Science & Business Economics, and aspiring software engineer with a passion for
                 building innovative, scalable, and user-friendly web solutions.
               </p>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-center">
                 <a
                   href="/resume.pdf"
                   target="_blank"
