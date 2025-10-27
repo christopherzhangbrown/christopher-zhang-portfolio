@@ -62,6 +62,13 @@ export function Sidebar() {
               Tech Stack
             </Link>
             <Link
+              href="#education"
+              className="block text-2xl font-light text-white hover:text-[#3b82f6] transition-colors duration-300"
+              onClick={() => setIsOpen(false)}
+            >
+              Education
+            </Link>
+            <Link
               href="#experience"
               className="block text-2xl font-light text-white hover:text-[#3b82f6] transition-colors duration-300"
               onClick={() => setIsOpen(false)}
