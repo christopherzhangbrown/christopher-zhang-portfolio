@@ -18,35 +18,57 @@ export function Stack() {
       const rect = sectionRef.current.getBoundingClientRect()
       const windowHeight = window.innerHeight
       
-      // Conservative timing - start when section is well in view, spread out over longer scroll
-      const startPoint = windowHeight * 1  
-      const endPoint = -windowHeight * 1   
+      // Dynamic adaptive timing - starts when section enters viewport, ends when it leaves
+      const sectionHeight = rect.height
+      const startPoint = windowHeight * 0.6  // Start when 70% of section is visible
+      const endPoint = -sectionHeight * 0.6  // End when section is almost out of view
       
       let sectionProgress = 0
-      if (rect.top <= startPoint && rect.bottom >= endPoint) {
-        sectionProgress = Math.max(0, Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)))
+      
+      // Only animate when section is actually visible
+      if (rect.top <= startPoint && rect.bottom >= 0) {
+        if (rect.top <= startPoint && rect.top >= endPoint) {
+          // Normal scroll progress through the section
+          sectionProgress = Math.max(0, Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)))
+        } else if (rect.top < endPoint) {
+          // Section fully scrolled through
+          sectionProgress = 1
+        }
       }
       
-      // Show items at normal pace so you can see the full animation
-      const totalItems = allItemsRef.current.length
-      // Normal sequencing - items appear spread throughout the entire scroll
-      const itemsToShow = sectionProgress * (totalItems*3) // Normal pace with small buffer
+      // Adaptive item timing based on actual content
+      const totalItems = allItemsRef.current.filter(item => item !== null).length
       
+      if (totalItems === 0) return
+      
+      // Dynamic spacing - items appear evenly throughout the scroll
+      const itemSpacing = 0.45 / totalItems  // SMALLER = items finish showing up quicker
+
       allItemsRef.current.forEach((item, index) => {
         if (!item) return
         
-        // Each item gets its own progress calculation with much faster transitions
-        const itemProgress = Math.max(0, Math.min(1, itemsToShow - index))
+        // Each item has its own trigger point within the section
+        const itemTrigger = index * itemSpacing  // When this specific item starts animating
+        const itemProgress = Math.max(0, Math.min(1, (sectionProgress - itemTrigger) / itemSpacing))
         
-        item.style.opacity = itemProgress.toString()
-        item.style.transform = `translateY(${(1 - itemProgress) * 30}px)`
+        // Smooth easing function for better animation feel
+        const easedProgress = itemProgress < 0.5 
+          ? 2 * itemProgress * itemProgress 
+          : 1 - Math.pow(-2 * itemProgress + 2, 3) / 2
+        
+        item.style.opacity = easedProgress.toString()
+        item.style.transform = `translateY(${(1 - easedProgress) * 20}px)`
       })
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll, { passive: true }) // Handle window resize
     handleScroll() // Initial call
     
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
   }, [])
 
   // Remove the effect that was hiding items
@@ -93,7 +115,7 @@ export function Stack() {
           <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
             <div
               ref={el => { if (el) allItemsRef.current[0] = el }}
-              className="opacity-0 transition-all duration-300 ease-out md:w-1/3"
+              className="opacity-0 transition-all duration-400 ease-out md:w-1/3"
               style={{ transform: "translateY(30px)" }}
             >
               <h3 className="text-3xl md:text-4xl font-bold text-white text-left">LANGUAGES</h3>

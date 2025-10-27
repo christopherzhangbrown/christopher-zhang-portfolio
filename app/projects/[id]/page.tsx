@@ -2,9 +2,18 @@
 
 import { useRouter } from "next/navigation"
 import { ArrowLeft, ExternalLink } from "lucide-react"
-import { use } from "react"
+import { use, useEffect, useMemo, useRef, useState } from "react"
 
-const projectData = {
+type ProjectData = {
+  title: string
+  year: string
+  url?: string
+  techAndTechnique: string
+  description: string
+  keyFeatures: string[]
+}
+
+const projectData: Record<string, ProjectData> = {
   "01": {
     title: "AI Swim Start Analyzer",
     year: "2024",
@@ -21,16 +30,17 @@ const projectData = {
   },
   "02": {
     title: "Chris Swimzz Website",
-    year: "2023",
+    year: "2024-2025",
+    url: "https://www.chrisswimzz.com/",
     techAndTechnique: "HTML, CSS, TypeScript, Supabase, Web Development",
-    description: "Personal swimming coaching and training website",
+    description: "Full-stack personal brand website built with modern web technologies, featuring a Supabase-powered waitlist system and integrated messaging functionality that routes directly to email for seamless community engagement",
     keyFeatures: [
-      "Responsive web design for optimal viewing on all devices",
-      "Interactive training programs and workout schedules",
-      "User authentication and profile management with Supabase",
-      "Real-time progress tracking and performance analytics",
-      "Modern TypeScript implementation for type safety and maintainability",
-      "Content management system for coaching resources and articles"
+      "Supabase backend integration for real-time waitlist management and user data storage",
+      "Custom messaging system with email integration for direct community communication",
+      "Modern TypeScript implementation ensuring type safety and code maintainability",
+      "Responsive web design optimized for cross-device compatibility and performance",
+      "Database-driven content management for dynamic updates and scalability",
+      "Full-stack architecture supporting both frontend interactions and backend processing"
     ]
   },
   "03": {
@@ -68,6 +78,51 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
   const resolvedParams = use(params)
   const project = projectData[resolvedParams.id as keyof typeof projectData]
 
+  // Generate random dot positions only on the client
+  const [dots, setDots] = useState<Array<{ left: string; top: string; animationDelay: string; animationDuration: string }>>([])
+  useEffect(() => {
+    setDots(
+      Array.from({ length: 50 }, () => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${Math.random() * 3}s`,
+        animationDuration: `${2 + Math.random() * 3}s`,
+      }))
+    )
+  }, [])
+
+  // Ref for each image
+  const imageRefs = [useRef<HTMLImageElement>(null), useRef<HTMLImageElement>(null), useRef<HTMLImageElement>(null)]
+
+  // Parallax effect: use requestAnimationFrame for smooth scroll
+  useEffect(() => {
+    if (resolvedParams.id !== "02") return;
+    let running = true;
+    function animate() {
+      if (!running) return;
+      for (let idx = 1; idx < imageRefs.length; idx++) {
+        const imgRef = imageRefs[idx].current;
+        if (!imgRef) continue;
+        const container = imgRef.parentElement;
+        if (!container) continue;
+        const containerHeight = container.offsetHeight;
+        const imageHeight = containerHeight * 1.1;
+        const rect = container.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        // Calculate progress: 0 when image enters, 1 when leaves
+        const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight + rect.height)));
+        const eased = Math.pow(progress, 1.7);
+        // Clamp translateY so image never leaves its container
+        const maxTranslateY = imageHeight - containerHeight;
+        const translateY = Math.max(0, Math.min(maxTranslateY, maxTranslateY * eased));
+        imgRef.style.transform = `translateY(-${translateY}px)`;
+      }
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+    return () => { running = false; };
+  }, [resolvedParams.id, imageRefs])
+
   if (!project) {
     return <div>Project not found</div>
   }
@@ -77,22 +132,22 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
       {/* Animated background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0">
-          {[...Array(50)].map((_, i) => (
+          {dots.map((dot, i) => (
             <div
               key={i}
               className="absolute w-1 h-1 bg-white rounded-full opacity-20 animate-pulse"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 3}s`,
+                left: dot.left,
+                top: dot.top,
+                animationDelay: dot.animationDelay,
+                animationDuration: dot.animationDuration,
               }}
             />
           ))}
         </div>
       </div>
 
-      <div className="relative z-10 px-6 py-12 max-w-4xl mx-auto">
+      <div className="relative z-10 px-6 py-12 max-w-6xl mx-auto">
         {/* Back button */}
         <button
           onClick={() => router.push('/#projects')}
@@ -107,7 +162,19 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-4xl md:text-6xl font-bold">{project.title}</h1>
             <div className="flex items-center gap-4">
-              <ExternalLink size={20} className="text-white/40" />
+              {project.url ? (
+                <a 
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white/60 hover:text-[#3b82f6] transition-colors"
+                >
+                  <ExternalLink size={20} />
+                  <span className="text-sm">Visit Site</span>
+                </a>
+              ) : (
+                <ExternalLink size={20} className="text-white/40" />
+              )}
             </div>
           </div>
         </div>
@@ -144,6 +211,33 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               ))}
             </ul>
           </div>
+          {/* Chris Swimzz Images Gallery */}
+          {resolvedParams.id === "02" && (
+            <div className="mt-16">
+              <div className="flex flex-col items-center">
+                {["HomePageChrisSwimzz.png", "AIStartAnalyzerChrisSwimzz.png", "ContactPageChrisSwimzz.png"].map((img, idx) => (
+                  <div
+                    key={img}
+                    className={`w-full max-w-6xl aspect-[16/10] overflow-hidden bg-black shadow-lg${idx !== 0 ? ' mt-6' : ''}`}
+                    style={{ position: "relative" }}
+                  >
+                    <img
+                      src={`/ChrisSwimzz/${img}`}
+                      alt={`Chris Swimzz screenshot ${idx + 1}`}
+                      className="object-cover w-full"
+                      style={{
+                        height: "110%",
+                        position: "relative",
+                        top: 0,
+                        left: 0,
+                      }}
+                      onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://via.placeholder.com/1280x560?text=Image+Not+Found'; }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

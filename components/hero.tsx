@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { useAnimation, useStaggeredAnimation } from "@/hooks/use-animation"
+import { FaFilePdf, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa"
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -56,25 +57,35 @@ export function Hero() {
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 hover:scale-105 transition-all duration-300 font-medium"
+                  className="inline-flex items-center justify-center w-12 h-12 text-white hover:text-[#3b82f6] hover:scale-105 transition-all duration-300 group"
+                  title="Resume"
                 >
-                  Resume
+                  <FaFilePdf className="w-7 h-7" />
                 </a>
                 <a
                   href="https://github.com/christopherzhangbrown"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-8 py-3 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all duration-300 font-medium"
+                  className="inline-flex items-center justify-center w-12 h-12 text-white hover:text-[#3b82f6] hover:scale-105 transition-all duration-300 group"
+                  title="GitHub"
                 >
-                  GitHub
+                  <FaGithub className="w-7 h-7" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/christopher-zhang1/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-8 py-3 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all duration-300 font-medium"
+                  className="inline-flex items-center justify-center w-12 h-12 text-white hover:text-[#3b82f6] hover:scale-105 transition-all duration-300 group"
+                  title="LinkedIn"
                 >
-                  LinkedIn
+                  <FaLinkedin className="w-7 h-7" />
+                </a>
+                <a
+                  href="mailto:christopher_zhang@brown.edu"
+                  className="inline-flex items-center justify-center w-12 h-12 text-white hover:text-[#3b82f6] hover:scale-105 transition-all duration-300 group"
+                  title="Email"
+                >
+                  <FaEnvelope className="w-7 h-7" />
                 </a>
               </div>
             </div>
