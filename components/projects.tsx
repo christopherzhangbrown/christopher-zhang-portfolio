@@ -99,7 +99,7 @@ export function Projects() {
 								/>
 							) : project.id === "03" ? (
 								<img
-									src="/SnakeGame/SnakeGamegameOver.png"
+									src="/SnakeGame/snakegamegameOver.png"
 									alt={project.title}
 									className="object-cover w-full h-[192px] rounded-t-2xl"
 								/>
