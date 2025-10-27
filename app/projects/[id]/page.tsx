@@ -16,7 +16,7 @@ type ProjectData = {
 const projectData: Record<string, ProjectData> = {
   "01": {
     title: "AI Swim Start Analyzer",
-    year: "2024",
+    year: "2025",
     techAndTechnique: "React, OpenCV, MediaPipe, Python, Computer Vision",
     description: "AI-powered swimming start analysis tool",
     keyFeatures: [
@@ -45,7 +45,7 @@ const projectData: Record<string, ProjectData> = {
   },
   "03": {
     title: "Snake Game",
-    year: "2023", 
+    year: "2025", 
     techAndTechnique: "C, Data Structures, Game Development, Algorithms",
     description: "Classic snake game implementation in C",
     keyFeatures: [
@@ -59,7 +59,7 @@ const projectData: Record<string, ProjectData> = {
   },
   "04": {
     title: "FTC Robot Programming",
-    year: "2022",
+    year: "2020-2024",
     techAndTechnique: "Java, OpenCV, PID Control, Robotics, Computer Vision",
     description: "Autonomous robot programming for FIRST Tech Challenge",
     keyFeatures: [
@@ -233,6 +233,31 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                       }}
                       onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://via.placeholder.com/1280x560?text=Image+Not+Found'; }}
                     />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {/* FTC Robotics Videos Gallery */}
+          {resolvedParams.id === "04" && (
+            <div className="mt-16">
+              <div className="flex flex-col items-center">
+                {["nrzZ7f0O4-w", "JZznWXfDy58"].map((videoId, idx) => (
+                  <div
+                    key={videoId}
+                    className={`w-full max-w-6xl aspect-[16/10] overflow-hidden bg-black shadow-lg${idx !== 0 ? ' mt-6' : ''}`}
+                    style={{ position: "relative" }}
+                  >
+                    <iframe
+                      width="100%"
+                      height="400"
+                      src={`https://www.youtube.com/embed/${videoId}`}
+                      title={`FTC Robotics video ${idx + 1}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{ display: 'block', width: '100%', height: '100%' }}
+                    ></iframe>
                   </div>
                 ))}
               </div>
