@@ -85,9 +85,27 @@ export function Projects() {
 							onClick={() => handleProjectClick(project.id)}
 						>
 							{/* Image section */}
-							{project.id === "02" ? (
+							{project.id === "01" ? (
+								<img
+									src="/AIStart/AIStart.png"
+									alt={project.title}
+									className="object-cover w-full h-[192px] rounded-t-2xl"
+								/>
+							) : project.id === "02" ? (
 								<img
 									src="/ChrisSwimzz/HomePageChrisSwimzz.png"
+									alt={project.title}
+									className="object-cover w-full h-[192px] rounded-t-2xl"
+								/>
+							) : project.id === "03" ? (
+								<img
+									src="/SnakeGame/SnakeGamegameOver.png"
+									alt={project.title}
+									className="object-cover w-full h-[192px] rounded-t-2xl"
+								/>
+							) : project.id === "04" ? (
+								<img
+									src="/FTCRobotics/robotics.png"
 									alt={project.title}
 									className="object-cover w-full h-[192px] rounded-t-2xl"
 								/>

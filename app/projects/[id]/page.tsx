@@ -65,6 +65,7 @@ const projectData: Record<string, ProjectData> = {
     keyFeatures: [
       "Autonomous navigation using computer vision and sensor fusion",
       "PID control systems for precise motor control and positioning",
+      "Odometry-based localization for accurate position estimation",
       "Real-time object detection and tracking with OpenCV integration",
       "Robust error handling and fail-safe mechanisms for competition",
       "Modular code architecture for easy debugging and improvements",
@@ -235,6 +236,46 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     />
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+          {/* AI Swim Start Analyzer Images Gallery */}
+          {resolvedParams.id === "01" && (
+            <div className="mt-16">
+              <div className="flex flex-col items-center">
+                {["AIStart.png", "AIStartFeedback.png"].map((img, idx) => (
+                  <div
+                    key={img}
+                    className={`w-full max-w-6xl aspect-[16/10] overflow-hidden bg-black shadow-lg${idx !== 0 ? ' mt-6' : ''}`}
+                    style={{ position: "relative" }}
+                  >
+                    <img
+                      src={`/AIStart/${img}`}
+                      alt={`AI Swim Start Analyzer screenshot ${idx + 1}`}
+                      className="object-cover w-full"
+                      style={{
+                        height: "110%",
+                        position: "relative",
+                        top: 0,
+                        left: 0,
+                      }}
+                      onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://via.placeholder.com/1280x560?text=Image+Not+Found'; }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {/* Snake Game Video Only Gallery */}
+          {resolvedParams.id === "03" && (
+            <div className="mt-16">
+              <div className="flex flex-col items-center">
+                <div className="w-full max-w-3xl overflow-hidden bg-black shadow-lg" style={{ position: "relative" }}>
+                  <video controls width="100%" style={{ display: "block", objectFit: "contain" }}>
+                    <source src="/SnakeGame/snakegamedemo.mov" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               </div>
             </div>
           )}
