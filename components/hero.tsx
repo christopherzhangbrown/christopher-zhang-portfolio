@@ -53,11 +53,11 @@ export function Hero() {
 
               <div className="flex flex-wrap gap-4 justify-center">
                 <a
-                  href="/resume.pdf"
+                  href="/SWEResumeChristopherZhang.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center w-12 h-12 text-white hover:text-[#3b82f6] hover:scale-105 transition-all duration-300 group"
-                  title="Resume"
+                  title="Resume PDF"
                 >
                   <FaFilePdf className="w-7 h-7" />
                 </a>

@@ -103,7 +103,7 @@ export function Sidebar() {
               LinkedIn
             </a>
             <a
-              href="/resume.pdf"
+              href="/SWEResumeChristopherZhang.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-sm text-white/70 hover:text-[#3b82f6] transition-colors duration-300 uppercase"
