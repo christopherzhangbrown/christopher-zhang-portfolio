@@ -71,16 +71,42 @@ export function Stack() {
     }
   }, [])
 
-  // Remove the effect that was hiding items
-  // useEffect removed - items should be visible by default
-
   const languages = [
-    { name: "Java", icon: <span className="w-6 h-6 bg-[#ed8b00] rounded text-white text-xs flex items-center justify-center">J</span> },
+    { 
+      name: "Java", 
+      icon: (
+        <svg className="w-6 h-6" viewBox="0 0 300 300" fill="none">
+          <path d="M105 262s-11 6 8 9c23 3 35 2 61-3 0 0 7 4 16 8-58 25-131-1-85-14M102 225s-13 9 7 11c25 3 45 3 79-4 0 0 5 5 12 7-70 21-148 2-98-14" fill="#ed8b00"/>
+          <path d="M162 115c14 16-4 31-4 31s36-19 20-42c-16-22-27-33 37-70 0 0-101 25-53 81" fill="#ed8b00"/>
+          <path d="M234 289s8 7-9 12c-32 9-133 12-161 0-10-4 9-10 15-11 6-1 10-1 10-1-11-8-73 16-31 23 112 18 204-8 176-23M110 170s-52 12-18 17c14 2 42 2 68-1 21-2 42-7 42-7s-7 3-12 7c-52 14-154 7-125-7 25-12 45-9 45-9M201 237c53-28 28-54 11-50-4 1-6 2-6 2s2-3 5-4c37-13 65 35-11 53 0 0 1-1 1-1" fill="#ed8b00"/>
+          <path d="M150 0s30 30-28 76c-47 37-11 58 0 82-27-25-47-47-34-67 19-30 73-45 62-91" fill="#ed8b00"/>
+          <path d="M114 300c51 3 130-2 132-28 0 0-4 9-42 17-44 8-98 7-130 2 0 0 7 5 40 9" fill="#ed8b00"/>
+        </svg>
+      )
+    },
     { name: "Python", icon: <SiPython className="text-[#3776ab] text-2xl" /> },
     { name: "JavaScript", icon: <SiJavascript className="text-[#f7df1e] text-2xl" /> },
     { name: "TypeScript", icon: <SiTypescript className="text-[#3178c6] text-2xl" /> },
-    { name: "C", icon: <span className="w-6 h-6 bg-[#a8b9cc] rounded text-white text-xs flex items-center justify-center">C</span> },
-    { name: "C++", icon: <span className="w-6 h-6 bg-[#00599c] rounded text-white text-xs flex items-center justify-center">C++</span> },
+    { name: "C", icon: (
+      <span className="w-8 h-8 flex items-center justify-center">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png"
+          alt="C language logo"
+          className="w-8 h-8 object-contain"
+          style={{ minWidth: '2rem', minHeight: '2rem' }}
+        />
+      </span>
+    ) },
+    { name: "C++", icon: (
+      <span className="w-8 h-8 flex items-center justify-center">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/612px-ISO_C%2B%2B_Logo.svg.png?20170928190710"
+          alt="C++ logo"
+          className="w-8 h-8 object-contain"
+          style={{ minWidth: '2rem', minHeight: '2rem' }}
+        />
+      </span>
+    ) },
     { name: "HTML", icon: <SiHtml5 className="text-[#e34f26] text-2xl" /> },
     { name: "CSS", icon: <SiCss3 className="text-[#1572b6] text-2xl" /> },
   ]
@@ -93,16 +119,30 @@ export function Stack() {
 
   const tools = [
     { name: "Git", icon: <SiGit className="text-[#f05032] text-2xl" /> },
-    { name: "GitHub", icon: <SiGithub className="text-[#181717] text-2xl" /> },
-    { name: "VS Code", icon: <span className="w-6 h-6 bg-[#007acc] rounded text-white text-xs flex items-center justify-center">VS</span> },
+    { name: "GitHub", icon: (
+      <span className="w-8 h-8 flex items-center justify-center rounded">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+          alt="GitHub logo"
+          className="w-8 h-8 object-contain invert"
+          style={{ filter: 'invert(1)' }}
+        />
+      </span>
+    ) },
+    { name: "VS Code", icon: (
+      <span className="w-8 h-8 flex items-center justify-center">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg"
+          alt="VS Code logo"
+          className="w-8 h-8 object-contain"
+          style={{ minWidth: '2rem', minHeight: '2rem' }}
+        />
+      </span>
+    ) },
     { name: "Firebase", icon: <SiFirebase className="text-[#ffca28] text-2xl" /> },
     { name: "MongoDB", icon: <SiMongodb className="text-[#47a248] text-2xl" /> },
     { name: "Vercel", icon: <SiVercel className="text-[#000000] text-2xl" /> },
   ]
-
-
-
-  // All items are now handled directly in the JSX with proper ref indexing
 
   return (
     <section ref={sectionRef} className="py-20 px-6 bg-card/50 backdrop-blur-sm">
