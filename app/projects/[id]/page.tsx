@@ -71,6 +71,22 @@ const projectData: Record<string, ProjectData> = {
       "Modular code architecture for easy debugging and improvements",
       "Telemetry system for real-time robot diagnostics and monitoring"
     ]
+  },
+  "05": {
+    title: "TripPlanner - Travel Route Optimizer",
+    year: "2024",
+    techAndTechnique: "TypeScript, React, Express.js, Node.js, Firebase Firestore, Mapbox GL, Vitest, A* Algorithm",
+    description: "Full-stack travel planning application featuring privacy-preserving data export, real-time route optimization, and interactive map visualization. Built with TypeScript and React frontend, Express.js backend, and Firebase Firestore database.",
+    keyFeatures: [
+      "A* pathfinding algorithm implementation for multi-stop route optimization covering 250+ miles with real-time graph construction and tile-based caching",
+      "Privacy-safe data export system with SHA-256 pseudonymization, consent gating via Firebase, spatial/temporal generalization, and comprehensive audit logging",
+      "Interactive Mapbox visualization with activity filtering, real-time route rendering, and dynamic map controls for enhanced user experience",
+      "Integrated multiple REST APIs: NOAA weather data, FBI crime statistics, and ACS census demographics with custom proxy handlers",
+      "Voronoi diagram generation for weather mapping and polygon-based spatial analysis across trip routes",
+      "Firebase authentication and Firestore integration for secure user data management and real-time synchronization",
+      "Comprehensive testing suite using Vitest for unit tests and property-based testing to ensure data privacy compliance",
+      "Responsive web design with optimized performance for both desktop and mobile devices"
+    ]
   }
 }
 
@@ -301,6 +317,36 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     ></iframe>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+          {/* TripPlanner Gallery */}
+          {resolvedParams.id === "05" && (
+            <div className="mt-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Feature Highlights */}
+                <div className="bg-gradient-to-br from-[#3b82f6]/10 to-[#8b5cf6]/10 p-8 rounded-xl border border-white/10">
+                  <h4 className="text-xl font-semibold mb-4 text-[#3b82f6]">🗺️ Route Optimization</h4>
+                  <p className="text-white/70">A* pathfinding algorithm optimizes multi-stop routes covering 250+ miles with real-time graph construction</p>
+                </div>
+                <div className="bg-gradient-to-br from-[#8b5cf6]/10 to-[#3b82f6]/10 p-8 rounded-xl border border-white/10">
+                  <h4 className="text-xl font-semibold mb-4 text-[#8b5cf6]">🔒 Privacy-First Design</h4>
+                  <p className="text-white/70">SHA-256 pseudonymization, consent gating, and spatial/temporal generalization protect user data</p>
+                </div>
+                <div className="bg-gradient-to-br from-[#3b82f6]/10 to-purple-500/10 p-8 rounded-xl border border-white/10">
+                  <h4 className="text-xl font-semibold mb-4 text-blue-400">🌤️ Weather Integration</h4>
+                  <p className="text-white/70">NOAA weather API with Voronoi diagram generation for accurate weather mapping along routes</p>
+                </div>
+                <div className="bg-gradient-to-br from-purple-500/10 to-[#3b82f6]/10 p-8 rounded-xl border border-white/10">
+                  <h4 className="text-xl font-semibold mb-4 text-purple-400">🎯 Interactive Maps</h4>
+                  <p className="text-white/70">Mapbox GL integration with activity filtering and real-time route visualization</p>
+                </div>
+              </div>
+              <div className="mt-8 p-6 bg-white/5 rounded-xl border border-white/10">
+                <p className="text-center text-white/60 italic">
+                  This project demonstrates full-stack development expertise with a focus on privacy-preserving architecture, 
+                  complex algorithms, and seamless third-party API integration.
+                </p>
               </div>
             </div>
           )}

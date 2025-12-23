@@ -29,6 +29,12 @@ const projects = [
 		tags: ["Java", "OpenCV", "PID Control"],
 		hasImage: true,
 	},
+	{
+		id: "05",
+		title: "TripPlanner - Travel Route Optimizer",
+		tags: ["TypeScript", "React", "Express.js", "Firebase"],
+		hasImage: true,
+	},
 ]
 
 export function Projects() {
@@ -109,6 +115,10 @@ export function Projects() {
 									alt={project.title}
 									className="object-cover w-full h-[192px] rounded-t-2xl"
 								/>
+							) : project.id === "05" ? (
+								<div className="bg-gradient-to-br from-[#3b82f6]/30 to-[#8b5cf6]/30 flex items-center justify-center w-full h-[192px] rounded-t-2xl">
+									<span className="text-6xl">🗺️</span>
+								</div>
 							) : (
 								<div className="bg-[#3b82f6]/20 flex items-center justify-center w-full h-[192px] rounded-t-2xl">
 									<span className="text-[#3b82f6] text-4xl">💻</span>
@@ -152,6 +162,8 @@ export function Projects() {
 										"Classic snake game implementation in C demonstrating efficient algorithms and dynamic memory management."}
 									{project.id === "04" &&
 										"Autonomous robot programming for FTC competition with computer vision, PID control, and sensor integration."}
+									{project.id === "05" &&
+										"Privacy-first travel planning application with A* route optimization, real-time weather integration, and interactive Mapbox visualization."}
 								</p>
 								<div className="flex flex-wrap gap-2 justify-center mb-2">
 									{project.tags.map((tag) => (
