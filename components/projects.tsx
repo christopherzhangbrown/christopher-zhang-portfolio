@@ -6,6 +6,12 @@ import { useRouter } from "next/navigation"
 
 const projects = [
 	{
+		id: "06",
+		title: "Dating Profile Analyzer",
+		tags: ["React", "TypeScript", "Node.js", "Firebase", "Gemini AI"],
+		hasImage: true,
+	},
+	{
 		id: "05",
 		title: "TripPlanner",
 		tags: ["TypeScript", "React", "Express.js", "Firebase"],
@@ -91,7 +97,13 @@ export function Projects() {
 							onClick={() => handleProjectClick(project.id)}
 						>
 							{/* Image section */}
-							{project.id === "05" ? (
+							{project.id === "06" ? (
+								<img
+									src="/DatingProfile/dating-profile-home.png"
+									alt={project.title}
+									className="object-cover w-full h-[192px] rounded-t-2xl"
+								/>
+							) : project.id === "05" ? (
 								<img
 									src="/TravelPlanner/travel-planner-home.png"
 									alt={project.title}
@@ -156,6 +168,8 @@ export function Projects() {
 									</a>
 								</div>
 								<p className="text-white/80 text-base leading-relaxed text-center mb-4">
+									{project.id === "06" &&
+										"AI-powered dating profile analyzer using computer vision and Google Gemini AI to provide instant feedback on profile photos and bios with personalized, actionable insights."}
 									{project.id === "05" &&
 										"Privacy-first travel planning application with A* route optimization, real-time weather integration, and interactive Mapbox visualization."}
 									{project.id === "01" &&
