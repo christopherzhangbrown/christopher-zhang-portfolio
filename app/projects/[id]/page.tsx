@@ -14,6 +14,22 @@ type ProjectData = {
 }
 
 const projectData: Record<string, ProjectData> = {
+  "06": {
+    title: "Dating Profile Analyzer",
+    year: "October 2025 – January 2026",
+    techAndTechnique: "React, TypeScript, Node.js, Firebase (Firestore, Cloud Storage, Authentication), Google Gemini API, TensorFlow.js, Sharp, Jimp",
+    description: "Full-stack AI-powered dating profile analyzer that provides instant, personalized feedback on dating profile photos and bios. Features advanced computer vision algorithms for photo quality assessment and Google Gemini AI integration for intelligent bio analysis, helping users optimize their dating profiles with actionable insights.",
+    keyFeatures: [
+      "Face-focused sharpness detection using Laplacian operator with weighted variance calculation centered on facial regions for 85% false positive reduction",
+      "Multi-factor lighting analysis combining histogram-based brightness distribution, RGB channel balance, and dynamic range assessment with intelligent outlier detection",
+      "Smile detection integration using TensorFlow.js face-landmarks-detection model with confidence scoring and geometric facial feature analysis",
+      "AI-powered bio evaluation leveraging Google Gemini API for personalized feedback on tone, authenticity, clarity, and engagement with specific improvement suggestions",
+      "Comprehensive Firebase integration: Firestore for profile data storage, Cloud Storage for image management, and Authentication for secure user sessions",
+      "Advanced image preprocessing pipeline with Sharp for efficient server-side transformations and Jimp for client-side brightness normalization and quality optimization",
+      "Real-time feedback system with progressive loading states, detailed scoring breakdowns, and visual quality indicators for immediate user insights",
+      "Responsive React frontend with TypeScript for type safety, optimized UX patterns, and seamless mobile-first design for on-the-go profile optimization"
+    ]
+  },
   "01": {
     title: "AI Swim Start Analyzer",
     year: "2025",
@@ -73,8 +89,8 @@ const projectData: Record<string, ProjectData> = {
     ]
   },
   "05": {
-    title: "TripPlanner - Travel Route Optimizer",
-    year: "2024",
+    title: "TripPlanner",
+    year: "2025",
     techAndTechnique: "TypeScript, React, Express.js, Node.js, Firebase Firestore, Mapbox GL, Vitest, A* Algorithm",
     description: "Full-stack travel planning application featuring privacy-preserving data export, real-time route optimization, and interactive map visualization. Built with TypeScript and React frontend, Express.js backend, and Firebase Firestore database.",
     keyFeatures: [
@@ -113,7 +129,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
 
   // Parallax effect: use requestAnimationFrame for smooth scroll
   useEffect(() => {
-    if (resolvedParams.id !== "02") return;
+    if (resolvedParams.id !== "02" && resolvedParams.id !== "05") return;
     let running = true;
     function animate() {
       if (!running) return;
@@ -320,33 +336,55 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               </div>
             </div>
           )}
+          {/* Dating Profile Analyzer Gallery */}
+          {resolvedParams.id === "06" && (
+            <div className="mt-16">
+              <div className="flex flex-col items-center">
+                {["dating-profile-home.png", "dating-profile-dashboard.png", "image-analysis.png", "text-analysis.png"].map((img, idx) => (
+                  <div
+                    key={img}
+                    className={`w-full max-w-6xl bg-black shadow-lg rounded-lg overflow-hidden${idx !== 0 ? ' mt-6' : ''}`}
+                    style={{ position: "relative" }}
+                  >
+                    <img
+                      src={`/DatingProfile/${img}`}
+                      alt={`Dating Profile Analyzer screenshot ${idx + 1}`}
+                      className="object-cover w-full"
+                      style={{
+                        height: "600px",
+                        display: "block",
+                        margin: "0 auto",
+                      }}
+                      onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://via.placeholder.com/1280x560?text=Image+Not+Found'; }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           {/* TripPlanner Gallery */}
           {resolvedParams.id === "05" && (
             <div className="mt-16">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Feature Highlights */}
-                <div className="bg-gradient-to-br from-[#3b82f6]/10 to-[#8b5cf6]/10 p-8 rounded-xl border border-white/10">
-                  <h4 className="text-xl font-semibold mb-4 text-[#3b82f6]">🗺️ Route Optimization</h4>
-                  <p className="text-white/70">A* pathfinding algorithm optimizes multi-stop routes covering 250+ miles with real-time graph construction</p>
-                </div>
-                <div className="bg-gradient-to-br from-[#8b5cf6]/10 to-[#3b82f6]/10 p-8 rounded-xl border border-white/10">
-                  <h4 className="text-xl font-semibold mb-4 text-[#8b5cf6]">🔒 Privacy-First Design</h4>
-                  <p className="text-white/70">SHA-256 pseudonymization, consent gating, and spatial/temporal generalization protect user data</p>
-                </div>
-                <div className="bg-gradient-to-br from-[#3b82f6]/10 to-purple-500/10 p-8 rounded-xl border border-white/10">
-                  <h4 className="text-xl font-semibold mb-4 text-blue-400">🌤️ Weather Integration</h4>
-                  <p className="text-white/70">NOAA weather API with Voronoi diagram generation for accurate weather mapping along routes</p>
-                </div>
-                <div className="bg-gradient-to-br from-purple-500/10 to-[#3b82f6]/10 p-8 rounded-xl border border-white/10">
-                  <h4 className="text-xl font-semibold mb-4 text-purple-400">🎯 Interactive Maps</h4>
-                  <p className="text-white/70">Mapbox GL integration with activity filtering and real-time route visualization</p>
-                </div>
-              </div>
-              <div className="mt-8 p-6 bg-white/5 rounded-xl border border-white/10">
-                <p className="text-center text-white/60 italic">
-                  This project demonstrates full-stack development expertise with a focus on privacy-preserving architecture, 
-                  complex algorithms, and seamless third-party API integration.
-                </p>
+              <div className="flex flex-col items-center">
+                {["travel-planner-home.png", "travel-planner-map-routes.png", "saved-trips.png"].map((img, idx) => (
+                  <div
+                    key={img}
+                    className={`w-full max-w-6xl bg-black shadow-lg rounded-lg overflow-hidden${idx !== 0 ? ' mt-6' : ''}`}
+                    style={{ position: "relative" }}
+                  >
+                    <img
+                      src={`/TravelPlanner/${img}`}
+                      alt={`TripPlanner screenshot ${idx + 1}`}
+                      className="object-contain w-full"
+                      style={{
+                        maxHeight: "600px",
+                        display: "block",
+                        margin: "0 auto",
+                      }}
+                      onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://via.placeholder.com/1280x560?text=Image+Not+Found'; }}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}

@@ -6,6 +6,18 @@ import { useRouter } from "next/navigation"
 
 const projects = [
 	{
+		id: "06",
+		title: "Dating Profile Analyzer",
+		tags: ["React", "TypeScript", "Node.js", "Firebase", "Gemini AI"],
+		hasImage: true,
+	},
+	{
+		id: "05",
+		title: "TripPlanner",
+		tags: ["TypeScript", "React", "Express.js", "Firebase"],
+		hasImage: true,
+	},
+	{
 		id: "01",
 		title: "AI Swim Start Analyzer",
 		tags: ["React", "OpenCV", "MediaPipe"],
@@ -27,12 +39,6 @@ const projects = [
 		id: "04",
 		title: "FTC Robot Programming",
 		tags: ["Java", "OpenCV", "PID Control"],
-		hasImage: true,
-	},
-	{
-		id: "05",
-		title: "TripPlanner - Travel Route Optimizer",
-		tags: ["TypeScript", "React", "Express.js", "Firebase"],
 		hasImage: true,
 	},
 ]
@@ -91,7 +97,19 @@ export function Projects() {
 							onClick={() => handleProjectClick(project.id)}
 						>
 							{/* Image section */}
-							{project.id === "01" ? (
+							{project.id === "06" ? (
+								<img
+									src="/DatingProfile/dating-profile-home.png"
+									alt={project.title}
+									className="object-cover w-full h-[192px] rounded-t-2xl"
+								/>
+							) : project.id === "05" ? (
+								<img
+									src="/TravelPlanner/travel-planner-home.png"
+									alt={project.title}
+									className="object-cover w-full h-[192px] rounded-t-2xl"
+								/>
+							) : project.id === "01" ? (
 								<img
 									src="/AIStart/AIStart.png"
 									alt={project.title}
@@ -115,10 +133,6 @@ export function Projects() {
 									alt={project.title}
 									className="object-cover w-full h-[192px] rounded-t-2xl"
 								/>
-							) : project.id === "05" ? (
-								<div className="bg-gradient-to-br from-[#3b82f6]/30 to-[#8b5cf6]/30 flex items-center justify-center w-full h-[192px] rounded-t-2xl">
-									<span className="text-6xl">🗺️</span>
-								</div>
 							) : (
 								<div className="bg-[#3b82f6]/20 flex items-center justify-center w-full h-[192px] rounded-t-2xl">
 									<span className="text-[#3b82f6] text-4xl">💻</span>
@@ -154,6 +168,10 @@ export function Projects() {
 									</a>
 								</div>
 								<p className="text-white/80 text-base leading-relaxed text-center mb-4">
+									{project.id === "06" &&
+										"AI-powered dating profile analyzer using computer vision and Google Gemini AI to provide instant feedback on profile photos and bios with personalized, actionable insights."}
+									{project.id === "05" &&
+										"Privacy-first travel planning application with A* route optimization, real-time weather integration, and interactive Mapbox visualization."}
 									{project.id === "01" &&
 										"AI-powered swimming start analysis tool using computer vision and MediaPipe for real-time performance optimization."}
 									{project.id === "02" &&
@@ -162,8 +180,6 @@ export function Projects() {
 										"Classic snake game implementation in C demonstrating efficient algorithms and dynamic memory management."}
 									{project.id === "04" &&
 										"Autonomous robot programming for FTC competition with computer vision, PID control, and sensor integration."}
-									{project.id === "05" &&
-										"Privacy-first travel planning application with A* route optimization, real-time weather integration, and interactive Mapbox visualization."}
 								</p>
 								<div className="flex flex-wrap gap-2 justify-center mb-2">
 									{project.tags.map((tag) => (
