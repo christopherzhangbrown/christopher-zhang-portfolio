@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { ArrowUpRight, Check, Copy, FileDown, Github, Linkedin, Mail } from "lucide-react"
 import { useState } from "react"
+import { Section } from "./Section"
 
 const EMAIL = "christopher_zhang@brown.edu"
 
@@ -40,19 +41,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative border-b border-hairline">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
-        <div className="grid grid-cols-12 items-end gap-6 mb-16">
-          <div className="col-span-12 md:col-span-3">
-            <div className="label">// 006 — Contact</div>
-          </div>
-          <div className="col-span-12 md:col-span-9">
-            <h2 className="font-display text-5xl tracking-tighter md:text-7xl">
-              Let's connect.
-            </h2>
-          </div>
-        </div>
-
+    <Section id="contact" index="005 — Contact" title="Let's connect.">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +116,6 @@ export function Contact() {
             ))}
           </div>
         </div>
-      </div>
-    </section>
+    </Section>
   )
 }

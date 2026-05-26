@@ -25,7 +25,7 @@ export function Hero() {
           <span className="font-mono text-xs tracking-widest">CZ / Portfolio</span>
         </div>
         <div className="hidden gap-8 md:flex">
-          {["work", "experience", "stack", "contact"].map((s) => (
+          {["education", "stack", "experience", "projects", "contact"].map((s) => (
             <a key={s} href={`#${s}`} className="label hover:text-foreground transition-colors">
               {s}
             </a>
