@@ -1,9 +1,9 @@
 "use client"
 
-import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import { ArrowUpRight, X } from "lucide-react"
+import { Section } from "./Section"
 
 type ProjectItem = {
   id: string
@@ -58,21 +58,10 @@ const projects: ProjectItem[] = [
 ]
 
 export function Projects() {
-  const router = useRouter()
   const [open, setOpen] = useState<ProjectItem | null>(null)
 
   return (
-    <section id="projects" className="relative border-b border-hairline">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
-        <div className="mb-16 grid grid-cols-12 items-end gap-6">
-          <div className="col-span-12 md:col-span-3">
-            <div className="label">// 004 — Projects</div>
-          </div>
-          <div className="col-span-12 md:col-span-9">
-            <h2 className="font-display text-5xl tracking-tighter md:text-7xl">Projects.</h2>
-            <p className="mt-4 max-w-2xl text-muted-foreground md:text-lg">Selected work — click any project to open a short case study.</p>
-          </div>
-        </div>
+    <Section id="projects" index="004 — Projects" title="Projects." subtitle="Selected work — click any project to open a short case study.">
 
         <div className="space-y-px bg-hairline">
           {projects.map((p, i) => (
@@ -83,8 +72,7 @@ export function Projects() {
         <AnimatePresence>
           {open && <ProjectModal project={open} onClose={() => setOpen(null)} />}
         </AnimatePresence>
-      </div>
-    </section>
+    </Section>
   )
 }
 

@@ -67,7 +67,7 @@ export function Stack() {
   return (
     <Section
       id="stack"
-      index="005 — Stack"
+      index="002 — Stack"
       title="Engineering stack."
       subtitle="The tools and languages I reach for across the systems I ship."
     >

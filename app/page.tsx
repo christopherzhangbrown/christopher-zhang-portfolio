@@ -4,8 +4,8 @@ import { useState, useEffect } from "react"
 import { PersonalLogo } from "@/components/nevo-logo"
 import { Hero } from "@/components/hero"
 
-import { Stack } from "@/components/stack"
 import { Education } from "@/components/education"
+import { Stack } from "@/components/stack"
 import { Experience } from "@/components/experience"
 import { Projects } from "@/components/projects"
 import { Footer } from "@/components/footer"
@@ -39,7 +39,7 @@ export default function Home() {
   useEffect(() => {
     if (!showContent) return
     // IntersectionObserver for hash update on scroll
-    const sectionIds = ["home", "stack", "education", "experience", "projects", "contact"]
+    const sectionIds = ["home", "education", "stack", "experience", "projects", "contact"]
     const observer = new window.IntersectionObserver(
       (entries) => {
         // Find the section closest to the top (top >= 0)
@@ -78,11 +78,11 @@ export default function Home() {
         <section id="home">
           <Hero />
         </section>
-        <section id="stack">
-          <Stack />
-        </section>
         <section id="education">
           <Education />
+        </section>
+        <section id="stack">
+          <Stack />
         </section>
         <section id="experience">
           <Experience />

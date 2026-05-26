@@ -41,7 +41,7 @@ const experiences: ExperienceItem[] = [
 
 export function Experience() {
   return (
-    <Section id="experience" index="003 — Experience" title="Engineering log." subtitle="Selected roles and projects where I shipped product or led teams.">
+    <Section id="experience" index="003 — Experience" title="Work experience." subtitle="Selected roles and projects where I shipped product or led teams.">
       <div className="divide-y divide-hairline border-y border-hairline">
         {experiences.map((item, i) => (
           <motion.div
@@ -53,9 +53,9 @@ export function Experience() {
             className="group grid grid-cols-12 gap-6 py-10 transition-colors hover:bg-surface/50"
           >
             <div className="col-span-12 md:col-span-2 font-mono text-sm text-muted-foreground">
-              <div className="text-accent">LOG_{String(i + 1).padStart(2, "0")}</div>
+              <div className="text-signal">LOG_{String(i + 1).padStart(2, "0")}</div>
               <div className="mt-4">{item.period}</div>
-              <div className="mt-2">{item.location}</div>
+              <div className="mt-2 text-foreground">Charlotte, NC</div>
             </div>
 
             <div className="col-span-12 md:col-span-8">
