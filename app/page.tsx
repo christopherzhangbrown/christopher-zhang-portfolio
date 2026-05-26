@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { PersonalLogo } from "@/components/nevo-logo"
-import { Sidebar } from "@/components/sidebar"
 import { Hero } from "@/components/hero"
 
 import { Stack } from "@/components/stack"
@@ -10,7 +9,7 @@ import { Education } from "@/components/education"
 import { Experience } from "@/components/experience"
 import { Projects } from "@/components/projects"
 import { Footer } from "@/components/footer"
-import { AnimatedBackground } from "@/components/animated-background"
+import { Contact } from "@/components/contact"
 
 export default function Home() {
   // Always initialize to false to avoid SSR mismatch
@@ -40,7 +39,7 @@ export default function Home() {
   useEffect(() => {
     if (!showContent) return
     // IntersectionObserver for hash update on scroll
-    const sectionIds = ["home", "stack", "education", "experience", "projects"]
+    const sectionIds = ["home", "stack", "education", "experience", "projects", "contact"]
     const observer = new window.IntersectionObserver(
       (entries) => {
         // Find the section closest to the top (top >= 0)
@@ -65,18 +64,16 @@ export default function Home() {
 
   // Always render a consistent placeholder for SSR and client
   if (!showContent) {
-    // Show logo on every full page load (refresh), not on client-side navigation
+    // Avoid rendering the floating logo on full refresh — return a blank shell
     return (
-      <main className="min-h-screen flex items-center justify-center bg-[#3b82f6]">
-        <PersonalLogo />
-      </main>
+      <main className="min-h-screen" />
     )
   }
 
   return (
     <>
-      <AnimatedBackground />
-      <Sidebar />
+      {/* Animated background removed */}
+      {/* Sidebar removed */}
       <main className="relative z-10 text-foreground">
         <section id="home">
           <Hero />
@@ -92,6 +89,9 @@ export default function Home() {
         </section>
         <section id="projects">
           <Projects />
+        </section>
+        <section id="contact">
+          <Contact />
         </section>
       </main>
       <Footer />
