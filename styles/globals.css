@@ -131,3 +131,13 @@
 .animate-spin-slow {
   animation: spin-slow 3s linear infinite;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap');
+
+:root {
+  --font-sans: 'DM Serif Display', serif;
+  --font-mono: 'DM Mono', monospace;
+  --background: oklch(0.97 0.008 80);   /* warm off-white */
+  --foreground: oklch(0.15 0.01 60);    /* warm near-black */
+  --muted-foreground: oklch(0.45 0.01 60);
+}

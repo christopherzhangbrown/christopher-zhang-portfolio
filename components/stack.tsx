@@ -1,229 +1,105 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { motion } from "framer-motion"
+import { Section } from "./Section"
+import type { ComponentType, CSSProperties } from "react"
 import {
-  SiHtml5, SiCss3, SiJavascript, SiTypescript, SiReact, SiGit, SiGithub,
-  SiPython, SiC, SiNodedotjs, SiExpress, 
-  SiFirebase, SiMongodb, SiVercel
+  SiPython,
+  SiJavascript,
+  SiTypescript,
+  SiHtml5,
+  SiCss3,
+  SiReact,
+  SiNodedotjs,
+  SiNextdotjs,
+  SiPostgresql,
+  SiMongodb,
+  SiRedis,
+  SiGit,
+  SiDocker,
+  SiAmazonwebservices,
+  SiVercel,
+  SiKubernetes,
 } from "react-icons/si"
 
+type Tech = { name: string; Icon: ComponentType<{ className?: string; style?: CSSProperties }>; color: string; bg: string }
+
+const groups: { title: string; items: Tech[] }[] = [
+  {
+    title: "Programming & Markup Languages",
+    items: [
+      { name: "Python", Icon: SiPython, color: "#3776AB", bg: "rgba(55,118,171,0.12)" },
+      { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E", bg: "rgba(247,223,30,0.12)" },
+      { name: "TypeScript", Icon: SiTypescript, color: "#3178C6", bg: "rgba(49,120,198,0.12)" },
+      { name: "HTML", Icon: SiHtml5, color: "#E34F26", bg: "rgba(227,79,38,0.12)" },
+      { name: "CSS", Icon: SiCss3, color: "#1572B6", bg: "rgba(21,114,182,0.12)" },
+    ],
+  },
+  {
+    title: "Frameworks & Libraries",
+    items: [
+      { name: "React", Icon: SiReact, color: "#61DAFB", bg: "rgba(97,218,251,0.12)" },
+      { name: "Node.js", Icon: SiNodedotjs, color: "#339933", bg: "rgba(51,153,51,0.12)" },
+      { name: "Next.js", Icon: SiNextdotjs, color: "#FFFFFF", bg: "rgba(255,255,255,0.08)" },
+    ],
+  },
+  {
+    title: "Databases & Storage",
+    items: [
+      { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1", bg: "rgba(65,105,225,0.12)" },
+      { name: "MongoDB", Icon: SiMongodb, color: "#47A248", bg: "rgba(71,162,72,0.12)" },
+      { name: "Redis", Icon: SiRedis, color: "#DC382D", bg: "rgba(220,56,45,0.12)" },
+    ],
+  },
+  {
+    title: "Tools & Platforms",
+    items: [
+      { name: "Git", Icon: SiGit, color: "#F05032", bg: "rgba(240,80,50,0.12)" },
+      { name: "Docker", Icon: SiDocker, color: "#2496ED", bg: "rgba(36,150,237,0.12)" },
+      { name: "AWS", Icon: SiAmazonwebservices, color: "#FF9900", bg: "rgba(255,153,0,0.12)" },
+      { name: "Vercel", Icon: SiVercel, color: "#FFFFFF", bg: "rgba(255,255,255,0.08)" },
+      { name: "Kubernetes", Icon: SiKubernetes, color: "#326CE5", bg: "rgba(50,108,229,0.12)" },
+    ],
+  },
+]
+
 export function Stack() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const allItemsRef = useRef<HTMLDivElement[]>([])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return
-
-      const rect = sectionRef.current.getBoundingClientRect()
-      const windowHeight = window.innerHeight
-      
-      // Dynamic adaptive timing - starts when section enters viewport, ends when it leaves
-      const sectionHeight = rect.height
-      const startPoint = windowHeight * 0.6  // Start when 70% of section is visible
-      const endPoint = -sectionHeight * 0.6  // End when section is almost out of view
-      
-      let sectionProgress = 0
-      
-      // Only animate when section is actually visible
-      if (rect.top <= startPoint && rect.bottom >= 0) {
-        if (rect.top <= startPoint && rect.top >= endPoint) {
-          // Normal scroll progress through the section
-          sectionProgress = Math.max(0, Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)))
-        } else if (rect.top < endPoint) {
-          // Section fully scrolled through
-          sectionProgress = 1
-        }
-      }
-      
-      // Adaptive item timing based on actual content
-      const totalItems = allItemsRef.current.filter(item => item !== null).length
-      
-      if (totalItems === 0) return
-      
-      // Dynamic spacing - items appear evenly throughout the scroll
-      const itemSpacing = 0.45 / totalItems  // SMALLER = items finish showing up quicker
-
-      allItemsRef.current.forEach((item, index) => {
-        if (!item) return
-        
-        // Each item has its own trigger point within the section
-        const itemTrigger = index * itemSpacing  // When this specific item starts animating
-        const itemProgress = Math.max(0, Math.min(1, (sectionProgress - itemTrigger) / itemSpacing))
-        
-        // Smooth easing function for better animation feel
-        const easedProgress = itemProgress < 0.5 
-          ? 2 * itemProgress * itemProgress 
-          : 1 - Math.pow(-2 * itemProgress + 2, 3) / 2
-        
-        item.style.opacity = easedProgress.toString()
-        item.style.transform = `translateY(${(1 - easedProgress) * 20}px)`
-      })
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', handleScroll, { passive: true }) // Handle window resize
-    handleScroll() // Initial call
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleScroll)
-    }
-  }, [])
-
-  const languages = [
-    { 
-      name: "Java", 
-      icon: (
-        <svg className="w-6 h-6" viewBox="0 0 300 300" fill="none">
-          <path d="M105 262s-11 6 8 9c23 3 35 2 61-3 0 0 7 4 16 8-58 25-131-1-85-14M102 225s-13 9 7 11c25 3 45 3 79-4 0 0 5 5 12 7-70 21-148 2-98-14" fill="#ed8b00"/>
-          <path d="M162 115c14 16-4 31-4 31s36-19 20-42c-16-22-27-33 37-70 0 0-101 25-53 81" fill="#ed8b00"/>
-          <path d="M234 289s8 7-9 12c-32 9-133 12-161 0-10-4 9-10 15-11 6-1 10-1 10-1-11-8-73 16-31 23 112 18 204-8 176-23M110 170s-52 12-18 17c14 2 42 2 68-1 21-2 42-7 42-7s-7 3-12 7c-52 14-154 7-125-7 25-12 45-9 45-9M201 237c53-28 28-54 11-50-4 1-6 2-6 2s2-3 5-4c37-13 65 35-11 53 0 0 1-1 1-1" fill="#ed8b00"/>
-          <path d="M150 0s30 30-28 76c-47 37-11 58 0 82-27-25-47-47-34-67 19-30 73-45 62-91" fill="#ed8b00"/>
-          <path d="M114 300c51 3 130-2 132-28 0 0-4 9-42 17-44 8-98 7-130 2 0 0 7 5 40 9" fill="#ed8b00"/>
-        </svg>
-      )
-    },
-    { name: "Python", icon: <SiPython className="text-[#3776ab] text-2xl" /> },
-    { name: "JavaScript", icon: <SiJavascript className="text-[#f7df1e] text-2xl" /> },
-    { name: "TypeScript", icon: <SiTypescript className="text-[#3178c6] text-2xl" /> },
-    { name: "C", icon: (
-      <span className="w-8 h-8 flex items-center justify-center">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png"
-          alt="C language logo"
-          className="w-8 h-8 object-contain"
-          style={{ minWidth: '2rem', minHeight: '2rem' }}
-        />
-      </span>
-    ) },
-    { name: "C++", icon: (
-      <span className="w-8 h-8 flex items-center justify-center">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/612px-ISO_C%2B%2B_Logo.svg.png?20170928190710"
-          alt="C++ logo"
-          className="w-8 h-8 object-contain"
-          style={{ minWidth: '2rem', minHeight: '2rem' }}
-        />
-      </span>
-    ) },
-    { name: "HTML", icon: <SiHtml5 className="text-[#e34f26] text-2xl" /> },
-    { name: "CSS", icon: <SiCss3 className="text-[#1572b6] text-2xl" /> },
-  ]
-
-  const frameworks = [
-    { name: "React", icon: <SiReact className="text-[#61dafb] text-2xl" /> },
-    { name: "Node.js", icon: <SiNodedotjs className="text-[#339933] text-2xl" /> },
-    { name: "Express.js", icon: <span className="w-6 h-6 bg-[#000000] rounded text-white text-xs flex items-center justify-center">E</span> },
-  ]
-
-  const tools = [
-    { name: "Git", icon: <SiGit className="text-[#f05032] text-2xl" /> },
-    { name: "GitHub", icon: (
-      <span className="w-8 h-8 flex items-center justify-center rounded">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
-          alt="GitHub logo"
-          className="w-8 h-8 object-contain invert"
-          style={{ filter: 'invert(1)' }}
-        />
-      </span>
-    ) },
-    { name: "VS Code", icon: (
-      <span className="w-8 h-8 flex items-center justify-center">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg"
-          alt="VS Code logo"
-          className="w-8 h-8 object-contain"
-          style={{ minWidth: '2rem', minHeight: '2rem' }}
-        />
-      </span>
-    ) },
-    { name: "Firebase", icon: <SiFirebase className="text-[#ffca28] text-2xl" /> },
-    { name: "MongoDB", icon: <SiMongodb className="text-[#47a248] text-2xl" /> },
-    { name: "Vercel", icon: <SiVercel className="text-[#000000] text-2xl" /> },
-  ]
-
   return (
-    <section ref={sectionRef} className="py-20 px-6 bg-card/50 backdrop-blur-sm">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-16 flex items-center gap-3">
-          <span className="text-3xl animate-spin-slow">✻</span> MY STACK
-        </h2>
-        <div className="space-y-12 md:space-y-20">
-          {/* Languages */}
-          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
-            <div
-              ref={el => { if (el) allItemsRef.current[0] = el }}
-              className="opacity-0 transition-all duration-400 ease-out md:w-1/3"
-              style={{ transform: "translateY(30px)" }}
-            >
-              <h3 className="text-3xl md:text-4xl font-bold text-white text-left">LANGUAGES</h3>
+    <Section
+      id="stack"
+      index="005 — Stack"
+      title="Engineering stack."
+      subtitle="The tools and languages I reach for across the systems I ship."
+    >
+      <div className="space-y-px bg-hairline">
+        {groups.map((g, gi) => (
+          <motion.div
+            key={g.title}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: gi * 0.06 }}
+            className="grid grid-cols-12 gap-6 bg-background px-2 py-8"
+          >
+            <div className="col-span-12 md:col-span-3">
+              <div className="label">/{String(gi + 1).padStart(2, "0")}</div>
+              <h3 className="mt-2 font-display text-xl tracking-tight md:text-2xl">{g.title}</h3>
             </div>
-            <div className="flex flex-wrap gap-x-6 md:gap-x-12 gap-y-6 md:gap-y-8 md:w-2/3">
-              {languages.map((tech, index) => (
-                <div 
-                  key={tech.name}
-                  ref={el => { if (el) allItemsRef.current[index + 1] = el }}
-                  className="flex items-center gap-3 md:gap-4 hover:scale-110 transition-all duration-300 ease-out opacity-0"
-                  style={{ transform: "translateY(30px)" }}
-                >
-                  {tech.icon}
-                  <span className="text-lg md:text-xl font-normal">{tech.name}</span>
-                </div>
-              ))}
+            <div className="col-span-12 md:col-span-9">
+              <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))]">
+                {g.items.map((t) => (
+                  <div key={t.name} className="group flex min-h-20 items-center gap-3 rounded-xl border border-hairline bg-background p-4 transition-colors hover:bg-surface">
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-hairline" style={{ backgroundColor: t.bg }}>
+                      <t.Icon className="h-5 w-5" style={{ color: t.color }} />
+                    </span>
+                    <span className="font-mono text-sm leading-tight">{t.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-          
-          {/* Frameworks */}
-          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
-            <div
-              ref={el => { if (el) allItemsRef.current[languages.length + 1] = el }}
-              className="opacity-0 transition-all duration-300 ease-out md:w-1/3"
-              style={{ transform: "translateY(30px)" }}
-            >
-              <h3 className="text-3xl md:text-4xl font-bold text-white text-left">FRAMEWORKS</h3>
-            </div>
-            <div className="flex flex-wrap gap-x-6 md:gap-x-12 gap-y-6 md:gap-y-8 md:w-2/3">
-              {frameworks.map((tech, index) => (
-                <div 
-                  key={tech.name}
-                  ref={el => { if (el) allItemsRef.current[languages.length + 2 + index] = el }}
-                  className="flex items-center gap-3 md:gap-4 hover:scale-110 transition-all duration-300 ease-out opacity-0"
-                  style={{ transform: "translateY(30px)" }}
-                >
-                  {tech.icon}
-                  <span className="text-lg md:text-xl font-normal">{tech.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Tools */}
-          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
-            <div
-              ref={el => { if (el) allItemsRef.current[languages.length + frameworks.length + 2] = el }}
-              className="opacity-0 transition-all duration-300 ease-out md:w-1/3"
-              style={{ transform: "translateY(30px)" }}
-            >
-              <h3 className="text-3xl md:text-4xl font-bold text-white text-left">TOOLS</h3>
-            </div>
-            <div className="flex flex-wrap gap-x-6 md:gap-x-12 gap-y-6 md:gap-y-8 md:w-2/3">
-              {tools.map((tool, index) => (
-                <div 
-                  key={tool.name}
-                  ref={el => { if (el) allItemsRef.current[languages.length + frameworks.length + 3 + index] = el }}
-                  className="flex items-center gap-3 md:gap-4 hover:scale-110 transition-all duration-300 ease-out opacity-0"
-                  style={{ transform: "translateY(30px)" }}
-                >
-                  {tool.icon}
-                  <span className="text-lg md:text-xl font-normal">{tool.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </Section>
   )
 }

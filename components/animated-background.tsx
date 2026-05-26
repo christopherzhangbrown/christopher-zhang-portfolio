@@ -31,7 +31,8 @@ export function AnimatedBackground({ fadeOut = false }: { fadeOut?: boolean }) {
     }> = []
 
     const particleCount = 50
-    const blueColor = { r: 59, g: 130, b: 246 } // #3b82f6
+    // Use neutral particles to match theme (soft light gray)
+    const particleColor = { r: 200, g: 200, b: 200 }
 
     // Initialize particles
     for (let i = 0; i < particleCount; i++) {
@@ -65,7 +66,7 @@ export function AnimatedBackground({ fadeOut = false }: { fadeOut?: boolean }) {
         // Draw particle
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${particle.opacity})`
+        ctx.fillStyle = `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, ${particle.opacity})`
         ctx.fill()
       })
 
@@ -80,8 +81,8 @@ export function AnimatedBackground({ fadeOut = false }: { fadeOut?: boolean }) {
             ctx.beginPath()
             ctx.moveTo(p1.x, p1.y)
             ctx.lineTo(p2.x, p2.y)
-            const opacity = (1 - distance / 150) * 0.2
-            ctx.strokeStyle = `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${opacity})`
+            const opacity = (1 - distance / 150) * 0.15
+            ctx.strokeStyle = `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, ${opacity})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }
