@@ -64,6 +64,7 @@ export function Projects() {
 
 function ProjectRow({ project, index }: { project: ProjectItem; index: number }) {
   const [hover, setHover] = useState(false)
+  const [hoveredTag, setHoveredTag] = useState<number | null>(null)
   const router = useRouter()
 
   return (
@@ -80,7 +81,18 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
       <div className="col-span-2 md:col-span-1 font-mono text-xs text-muted-foreground">/{String(index + 1).padStart(2, "0")}</div>
       <div className="col-span-10 md:col-span-4">
         <div className="font-display text-2xl tracking-tight md:text-4xl">{project.title}</div>
-        <div className="label mt-2">{project.tags.join(" · ")}</div>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {project.tags.map((tag, tagIndex) => (
+            <span
+              key={tag}
+              onMouseEnter={() => setHoveredTag(tagIndex)}
+              onMouseLeave={() => setHoveredTag(null)}
+              className={`cursor-default border px-3 py-1 text-xs font-mono transition-colors ${hoveredTag === tagIndex ? "border-signal text-foreground" : "border-hairline text-muted-foreground"}`}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
       <div className="hidden md:block md:col-span-3 text-sm text-muted-foreground">{project.blurb}</div>
       <div className="hidden md:block md:col-span-3 font-mono text-xs text-muted-foreground">{project.tags.slice(0, 4).join(" / ")}</div>

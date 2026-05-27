@@ -10,7 +10,7 @@ const items = [
     degree: "Sc.B. Computer Science — A.B. Business Economics",
     year: "2024 — 2028",
     coursework: ["Software Engineering", "Computer Systems", "Data Structures and Algorithms", "Deep Learning", "Foundations of AI"],
-    notes: "Undergraduate pursuing combined degrees; varsity swimmer.",
+    notes: "NCAA Division I Swimmer",
   },
 ]
 
