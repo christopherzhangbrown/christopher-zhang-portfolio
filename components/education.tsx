@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Section } from "./Section"
+import { useState } from "react"
 
 const items = [
   {
@@ -9,11 +10,13 @@ const items = [
     degree: "Sc.B. Computer Science — A.B. Business Economics",
     year: "2024 — 2028",
     coursework: ["Software Engineering", "Computer Systems", "Data Structures and Algorithms", "Deep Learning", "Foundations of AI"],
-    notes: "Undergraduate pursuing combined degrees; varsity swimmer.",
+    notes: "NCAA Division I Swimmer",
   },
 ]
 
 export function Education() {
+  const [hovered, setHovered] = useState<number | null>(null)
+
   return (
     <Section id="education" index="001 — Education" title="Academic background.">
       <div className="divide-y divide-hairline border-y border-hairline">
@@ -35,8 +38,13 @@ export function Education() {
             <div className="col-span-12 md:col-span-5">
               <div className="label mb-3">Coursework</div>
               <div className="flex flex-wrap gap-2">
-                {it.coursework.map((c) => (
-                  <span key={c} className="border border-hairline px-3 py-1 text-xs font-mono group-hover:border-signal/40 transition-colors">
+                {it.coursework.map((c, idx) => (
+                  <span
+                    key={c}
+                    onMouseEnter={() => setHovered(idx)}
+                    onMouseLeave={() => setHovered(null)}
+                    className={`border px-3 py-1 text-xs font-mono transition-colors cursor-pointer ${hovered === idx ? 'border-signal text-foreground' : 'border-hairline text-muted-foreground'}`}
+                  >
                     {c}
                   </span>
                 ))}

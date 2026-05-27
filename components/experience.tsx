@@ -19,11 +19,9 @@ const experiences: ExperienceItem[] = [
     location: "Charlotte, NC",
     period: "Summer 2026",
     bullets: [
-      "Built perception evaluation tooling and model training pipelines integrated into CI, improving model turnaround by 40%.",
-      "Implemented camera synchronization and calibration utilities for multi-sensor fusion pipelines.",
-      "Collaborated with systems and hardware teams to validate edge deployments on target devices.",
+      "Role in progress. Details coming soon."
     ],
-    tags: ["Python", "PyTorch", "OpenCV", "ROS2", "CI"],
+    tags: ["TBD"],
   },
   {
     company: "Mandy",

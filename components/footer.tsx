@@ -8,7 +8,7 @@ export function Footer() {
           <span className="h-1.5 w-1.5 rounded-full bg-signal animate-pulse" />
           AX / LAB — All systems nominal
         </div>
-        <div>© 2026 Christopher Zhang. Built with intent.</div>
+        <div>© 2026 Christopher Zhang.</div>
       </div>
     </footer>
   )

@@ -88,12 +88,33 @@ export function Stack() {
             <div className="col-span-12 md:col-span-9">
               <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))]">
                 {g.items.map((t) => (
-                  <div key={t.name} className="group flex min-h-20 items-center gap-3 rounded-xl border border-hairline bg-background p-4 transition-colors hover:bg-surface">
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-hairline" style={{ backgroundColor: t.bg }}>
-                      <t.Icon className="h-5 w-5" style={{ color: t.color }} />
-                    </span>
-                    <span className="font-mono text-sm leading-tight">{t.name}</span>
-                  </div>
+                  <motion.div
+                    key={t.name}
+                    initial={{ opacity: 0, y: 18, scale: 0.96 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    whileHover={{ y: -6, scale: 1.03 }}
+                    whileTap={{ scale: 0.99 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="group relative overflow-hidden rounded-xl border border-hairline bg-background p-4 shadow-[0_0_0_rgba(0,0,0,0)] transition-shadow duration-300 hover:bg-surface hover:shadow-[0_14px_40px_rgba(0,0,0,0.12)]"
+                  >
+                    <div
+                      className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      style={{ background: `radial-gradient(circle at top left, ${t.bg}, transparent 70%)` }}
+                    />
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="relative flex min-h-20 items-center gap-3">
+                      <motion.span
+                        className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-hairline bg-background/90"
+                        style={{ backgroundColor: t.bg }}
+                        whileHover={{ rotate: -6, scale: 1.08 }}
+                        transition={{ duration: 0.25 }}
+                      >
+                        <t.Icon className="h-5 w-5" style={{ color: t.color }} />
+                      </motion.span>
+                      <span className="font-mono text-sm leading-tight transition-transform duration-300 group-hover:translate-x-0.5">{t.name}</span>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
