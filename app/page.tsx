@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { PersonalLogo } from "@/components/nevo-logo"
 import { Hero } from "@/components/hero"
 
 import { Education } from "@/components/education"
