@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { Hero } from "@/components/hero"
-
 import { Education } from "@/components/education"
 import { Stack } from "@/components/stack"
 import { Experience } from "@/components/experience"
@@ -63,16 +62,11 @@ export default function Home() {
 
   // Always render a consistent placeholder for SSR and client
   if (!showContent) {
-    // Avoid rendering the floating logo on full refresh — return a blank shell
-    return (
-      <main className="min-h-screen" />
-    )
+    return <main className="min-h-screen" />
   }
 
   return (
     <>
-      {/* Animated background removed */}
-      {/* Sidebar removed */}
       <main className="relative z-10 text-foreground">
         <section id="home">
           <Hero />

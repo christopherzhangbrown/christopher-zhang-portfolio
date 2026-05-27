@@ -7,10 +7,9 @@ import { Footer } from "@/components/footer"
 export default function ProjectsPage() {
   return (
     <>
-      {/* Animated background removed */}
       <Sidebar />
       <main className="relative z-10 text-foreground">
-        <div className="pt-20"> {/* Add top padding to account for any fixed header */}
+        <div className="pt-20">
           <Projects />
         </div>
       </main>
