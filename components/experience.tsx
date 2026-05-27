@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useState } from "react"
 import { Section } from "./Section"
 
 type ExperienceItem = {
@@ -38,6 +39,8 @@ const experiences: ExperienceItem[] = [
 ]
 
 export function Experience() {
+  const [hoveredTag, setHoveredTag] = useState<{ item: number; tag: number } | null>(null)
+
   return (
     <Section id="experience" index="003 — Experience" title="Work experience." subtitle="Selected roles and projects where I shipped product or led teams.">
       <div className="divide-y divide-hairline border-y border-hairline">
@@ -72,8 +75,15 @@ export function Experience() {
 
               {item.tags && (
                 <div className="mt-6 flex flex-wrap gap-2">
-                  {item.tags.map((t) => (
-                    <span key={t} className="border border-hairline px-2 py-1 text-xs font-mono text-muted-foreground">{t}</span>
+                  {item.tags.map((t, tagIndex) => (
+                    <span
+                      key={t}
+                      onMouseEnter={() => setHoveredTag({ item: i, tag: tagIndex })}
+                      onMouseLeave={() => setHoveredTag(null)}
+                      className={`cursor-default border px-2 py-1 text-xs font-mono transition-colors ${hoveredTag?.item === i && hoveredTag.tag === tagIndex ? "border-signal text-foreground" : "border-hairline text-muted-foreground"}`}
+                    >
+                      {t}
+                    </span>
                   ))}
                 </div>
               )}
