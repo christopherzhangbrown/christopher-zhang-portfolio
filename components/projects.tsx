@@ -1,9 +1,10 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { useState } from "react"
-import { ArrowUpRight, X } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { Section } from "./Section"
+import { useRouter } from "next/navigation"
 
 type ProjectItem = {
   id: string
@@ -40,47 +41,34 @@ const projects: ProjectItem[] = [
     detail: "Video-based posture, angle, and timing feedback for training sessions.",
   },
   {
-    id: "03",
-    title: "Snake Game",
-    tags: ["C", "Data Structures", "Game Logic"],
-    image: "/SnakeGame/snakegamegameover.png",
-    blurb: "Classic arcade logic rebuilt in C.",
-    detail: "Optimized movement updates, collision checks, and memory handling.",
-  },
-  {
-    id: "04",
-    title: "FTC Robot Programming",
-    tags: ["Java", "OpenCV", "PID Control"],
-    image: "/FTCRobotics/robotics.png",
-    blurb: "Autonomous robotics stack for FTC competitions.",
-    detail: "Vision-guided control loops and reliable hardware orchestration.",
+    id: "07",
+    title: "Vision Transformer Evaluation Framework",
+    tags: ["Python", "PyTorch", "ViT", "CNNs", "Computer Vision"],
+    image: "/DLFinal/DL%20Final%20Poster.png",
+    blurb: "Benchmarking ViT and CNN models.",
+    detail: "Poster-driven evaluation workflow for comparing ViT and CNN variants, metrics, and experimental findings.",
   },
 ]
 
 export function Projects() {
-  const [open, setOpen] = useState<ProjectItem | null>(null)
-
   return (
     <Section id="projects" index="004 — Projects" title="Projects." subtitle="Selected work — click any project to open a short case study.">
-
-        <div className="space-y-px bg-hairline">
-          {projects.map((p, i) => (
-            <ProjectRow key={p.id} project={p} index={i} onOpen={() => setOpen(p)} />
-          ))}
-        </div>
-
-        <AnimatePresence>
-          {open && <ProjectModal project={open} onClose={() => setOpen(null)} />}
-        </AnimatePresence>
+      <div className="space-y-px bg-hairline">
+        {projects.map((p, i) => (
+          <ProjectRow key={p.id} project={p} index={i} />
+        ))}
+      </div>
     </Section>
   )
 }
 
-function ProjectRow({ project, index, onOpen }: { project: ProjectItem; index: number; onOpen: () => void }) {
+function ProjectRow({ project, index }: { project: ProjectItem; index: number }) {
   const [hover, setHover] = useState(false)
+  const router = useRouter()
+
   return (
     <motion.button
-      onClick={onOpen}
+      onClick={() => router.push(`/projects/${project.id}`)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       initial={{ opacity: 0, y: 30 }}
@@ -102,47 +90,13 @@ function ProjectRow({ project, index, onOpen }: { project: ProjectItem; index: n
         </span>
       </div>
 
-      <AnimatePresence>
-        {hover && (
-          <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} className="pointer-events-none absolute right-20 top-1/2 hidden h-40 w-64 -translate-y-1/2 overflow-hidden border border-hairline lg:block">
-            <img src={project.image} alt="" className="h-full w-full object-cover" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {hover && (
+        <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} className="pointer-events-none absolute right-20 top-1/2 hidden h-40 w-64 -translate-y-1/2 overflow-hidden border border-hairline lg:block">
+          <img src={project.image} alt="" className="h-full w-full object-cover" />
+        </motion.div>
+      )}
     </motion.button>
   )
 }
 
-function ProjectModal({ project, onClose }: { project: ProjectItem; onClose: () => void }) {
-  return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} className="fixed inset-0 z-50 overflow-y-auto bg-background/80 backdrop-blur-md">
-      <motion.div initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} onClick={(e) => e.stopPropagation()} className="mx-auto my-12 max-w-5xl border border-hairline bg-background">
-        <div className="flex items-center justify-between border-b border-hairline px-6 py-4 md:px-10">
-          <div className="font-mono text-xs tracking-widest text-muted-foreground">CASE_STUDY / {project.id.toUpperCase()}</div>
-          <button onClick={onClose} className="grid h-9 w-9 place-items-center border border-hairline hover:border-signal hover:text-signal transition-colors">
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-
-        <div className="aspect-[16/9] overflow-hidden border-b border-hairline">
-          <img src={project.image} alt={project.title} className="h-full w-full object-cover" loading="lazy" />
-        </div>
-
-        <div className="px-6 py-10 md:px-10 md:py-14">
-          <div className="label mb-3">{project.tags.join(" · ")}</div>
-          <h3 className="font-display text-4xl tracking-tighter md:text-6xl">{project.title}</h3>
-
-          <div className="mt-10 grid grid-cols-12 gap-6">
-            <div className="col-span-12 md:col-span-3 label">Problem</div>
-            <p className="col-span-12 md:col-span-9 leading-relaxed text-muted-foreground">{project.blurb}</p>
-          </div>
-
-          <div className="mt-10 grid grid-cols-12 gap-6">
-            <div className="col-span-12 md:col-span-3 label">Details</div>
-            <div className="col-span-12 md:col-span-9 leading-relaxed text-muted-foreground">{project.detail}</div>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  )
-}
+// Modal removed: project rows navigate to their case-study pages
