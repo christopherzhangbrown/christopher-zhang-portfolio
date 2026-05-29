@@ -3,8 +3,8 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { ArrowUpRight } from "lucide-react"
-import { Section } from "./Section"
 import { useRouter } from "next/navigation"
+import { Section } from "@/components/Section"
 
 type ProjectItem = {
   id: string

@@ -5,7 +5,6 @@ type ProjectStudy = {
   title: string
   tag: string
   year: string
-  metrics: { label: string; value: string }[]
   problem: string
   contributions: string[]
   architecture: string[]
@@ -20,11 +19,6 @@ const projectData: Record<string, ProjectStudy> = {
     title: "AI Swim Start Analyzer",
     tag: "Computer Vision · Training",
     year: "2025",
-    metrics: [
-      { label: "Mode", value: "Live" },
-      { label: "Focus", value: "Starts" },
-      { label: "Output", value: "Coach feedback" },
-    ],
     problem: "Coaches needed fast biomechanical feedback during live starts, but common pose pipelines were too slow and too fragile under occlusion.",
     contributions: [
       "Built a MediaPipe-based analysis flow for live swim-start posture tracking.",
@@ -48,11 +42,6 @@ const projectData: Record<string, ProjectStudy> = {
     title: "TripPlanner",
     tag: "Planning · Maps",
     year: "2025",
-    metrics: [
-      { label: "Routing", value: "A*" },
-      { label: "Maps", value: "Live" },
-      { label: "Export", value: "Privacy-safe" },
-    ],
     problem: "Trip planning was split across route math, map state, and privacy-sensitive storage, making it hard to ship one coherent planner.",
     contributions: [
       "Implemented A* route optimization for multi-stop trip planning with dynamic graph construction.",
@@ -76,11 +65,6 @@ const projectData: Record<string, ProjectStudy> = {
     title: "Dating Profile Analyzer",
     tag: "AI · Vision",
     year: "2026",
-    metrics: [
-      { label: "Photos", value: "Scored" },
-      { label: "Bio", value: "Analyzed" },
-      { label: "Storage", value: "Firebase" },
-    ],
     problem: "Users needed quick, actionable feedback on profile photos and bios, but most tools were generic and didn’t explain what to improve.",
     contributions: [
       "Built face-aware image scoring for sharpness, lighting, and framing quality.",
@@ -104,11 +88,6 @@ const projectData: Record<string, ProjectStudy> = {
     title: "Vision Transformer Evaluation Framework",
     tag: "Computer Vision · Research",
     year: "2026",
-    metrics: [
-      { label: "Models", value: "ViT + CNN" },
-      { label: "Format", value: "Poster" },
-      { label: "Scope", value: "Benchmarks" },
-    ],
     problem: "Comparing Vision Transformer and CNN variants needed a clean evaluation flow and a presentation format that made the tradeoffs easy to read.",
     contributions: [
       "Built a repeatable benchmarking workflow for ViT and CNN model comparisons.",
@@ -163,14 +142,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
             <div className="label mb-3">{project.tag} · {project.year}</div>
             <h3 className="font-display text-4xl tracking-tighter md:text-6xl">{project.title}</h3>
 
-            <div className="mt-10 grid grid-cols-12 border-y border-hairline">
-              {project.metrics.map((m) => (
-                <div key={m.label} className="border-r border-hairline px-4 py-5 last:border-r-0 md:col-span-4">
-                  <div className="label">{m.label}</div>
-                  <div className="font-display text-2xl mt-1 md:text-3xl">{m.value}</div>
-                </div>
-              ))}
-            </div>
+            {/* Metrics section removed per request */}
 
             <div className="mt-12 grid grid-cols-12 gap-6">
               <div className="col-span-12 md:col-span-3 label">Problem</div>

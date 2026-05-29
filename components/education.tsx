@@ -1,8 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Section } from "./Section"
 import { useState } from "react"
+import { Section } from "@/components/Section"
 
 const items = [
   {

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { Section } from "./Section"
+import { Section } from "@/components/Section"
 
 type ExperienceItem = {
   company: string

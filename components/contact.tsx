@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { ArrowUpRight, Check, Copy, FileDown, Github, Linkedin, Mail } from "lucide-react"
 import { useState } from "react"
-import { Section } from "./Section"
+import { Section } from "@/components/Section"
 
 const EMAIL = "christopher_zhang@brown.edu"
 
