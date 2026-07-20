@@ -1,8 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Section } from "./Section"
 import type { ComponentType, CSSProperties } from "react"
+import { Section } from "@/components/Section"
 import {
   SiPython,
   SiJavascript,
@@ -18,15 +18,42 @@ import {
   SiGit,
   SiDocker,
   SiAmazonwebservices,
-  SiVercel,
+  SiArgo,
   SiKubernetes,
+  SiMediapipe,
+  SiN8N,
 } from "react-icons/si"
 
-type Tech = { name: string; Icon: ComponentType<{ className?: string; style?: CSSProperties }>; color: string; bg: string }
+type Tech = {
+  name: string
+  Icon: ComponentType<{ className?: string; style?: CSSProperties }>
+  color: string
+  bg: string
+  detail?: string
+}
+
+function PlaywrightIcon({ className, style }: { className?: string; style?: CSSProperties }) {
+  return (
+    <svg className={className} style={style} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7.5 5.5 16 9l1.8 3L16 15 7.5 18.5 6 12l1.5-6.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M10 8.5h4.2L15.5 12l-1.3 3.5H10L8.8 12 10 8.5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" opacity="0.8" />
+    </svg>
+  )
+}
+
+function KargoIcon({ className, style }: { className?: string; style?: CSSProperties }) {
+  return (
+    <svg className={className} style={style} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 7h12v10H6z" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M8 10h8M8 14h5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M9 7V5h6v2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  )
+}
 
 const groups: { title: string; items: Tech[] }[] = [
   {
-    title: "Programming & Markup Languages",
+    title: "Programming Languages",
     items: [
       { name: "Python", Icon: SiPython, color: "#3776AB", bg: "rgba(55,118,171,0.12)" },
       { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E", bg: "rgba(247,223,30,0.12)" },
@@ -41,6 +68,8 @@ const groups: { title: string; items: Tech[] }[] = [
       { name: "React", Icon: SiReact, color: "#61DAFB", bg: "rgba(97,218,251,0.12)" },
       { name: "Node.js", Icon: SiNodedotjs, color: "#339933", bg: "rgba(51,153,51,0.12)" },
       { name: "Next.js", Icon: SiNextdotjs, color: "#FFFFFF", bg: "rgba(255,255,255,0.08)" },
+      { name: "Playwright", Icon: PlaywrightIcon, color: "#2EAD33", bg: "rgba(46,173,51,0.12)" },
+      { name: "MediaPipe", Icon: SiMediapipe, color: "#FF8C42", bg: "rgba(255,140,66,0.12)" },
     ],
   },
   {
@@ -56,9 +85,11 @@ const groups: { title: string; items: Tech[] }[] = [
     items: [
       { name: "Git", Icon: SiGit, color: "#F05032", bg: "rgba(240,80,50,0.12)" },
       { name: "Docker", Icon: SiDocker, color: "#2496ED", bg: "rgba(36,150,237,0.12)" },
-      { name: "AWS", Icon: SiAmazonwebservices, color: "#FF9900", bg: "rgba(255,153,0,0.12)" },
-      { name: "Vercel", Icon: SiVercel, color: "#FFFFFF", bg: "rgba(255,255,255,0.08)" },
+      { name: "AWS", detail: "EKS, Lambda, Bedrock, EC2", Icon: SiAmazonwebservices, color: "#FF9900", bg: "rgba(255,153,0,0.12)" },
       { name: "Kubernetes", Icon: SiKubernetes, color: "#326CE5", bg: "rgba(50,108,229,0.12)" },
+      { name: "Argo CD", Icon: SiArgo, color: "#E64A19", bg: "rgba(230,74,25,0.12)" },
+      { name: "Kargo", Icon: KargoIcon, color: "#1F6FEB", bg: "rgba(31,111,235,0.12)" },
+      { name: "n8n", Icon: SiN8N, color: "#EA4B71", bg: "rgba(234,75,113,0.12)" },
     ],
   },
 ]
@@ -68,8 +99,8 @@ export function Stack() {
     <Section
       id="stack"
       index="002 — Stack"
-      title="Engineering stack."
-      subtitle="The tools and languages I reach for across the systems I ship."
+      title="Skills."
+      subtitle="Programming languages, frameworks, data stores, and delivery tooling I use to build and ship."
     >
       <div className="space-y-px bg-hairline">
         {groups.map((g, gi) => (
@@ -112,7 +143,10 @@ export function Stack() {
                       >
                         <t.Icon className="h-5 w-5" style={{ color: t.color }} />
                       </motion.span>
-                      <span className="font-mono text-sm leading-tight transition-transform duration-300 group-hover:translate-x-0.5">{t.name}</span>
+                      <div className="min-w-0 transition-transform duration-300 group-hover:translate-x-0.5">
+                        <div className="font-mono text-sm leading-tight">{t.name}</div>
+                        {t.detail ? <div className="mt-1 font-mono text-[11px] leading-tight text-muted-foreground">{t.detail}</div> : null}
+                      </div>
                     </div>
                   </motion.div>
                 ))}

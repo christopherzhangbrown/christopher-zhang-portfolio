@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ReactNode } from "react"
+import type { ReactNode } from "react"
 
 interface SectionProps {
   id: string
@@ -25,7 +25,7 @@ export function Section({ id, index, title, subtitle, children }: SectionProps) 
                 transition={{ duration: 0.45 }}
                 className="label"
               >
-                // {index}
+                {index}
               </motion.div>
             )}
           </div>
