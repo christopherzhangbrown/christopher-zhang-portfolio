@@ -66,7 +66,7 @@ export function Sidebar() {
           </nav>
 
           <div className="space-y-3 pt-8 border-t border-border/80 font-mono text-xs uppercase tracking-[0.14em]">
-            <a href="https://github.com/christopherzhangbrown" target="_blank" rel="noopener noreferrer" className="block hover:text-accent transition-colors">
+            <a href="https://github.com/christopher895" target="_blank" rel="noopener noreferrer" className="block hover:text-accent transition-colors">
               GitHub
             </a>
             <a href="https://www.linkedin.com/in/christopher-zhang1" target="_blank" rel="noopener noreferrer" className="block hover:text-accent transition-colors">

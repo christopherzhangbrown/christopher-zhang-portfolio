@@ -10,8 +10,8 @@ const EMAIL = "christopher_zhang@brown.edu"
 const profiles = [
   {
     name: "GitHub",
-    handle: "github.com/christopherzhangbrown",
-    href: "https://github.com/christopherzhangbrown",
+    handle: "github.com/christopher895",
+    href: "https://github.com/christopher895",
     Icon: Github,
     meta: "Projects, code, and experiments",
   },

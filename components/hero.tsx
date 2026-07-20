@@ -84,7 +84,7 @@ export function Hero() {
               Initiate Contact
             </a>
             <div className="flex items-center gap-1 ml-2">
-              {[{ Icon: Github, href: "https://github.com/christopherzhangbrown" }, { Icon: Linkedin, href: "https://www.linkedin.com/in/christopher-zhang1/" }, { Icon: Mail, href: "mailto:christopher_zhang@brown.edu" }].map(({ Icon, href }, i) => (
+              {[{ Icon: Github, href: "https://github.com/christopher895" }, { Icon: Linkedin, href: "https://www.linkedin.com/in/christopher-zhang1/" }, { Icon: Mail, href: "mailto:christopher_zhang@brown.edu" }].map(({ Icon, href }, i) => (
                 <a key={i} href={href} className="grid h-11 w-11 place-items-center border border-hairline hover:border-signal hover:text-signal transition-colors">
                   <Icon className="h-4 w-4" />
                 </a>
