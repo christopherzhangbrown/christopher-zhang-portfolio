@@ -12,7 +12,7 @@
 
 - This repo has no automated test suite (`package.json` has no `test` script). Verification is manual: keep `pnpm dev` running in the background for the whole session and visually check `http://localhost:3000` after each task; the final task runs `pnpm build` as a type-check/production-build sanity check.
 - Preserve all existing content/copy exactly (project data, experience bullets, coursework, contact links) — only backgrounds, borders, and the two explicitly-scoped layout changes (Hero, Stack) are in play.
-- Don't touch `components/footer.tsx`, `components/sidebar.tsx`, `components/education.tsx`, or `components/experience.tsx` — they don't have the opaque-fill problem and aren't part of this change.
+- Don't touch `components/sidebar.tsx`, `components/education.tsx`, or `components/experience.tsx` — they don't have the opaque-fill problem and aren't part of this change. (`components/footer.tsx` was originally in this list too, but got an approved one-line exception in Task 13 — see below — after AmbientBackground was found to be hiding it entirely.)
 - Keep the current JS `useState`-based hover-highlight on tag pills and the hover image preview in `components/projects.tsx` — do not simplify these to CSS-only hover.
 - `nextjs-updates/` stays in the repo untouched as a reference; nothing in this plan deletes it or imports from it at runtime (every port copies content into the real `app/`/`components/` files).
 
@@ -773,3 +773,44 @@ git commit -m "fix: resolve build issues from ambient design cohesion pass"
 ```
 
 If no fixes were needed, there is nothing to commit for this task.
+
+---
+
+### Task 13 (ad-hoc, found during Task 12 QA): Fix Footer visibility regression
+
+**Files:**
+- Modify: `components/footer.tsx:5`
+
+**Interfaces:**
+- No interface changes — `Footer` keeps its existing `export function Footer()` signature with no props.
+
+**Context:** While doing Task 12's full-site visual QA pass, `Footer` turned out to be fully hidden behind `AmbientBackground` on every page. Root cause: `AmbientBackground` is `position: fixed`, and per normal CSS painting order, positioned elements always paint above static (non-positioned) siblings regardless of DOM order or z-index — `z-0` on a fixed element still beats an unpositioned element with no explicit stacking context. `Footer` had no `position` set at all, so it fell behind the fixed ambient layer even though it comes later in the DOM. `<main>` never had this problem because it was already given `relative z-10` back in Tasks 3–5, for the same reason. This fix brings `Footer` in line with that same convention.
+
+This one-line exception was called out to the user and approved before making the change, since `components/footer.tsx` was originally listed under "don't touch" in Global Constraints (see the updated note there).
+
+- [ ] **Step 1: Give Footer its own stacking context**
+
+Change:
+
+```tsx
+    <footer className="border-t border-hairline">
+```
+
+to:
+
+```tsx
+    <footer className="relative z-10 border-t border-hairline">
+```
+
+- [ ] **Step 2: Verify**
+
+Verified live first: the fix was injected directly into the running page's DOM in the browser (dev tools) to confirm `relative z-10` on `<footer>` made it visible again above `AmbientBackground`, before touching the source file. After editing `components/footer.tsx`, the dev server was restarted clean (stop `pnpm dev`, start it again) and `http://localhost:3000` was reloaded to confirm Footer renders above the ambient layer with no stale-HMR artifacts. Finally, `pnpm build` was run again to confirm the change doesn't break the production build.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add components/footer.tsx
+git commit -m "fix: give Footer a stacking context so AmbientBackground doesn't hide it"
+```
+
+This task's commit: `714685b`.
