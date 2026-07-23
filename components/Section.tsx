@@ -13,8 +13,10 @@ interface SectionProps {
 
 export function Section({ id, index, title, subtitle, children }: SectionProps) {
   return (
-    <section id={id} className="relative border-b border-hairline">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+    <section id={id} className="relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
         <div className="mb-16 grid grid-cols-12 items-end gap-6">
           <div className="col-span-12 md:col-span-3">
             {index && (
@@ -23,7 +25,7 @@ export function Section({ id, index, title, subtitle, children }: SectionProps) 
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.45 }}
-                className="label"
+                className="label animate-[label-glow_3s_ease-in-out_infinite]"
               >
                 {index}
               </motion.div>

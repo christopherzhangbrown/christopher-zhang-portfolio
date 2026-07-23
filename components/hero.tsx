@@ -11,10 +11,9 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
 
   return (
-    <section ref={ref} className="relative min-h-screen w-full overflow-hidden border-b border-hairline" id="home">
+    <section ref={ref} className="relative min-h-screen w-full overflow-hidden" id="home">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-t from-background to-transparent" />
       <motion.div style={{ y, opacity }} className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 grid-lab opacity-[0.35]" />
-        <div className="absolute inset-0 noise opacity-40" />
         <div className="absolute -top-32 right-[-10%] h-[480px] w-[480px] rounded-full bg-signal/10 blur-[120px]" />
         <TelemetrySVG />
       </motion.div>

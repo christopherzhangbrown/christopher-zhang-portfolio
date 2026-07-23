@@ -12,7 +12,7 @@
 
 - This repo has no automated test suite (`package.json` has no `test` script). Verification is manual: keep `pnpm dev` running in the background for the whole session and visually check `http://localhost:3000` after each task; the final task runs `pnpm build` as a type-check/production-build sanity check.
 - Preserve all existing content/copy exactly (project data, experience bullets, coursework, contact links) — only backgrounds, borders, and the two explicitly-scoped layout changes (Hero, Stack) are in play.
-- Don't touch `components/footer.tsx`, `components/sidebar.tsx`, `components/education.tsx`, or `components/experience.tsx` — they don't have the opaque-fill problem and aren't part of this change.
+- Don't touch `components/sidebar.tsx`, `components/education.tsx`, or `components/experience.tsx` — they don't have the opaque-fill problem and aren't part of this change. (`components/footer.tsx` was originally in this list too, but got an approved one-line exception in Task 13 — see below — after AmbientBackground was found to be hiding it entirely.)
 - Keep the current JS `useState`-based hover-highlight on tag pills and the hover image preview in `components/projects.tsx` — do not simplify these to CSS-only hover.
 - `nextjs-updates/` stays in the repo untouched as a reference; nothing in this plan deletes it or imports from it at runtime (every port copies content into the real `app/`/`components/` files).
 
@@ -39,7 +39,7 @@ Open `http://localhost:3000` in a browser and confirm the current (pre-change) s
 - Modify: `app/globals.css:1-3`
 
 **Interfaces:**
-- Produces: CSS animation names `spin-slow`, `dash-flow`, `float-a`, `float-b`, `float-c`, `bob`, `label-glow` — consumed by Task 2 (`AmbientBackground`), Task 7 (`Section`), and Task 8 (`Stack`, optional).
+- Produces: CSS animation names `spin-slow`, `dash-flow`, `float-a`, `float-b`, `float-c`, `bob`, `label-glow` — consumed by Task 2 (`AmbientBackground`), Task 7 (`Section`), and Task 9 (`Stack`, optional).
 
 - [ ] **Step 1: Insert the keyframes block after the two `@import` lines**
 
@@ -386,14 +386,16 @@ git commit -m "refactor: simplify Hero background now that AmbientBackground pro
 Change:
 
 ```tsx
-                className="label !text-signal"
+                className="label"
 ```
 
 to:
 
 ```tsx
-                className="label !text-signal animate-[label-glow_3s_ease-in-out_infinite]"
+                className="label animate-[label-glow_3s_ease-in-out_infinite]"
 ```
+
+(Note: the plan originally assumed this className was `"label !text-signal"`, matching nextjs-updates' Section.tsx. The live file only has `"label"` — no `!text-signal` color override. Add only the animation class; do not add `!text-signal`, since that color change wasn't part of the approved design and isn't needed for the glow to work.)
 
 - [ ] **Step 2: Verify**
 
@@ -408,7 +410,50 @@ git commit -m "feat: add pulsing glow animation to section index labels"
 
 ---
 
-### Task 8: Rework Stack to a row-list layout that keeps icons
+### Task 8: Replace Section's hard border with soft gradient fades
+
+**Files:**
+- Modify: `components/Section.tsx:16-17`
+
+**Interfaces:**
+- No interface changes — `Section` keeps its existing props (`id`, `index`, `title`, `subtitle`, `children`).
+
+**Context:** `Section` wraps Education, Stack, Experience, Projects, and Contact. It currently draws a hard `border-b border-hairline` on every section, which is a visible seam between sections even after AmbientBackground is mounted. This task replaces that hard line with the same soft top/bottom fade-to-background gradient pattern Task 6 already applied to Hero, so section boundaries blend into the ambient layer instead of cutting it off.
+
+- [ ] **Step 1: Remove the hard border and add fade gradients**
+
+Change:
+
+```tsx
+    <section id={id} className="relative border-b border-hairline">
+      <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+```
+
+to:
+
+```tsx
+    <section id={id} className="relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+```
+
+Note the content div gains `relative z-10` so its text stacks above the two new fade divs.
+
+- [ ] **Step 2: Verify**
+
+Reload `http://localhost:3000` and scroll past a few section boundaries (e.g. Education into Stack, Stack into Experience). Expected: no hard hairline between sections — each boundary now fades softly to the background color, and the ambient layer's texture is visible continuously through the fade instead of being cut by a line. Section content (title, subtitle, children) still renders normally, unclipped.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add components/Section.tsx
+git commit -m "refactor: replace Section's hard border with soft gradient fades"
+```
+
+---
+
+### Task 9: Rework Stack to a row-list layout that keeps icons
 
 **Files:**
 - Modify: `components/stack.tsx:97-160` (the `Stack` component body — types, icon components, and `groups` data above it are unchanged)
@@ -559,7 +604,7 @@ git commit -m "refactor: rework Stack to row-list layout, drop opaque tile backg
 
 ---
 
-### Task 9: Fix Projects to stop blocking the ambient layer
+### Task 10: Fix Projects to stop blocking the ambient layer
 
 **Files:**
 - Modify: `components/projects.tsx:56` (container), `components/projects.tsx:78-79` (`ProjectRow` className)
@@ -616,7 +661,7 @@ git commit -m "fix: stop Projects rows from blocking the ambient background laye
 
 ---
 
-### Task 10: Fix Contact to stop blocking the ambient layer
+### Task 11: Fix Contact to stop blocking the ambient layer
 
 **Files:**
 - Modify: `components/contact.tsx:74-79` (resume card), `components/contact.tsx:93-104` (profile grid + links)
@@ -701,7 +746,7 @@ git commit -m "fix: stop Contact from blocking the ambient background layer"
 
 ---
 
-### Task 11: Full-site visual QA and production build check
+### Task 12: Full-site visual QA and production build check
 
 **Files:** none (verification only)
 
@@ -728,3 +773,44 @@ git commit -m "fix: resolve build issues from ambient design cohesion pass"
 ```
 
 If no fixes were needed, there is nothing to commit for this task.
+
+---
+
+### Task 13 (ad-hoc, found during Task 12 QA): Fix Footer visibility regression
+
+**Files:**
+- Modify: `components/footer.tsx:5`
+
+**Interfaces:**
+- No interface changes — `Footer` keeps its existing `export function Footer()` signature with no props.
+
+**Context:** While doing Task 12's full-site visual QA pass, `Footer` turned out to be fully hidden behind `AmbientBackground` on every page. Root cause: `AmbientBackground` is `position: fixed`, and per normal CSS painting order, positioned elements always paint above static (non-positioned) siblings regardless of DOM order or z-index — `z-0` on a fixed element still beats an unpositioned element with no explicit stacking context. `Footer` had no `position` set at all, so it fell behind the fixed ambient layer even though it comes later in the DOM. `<main>` never had this problem because it was already given `relative z-10` back in Tasks 3–5, for the same reason. This fix brings `Footer` in line with that same convention.
+
+This one-line exception was called out to the user and approved before making the change, since `components/footer.tsx` was originally listed under "don't touch" in Global Constraints (see the updated note there).
+
+- [ ] **Step 1: Give Footer its own stacking context**
+
+Change:
+
+```tsx
+    <footer className="border-t border-hairline">
+```
+
+to:
+
+```tsx
+    <footer className="relative z-10 border-t border-hairline">
+```
+
+- [ ] **Step 2: Verify**
+
+Verified live first: the fix was injected directly into the running page's DOM in the browser (dev tools) to confirm `relative z-10` on `<footer>` made it visible again above `AmbientBackground`, before touching the source file. After editing `components/footer.tsx`, the dev server was restarted clean (stop `pnpm dev`, start it again) and `http://localhost:3000` was reloaded to confirm Footer renders above the ambient layer with no stale-HMR artifacts. Finally, `pnpm build` was run again to confirm the change doesn't break the production build.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add components/footer.tsx
+git commit -m "fix: give Footer a stacking context so AmbientBackground doesn't hide it"
+```
+
+This task's commit: `714685b`.
