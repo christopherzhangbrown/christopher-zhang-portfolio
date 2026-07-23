@@ -42,11 +42,11 @@ export function Hero() {
         <div className="col-span-12 md:col-span-3 space-y-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}>
             <div className="label mb-2">Subject</div>
-            <div className="font-mono text-sm">Software Engineer</div>
+            <div className="font-mono text-sm">AI Engineer</div>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
             <div className="label mb-2">Location</div>
-            <div className="font-mono text-sm">Providence, RI — Remote</div>
+            <div className="font-mono text-sm">Charlotte, NC</div>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
             <div className="label mb-2">Status</div>
@@ -71,7 +71,7 @@ export function Hero() {
           </h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.7 }} className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Hi! I'm <span className="text-foreground font-semibold">Christopher Zhang</span>, a <span className="text-foreground font-semibold">Brown University student</span> and Division 1 swimmer studying Computer Science & Business Economics. I'm passionate about building innovative, scalable, and user-friendly web solutions.
+            Hi! I'm Christopher Zhang, a Brown University student and Division 1 swimmer studying Computer Science & Business Economics, currently interning as an AI Engineer at Scout Motors.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.85 }} className="mt-12 flex flex-wrap items-center gap-4">
