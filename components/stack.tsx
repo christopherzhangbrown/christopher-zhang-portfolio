@@ -136,7 +136,6 @@ export function Stack() {
                   <div className="min-w-0" style={{ color: t.color }}>
                     <div className="font-mono text-sm text-foreground">{t.name}</div>
                     {t.detail && <div className="mt-0.5 font-mono text-[10px] text-muted-foreground">{t.detail}</div>}
-                    <div className="mt-1 h-px w-full opacity-55" style={{ background: "currentColor" }} />
                   </div>
                 </motion.div>
               ))}

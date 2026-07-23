@@ -74,13 +74,13 @@ export function Experience() {
               </ul>
 
               {item.tags && (
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-mono text-muted-foreground">
                   {item.tags.map((t, tagIndex) => (
                     <span
                       key={t}
                       onMouseEnter={() => setHoveredTag({ item: i, tag: tagIndex })}
                       onMouseLeave={() => setHoveredTag(null)}
-                      className={`cursor-default border px-2 py-1 text-xs font-mono transition-colors ${hoveredTag?.item === i && hoveredTag.tag === tagIndex ? "border-signal text-foreground" : "border-hairline text-muted-foreground"}`}
+                      className={`group cursor-default transition-colors before:mr-2 before:text-muted-foreground before:transition-colors hover:text-[#d7b04c] hover:before:text-[#d7b04c] before:content-['•'] ${tagIndex === 0 ? "before:content-['']" : ""} ${hoveredTag?.item === i && hoveredTag.tag === tagIndex ? "text-[#d7b04c]" : ""}`}
                     >
                       {t}
                     </span>

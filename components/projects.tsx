@@ -64,7 +64,6 @@ export function Projects() {
 
 function ProjectRow({ project, index }: { project: ProjectItem; index: number }) {
   const [hover, setHover] = useState(false)
-  const [hoveredTag, setHoveredTag] = useState<number | null>(null)
   const router = useRouter()
 
   return (
@@ -81,13 +80,11 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
       <div className="col-span-2 md:col-span-1 font-mono text-xs text-muted-foreground">/{String(index + 1).padStart(2, "0")}</div>
       <div className="col-span-10 md:col-span-4">
         <div className="font-display text-2xl tracking-tight md:text-4xl">{project.title}</div>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm font-mono text-muted-foreground">
           {project.tags.map((tag, tagIndex) => (
             <span
               key={tag}
-              onMouseEnter={() => setHoveredTag(tagIndex)}
-              onMouseLeave={() => setHoveredTag(null)}
-              className={`cursor-default border px-3 py-1 text-xs font-mono transition-colors ${hoveredTag === tagIndex ? "border-signal text-foreground" : "border-hairline text-muted-foreground"}`}
+              className={`group cursor-default transition-colors before:mr-2 before:text-muted-foreground before:transition-colors hover:text-[#d7b04c] hover:before:text-[#d7b04c] before:content-['•'] ${tagIndex === 0 ? "before:content-['']" : ""}`}
             >
               {tag}
             </span>

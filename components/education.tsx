@@ -37,13 +37,13 @@ export function Education() {
             </div>
             <div className="col-span-12 md:col-span-5">
               <div className="label mb-3">Coursework</div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-mono text-muted-foreground">
                 {it.coursework.map((c, idx) => (
                   <span
                     key={c}
                     onMouseEnter={() => setHovered(idx)}
                     onMouseLeave={() => setHovered(null)}
-                    className={`border px-3 py-1 text-xs font-mono transition-colors cursor-pointer ${hovered === idx ? 'border-signal text-foreground' : 'border-hairline text-muted-foreground'}`}
+                    className={`group cursor-pointer transition-colors before:mr-2 before:text-muted-foreground before:transition-colors hover:text-[#d7b04c] hover:before:text-[#d7b04c] before:content-['•'] ${idx === 0 ? "before:content-['']" : ""} ${hovered === idx ? "text-[#d7b04c]" : ""}`}
                   >
                     {c}
                   </span>
