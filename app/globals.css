@@ -95,6 +95,7 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    cursor: none;
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "ss01", "cv11";
   }
@@ -163,5 +164,11 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  body {
+    cursor: auto;
   }
 }
