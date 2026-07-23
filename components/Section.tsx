@@ -23,7 +23,7 @@ export function Section({ id, index, title, subtitle, children }: SectionProps) 
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.45 }}
-                className="label"
+                className="label animate-[label-glow_3s_ease-in-out_infinite]"
               >
                 {index}
               </motion.div>
