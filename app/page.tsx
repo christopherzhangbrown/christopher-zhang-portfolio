@@ -8,6 +8,7 @@ import { Experience } from "@/components/experience"
 import { Projects } from "@/components/projects"
 import { Footer } from "@/components/footer"
 import { Contact } from "@/components/contact"
+import { AmbientBackground } from "@/components/AmbientBackground"
 
 export default function Home() {
   // Always initialize to false to avoid SSR mismatch
@@ -67,6 +68,7 @@ export default function Home() {
 
   return (
     <>
+      <AmbientBackground />
       <main className="relative z-10 text-foreground">
         <section id="home">
           <Hero />

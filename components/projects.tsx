@@ -53,7 +53,7 @@ const projects: ProjectItem[] = [
 export function Projects() {
   return (
     <Section id="projects" index="004 — Projects" title="Projects." subtitle="Selected work — click any project to open a short case study.">
-      <div className="space-y-px bg-hairline">
+      <div>
         {projects.map((p, i) => (
           <ProjectRow key={p.id} project={p} index={i} />
         ))}
@@ -76,7 +76,7 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.08 }}
-      className="group relative grid w-full grid-cols-12 items-center gap-6 bg-background px-2 py-8 text-left transition-colors hover:bg-surface"
+      className="group relative grid w-full grid-cols-12 items-center gap-6 border-b border-hairline bg-transparent px-2 py-8 text-left transition-colors hover:bg-foreground/[0.04]"
     >
       <div className="col-span-2 md:col-span-1 font-mono text-xs text-muted-foreground">/{String(index + 1).padStart(2, "0")}</div>
       <div className="col-span-10 md:col-span-4">

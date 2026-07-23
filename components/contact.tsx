@@ -75,7 +75,7 @@ export function Contact() {
               href="/SWEResumeChristopherZhang.pdf"
               target="_blank"
               rel="noreferrer"
-              className="group flex flex-col justify-between border border-hairline bg-background p-4 hover:border-signal transition-colors"
+              className="group flex flex-col justify-between border border-hairline p-4 hover:border-signal transition-colors"
             >
               <div className="flex items-start justify-between">
                 <FileDown className="h-6 w-6 text-signal" />
@@ -90,7 +90,7 @@ export function Contact() {
           </div>
         </motion.div>
         <div className="mt-12">
-          <div className="grid gap-px bg-hairline md:grid-cols-3">
+          <div className="grid divide-y divide-hairline border-y border-hairline md:grid-cols-3 md:divide-x md:divide-y-0">
             {profiles.map((p, i) => (
               <motion.a
                 key={p.name}
@@ -101,7 +101,7 @@ export function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group flex flex-col justify-between bg-background p-8 hover:bg-surface transition-colors"
+                className="group flex flex-col justify-between p-8 hover:bg-foreground/[0.04] transition-colors"
               >
                 <div className="flex items-start justify-between">
                   <p.Icon className="h-6 w-6" />

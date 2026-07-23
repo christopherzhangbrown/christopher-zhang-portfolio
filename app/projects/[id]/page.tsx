@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { ArrowLeft, ArrowUpRight, Github, X } from "lucide-react"
+import { AmbientBackground } from "@/components/AmbientBackground"
 
 type ProjectStudy = {
   title: string
@@ -124,7 +125,8 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
+      <AmbientBackground />
       <div className="relative z-10 px-6 py-12 max-w-6xl mx-auto">
         <div className="mx-auto my-12 max-w-5xl border border-hairline bg-background">
           <div className="flex items-center justify-between border-b border-hairline px-6 py-4 md:px-10">

@@ -102,7 +102,7 @@ export function Stack() {
       title="Skills."
       subtitle="Programming languages, frameworks, data stores, and delivery tooling I use to build and ship."
     >
-      <div className="space-y-px bg-hairline">
+      <div>
         {groups.map((g, gi) => (
           <motion.div
             key={g.title}
@@ -110,47 +110,36 @@ export function Stack() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: gi * 0.06 }}
-            className="grid grid-cols-12 gap-6 bg-background px-2 py-8"
+            className="grid grid-cols-12 gap-6 border-b border-hairline px-2 py-8"
           >
             <div className="col-span-12 md:col-span-3">
               <div className="label">/{String(gi + 1).padStart(2, "0")}</div>
               <h3 className="mt-2 font-display text-xl tracking-tight md:text-2xl">{g.title}</h3>
             </div>
-            <div className="col-span-12 md:col-span-9">
-              <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))]">
-                {g.items.map((t) => (
-                  <motion.div
-                    key={t.name}
-                    initial={{ opacity: 0, y: 18, scale: 0.96 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    whileHover={{ y: -6, scale: 1.03 }}
-                    whileTap={{ scale: 0.99 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="group relative overflow-hidden rounded-xl border border-hairline bg-background p-4 shadow-[0_0_0_rgba(0,0,0,0)] transition-shadow duration-300 hover:bg-surface hover:shadow-[0_14px_40px_rgba(0,0,0,0.12)]"
+            <div className="col-span-12 md:col-span-9 flex flex-wrap gap-x-9 gap-y-7">
+              {g.items.map((t) => (
+                <motion.div
+                  key={t.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ x: 4, filter: "brightness(1.15)" }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.3 }}
+                  className="flex items-center gap-2.5"
+                >
+                  <span
+                    className="grid h-7 w-7 shrink-0 place-items-center rounded-md border border-hairline"
+                    style={{ backgroundColor: t.bg }}
                   >
-                    <div
-                      className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      style={{ background: `radial-gradient(circle at top left, ${t.bg}, transparent 70%)` }}
-                    />
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    <div className="relative flex min-h-20 items-center gap-3">
-                      <motion.span
-                        className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-hairline bg-background/90"
-                        style={{ backgroundColor: t.bg }}
-                        whileHover={{ rotate: -6, scale: 1.08 }}
-                        transition={{ duration: 0.25 }}
-                      >
-                        <t.Icon className="h-5 w-5" style={{ color: t.color }} />
-                      </motion.span>
-                      <div className="min-w-0 transition-transform duration-300 group-hover:translate-x-0.5">
-                        <div className="font-mono text-sm leading-tight">{t.name}</div>
-                        {t.detail ? <div className="mt-1 font-mono text-[11px] leading-tight text-muted-foreground">{t.detail}</div> : null}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                    <t.Icon className="h-4 w-4" style={{ color: t.color }} />
+                  </span>
+                  <div className="min-w-0" style={{ color: t.color }}>
+                    <div className="font-mono text-sm text-foreground">{t.name}</div>
+                    {t.detail && <div className="mt-0.5 font-mono text-[10px] text-muted-foreground">{t.detail}</div>}
+                    <div className="mt-1 h-px w-full opacity-55" style={{ background: "currentColor" }} />
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         ))}
