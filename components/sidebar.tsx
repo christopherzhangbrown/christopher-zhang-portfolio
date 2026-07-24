@@ -11,7 +11,7 @@ export function Sidebar() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed top-6 right-6 z-50 grid h-11 w-11 place-items-center border border-hairline bg-surface text-foreground hover:border-signal hover:text-signal transition-colors"
+        className="fixed top-6 right-6 z-50 grid h-11 w-11 place-items-center border border-hairline bg-surface text-foreground hover:border-signal hover:text-signal transition-colors md:hidden"
         aria-label="Open menu"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
