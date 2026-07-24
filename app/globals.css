@@ -96,7 +96,6 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    cursor: none;
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "ss01", "cv11";
   }
@@ -153,6 +152,13 @@
   }
 }
 
+/* Unlayered on purpose: Tailwind utilities (e.g. cursor-pointer/cursor-default
+   on tag pills) live in @layer utilities, and a layered !important loses to
+   an unlayered !important. This must sit outside any @layer to reliably win. */
+* {
+  cursor: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -169,7 +175,7 @@
 }
 
 @media (hover: none), (pointer: coarse) {
-  body {
-    cursor: auto;
+  * {
+    cursor: auto !important;
   }
 }
