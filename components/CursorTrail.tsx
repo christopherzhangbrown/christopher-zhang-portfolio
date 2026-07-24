@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useReducedMotion } from "framer-motion"
 
 type Point = { x: number; y: number }
 
@@ -9,6 +10,7 @@ const hiddenPoint: Point = { x: -100, y: -100 }
 const TEXT_TAGS = new Set(["P", "H1", "H2", "H3", "H4", "H5", "H6", "SPAN", "A", "BUTTON", "LI", "LABEL"])
 
 export function CursorTrail() {
+  const reduceMotion = useReducedMotion()
   const [cursor, setCursor] = useState<Point>(hiddenPoint)
   const [trail, setTrail] = useState<Point>(hiddenPoint)
   const [isOverText, setIsOverText] = useState(false)
@@ -36,6 +38,11 @@ export function CursorTrail() {
   }, [])
 
   useEffect(() => {
+    if (reduceMotion) {
+      setTrail(cursor)
+      return
+    }
+
     let frame = 0
 
     const animate = () => {
@@ -49,7 +56,7 @@ export function CursorTrail() {
     frame = window.requestAnimationFrame(animate)
 
     return () => window.cancelAnimationFrame(frame)
-  }, [cursor])
+  }, [cursor, reduceMotion])
 
   return (
     <>

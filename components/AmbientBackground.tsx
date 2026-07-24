@@ -1,9 +1,10 @@
 "use client"
 
 import { useEffect } from "react"
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion"
 
 export function AmbientBackground() {
+  const reduceMotion = useReducedMotion()
   const pointerX = useMotionValue(0)
   const pointerY = useMotionValue(0)
   const springX = useSpring(pointerX, { stiffness: 40, damping: 20 })
@@ -12,13 +13,14 @@ export function AmbientBackground() {
   const y = useTransform(springY, [-1, 1], [-16, 16])
 
   useEffect(() => {
+    if (reduceMotion) return
     const onMove = (event: MouseEvent) => {
       pointerX.set((event.clientX / window.innerWidth) * 2 - 1)
       pointerY.set((event.clientY / window.innerHeight) * 2 - 1)
     }
     window.addEventListener("mousemove", onMove)
     return () => window.removeEventListener("mousemove", onMove)
-  }, [pointerX, pointerY])
+  }, [pointerX, pointerY, reduceMotion])
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-background">

@@ -21,9 +21,25 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 })
 
+const TITLE = "Christopher Zhang — Portfolio"
+const DESCRIPTION = "Christopher Zhang's portfolio of projects, experience, and contact links."
+
 export const metadata: Metadata = {
-  title: "Christopher Zhang — Portfolio",
-  description: "Christopher Zhang's portfolio of projects, experience, and contact links.",
+  metadataBase: new URL("https://christopher-zhang-portfolio.vercel.app"),
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/",
+    siteName: TITLE,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 }
 
 export default function RootLayout({

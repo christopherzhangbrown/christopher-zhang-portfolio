@@ -1,20 +1,25 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { useInView } from "framer-motion"
+import { useInView, useReducedMotion } from "framer-motion"
 
 const PROMPT = "christopher@zhang:~$ still building"
 
 function TerminalLine() {
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: "-40px" })
+  const reduceMotion = useReducedMotion()
   const [chars, setChars] = useState(0)
 
   useEffect(() => {
     if (!inView || chars >= PROMPT.length) return
+    if (reduceMotion) {
+      setChars(PROMPT.length)
+      return
+    }
     const timer = setTimeout(() => setChars((c) => c + 1), 35)
     return () => clearTimeout(timer)
-  }, [inView, chars])
+  }, [inView, chars, reduceMotion])
 
   return (
     <span ref={ref}>
