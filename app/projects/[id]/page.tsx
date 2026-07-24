@@ -130,7 +130,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
       <div className="relative z-10 px-6 py-12 max-w-6xl mx-auto">
         <div className="mx-auto my-12 max-w-5xl border border-hairline bg-background">
           <div className="flex items-center justify-between border-b border-hairline px-6 py-4 md:px-10">
-            <div className="font-mono text-xs tracking-widest text-muted-foreground">CASE_STUDY / {project.title.toUpperCase()}</div>
+            <div className="label">Case study / {project.title}</div>
             <Link href="/#projects" className="grid h-9 w-9 place-items-center border border-hairline hover:border-signal hover:text-signal transition-colors">
               <X className="h-4 w-4" />
             </Link>
