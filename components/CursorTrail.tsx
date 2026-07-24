@@ -16,6 +16,8 @@ export function CursorTrail() {
   const [isOverText, setIsOverText] = useState(false)
 
   useEffect(() => {
+    if (reduceMotion) return
+
     const onMove = (event: MouseEvent) => {
       setCursor({ x: event.clientX, y: event.clientY })
       const el = document.elementFromPoint(event.clientX, event.clientY)
@@ -35,7 +37,7 @@ export function CursorTrail() {
       window.removeEventListener("mousemove", onMove)
       window.removeEventListener("mouseleave", onLeave)
     }
-  }, [])
+  }, [reduceMotion])
 
   useEffect(() => {
     if (reduceMotion) {
@@ -57,6 +59,8 @@ export function CursorTrail() {
 
     return () => window.cancelAnimationFrame(frame)
   }, [cursor, reduceMotion])
+
+  if (reduceMotion) return null
 
   return (
     <>
