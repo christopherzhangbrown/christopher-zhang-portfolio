@@ -24,7 +24,7 @@ export function Hero() {
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-12 gap-6 px-6 pt-20 pb-32 md:px-10 md:pt-32">
         <div className="col-span-12 md:col-span-3 space-y-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}>
-            <div className="label mb-2">Subject</div>
+            <div className="label mb-2">Role</div>
             <div className="font-mono text-sm">AI Engineer</div>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
