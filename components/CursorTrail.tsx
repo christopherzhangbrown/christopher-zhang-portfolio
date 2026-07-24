@@ -49,7 +49,7 @@ export function CursorTrail() {
     <>
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed z-[9999] h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-signal shadow-[0_0_24px_rgba(217,178,76,0.35)]"
+        className="pointer-events-none fixed z-[9999] h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white mix-blend-difference"
         style={{ left: cursor.x, top: cursor.y }}
       />
       <div
