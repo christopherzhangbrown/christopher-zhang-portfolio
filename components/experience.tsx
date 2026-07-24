@@ -54,7 +54,7 @@ export function Experience() {
             className="group grid grid-cols-12 gap-6 py-10 transition-colors hover:bg-surface/50"
           >
             <div className="col-span-12 md:col-span-2 font-mono text-sm text-muted-foreground">
-              <div className="text-signal">LOG_{String(i + 1).padStart(2, "0")}</div>
+              <div className="text-signal">/{String(i + 1).padStart(2, "0")}</div>
               <div className="mt-4">{item.period}</div>
               <div className="mt-2 text-foreground">{item.location}</div>
             </div>
