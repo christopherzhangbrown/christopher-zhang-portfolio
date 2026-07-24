@@ -97,9 +97,9 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.08 }}
-      className="group relative grid w-full grid-cols-12 items-center gap-6 border-b border-hairline bg-transparent px-2 py-8 text-left transition-colors hover:bg-foreground/[0.04]"
+      className="group relative grid w-full grid-cols-12 items-center gap-6 border-b border-hairline bg-transparent px-2 py-8 text-left transition-colors hover:bg-surface/50"
     >
-      <div className="col-span-2 md:col-span-1 font-mono text-xs text-muted-foreground">/{String(index + 1).padStart(2, "0")}</div>
+      <div className="col-span-2 md:col-span-1 font-mono text-sm text-signal">/{String(index + 1).padStart(2, "0")}</div>
       <div className="col-span-10 md:col-span-4">
         <div className="font-display text-2xl tracking-tight md:text-4xl">{project.title}</div>
         <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm font-mono text-muted-foreground">
@@ -113,8 +113,10 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
           ))}
         </div>
       </div>
-      <div className="hidden md:block md:col-span-3 text-sm text-muted-foreground">{project.blurb}</div>
-      <div className="hidden md:block md:col-span-3 font-mono text-xs text-muted-foreground">{project.tags.slice(0, 4).join(" / ")}</div>
+      <div className="hidden md:flex md:col-span-6 gap-4 text-sm text-[color:color-mix(in_srgb,var(--foreground)_82%,white)]">
+        <span className="mt-1 inline-block h-0.5 w-6 shrink-0 bg-signal" />
+        <span>{project.blurb}</span>
+      </div>
       <div className="col-span-12 md:col-span-1 flex justify-end">
         <span className="grid h-10 w-10 place-items-center border border-hairline group-hover:border-signal group-hover:text-signal transition-colors">
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
