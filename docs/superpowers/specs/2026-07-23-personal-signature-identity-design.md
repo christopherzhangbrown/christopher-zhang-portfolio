@@ -56,11 +56,12 @@ as a numbered technical document/TOC, not a system log, and also stay.
   gets a subtle pointer-driven parallax offset on the floating dots and
   conic-gradient halo, using `useMotionValue` + `useSpring` so it damps
   smoothly instead of tracking the cursor 1:1.
-- **Custom cursor** — new `components/CustomCursor.tsx`: a small dot with a
-  lagging outer ring (not a crosshair/reticle — that reads as
-  targeting/military, ruled out earlier in discussion). Mounted globally in
-  `app/layout.tsx`. Disabled on touch/coarse-pointer devices via a
-  `(pointer: fine)` media query check, so it never interferes with mobile.
+- **Custom cursor** — ~~new `components/CustomCursor.tsx`~~ **already shipped**
+  independently on `main` as `components/CursorTrail.tsx` (commit `ce4d839`,
+  merged into this branch at `2d2ed08`): a small dot with a lagging outer
+  ring, mounted globally in `app/layout.tsx`, disabled via `cursor: auto` on
+  touch/coarse-pointer in `globals.css`. Matches this decision exactly (dot +
+  ring, not a crosshair). No new work needed — dropped from the plan.
 - **Project row hover tilt** — `components/projects.tsx`: the existing
   hover-preview image (currently a static scale/opacity fade) gets a subtle
   cursor-tracked tilt (`rotateX`/`rotateY` via motion values) while hovered.
@@ -93,11 +94,9 @@ as a numbered technical document/TOC, not a system log, and also stay.
   (both the found-project header and any shared header markup).
 - **`components/experience.tsx`** — index string change (`LOG_XX` → `/XX`).
 - **`components/hero.tsx`** — `Subject` → `Role` label text.
-- **`app/layout.tsx`** — mount new `<ScrollProgress />` and `<CustomCursor />`
-  components (both client components) alongside existing children.
+- **`app/layout.tsx`** — mount new `<ScrollProgress />` (client component)
+  alongside the existing `<CursorTrail />` and children.
 - **`components/ScrollProgress.tsx`** (new) — the scroll-tracked top bar.
-- **`components/CustomCursor.tsx`** (new) — the dot+ring cursor, gated to
-  fine-pointer devices only.
 - **`components/AmbientBackground.tsx`** — add pointer-driven parallax to
   the existing floating dots / conic gradient; no changes to the SVG line
   motif itself.
