@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { Hero } from "@/components/hero"
 import { Education } from "@/components/education"
 import { Stack } from "@/components/stack"
@@ -11,32 +11,18 @@ import { Contact } from "@/components/contact"
 import { AmbientBackground } from "@/components/AmbientBackground"
 
 export default function Home() {
-  // Always initialize to false to avoid SSR mismatch
-  const [showContent, setShowContent] = useState(false)
-
   useEffect(() => {
-    if (typeof window === 'undefined') return
-    setShowContent(false)
+    // Scroll to hash once sections have mounted
     const timer = setTimeout(() => {
-      setShowContent(true)
-      window.sessionStorage.setItem('hasVisited', 'true')
-    }, 1500)
-    return () => clearTimeout(timer)
-  }, [])
-
-  useEffect(() => {
-    if (!showContent) return
-    // Scroll to hash after content is rendered
-    setTimeout(() => {
       if (window.location.hash) {
         const el = document.getElementById(window.location.hash.replace('#', ''))
         if (el) el.scrollIntoView({ behavior: 'smooth' })
       }
     }, 0)
-  }, [showContent])
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
-    if (!showContent) return
     // IntersectionObserver for hash update on scroll
     const sectionIds = ["home", "education", "stack", "experience", "projects", "contact"]
     const observer = new window.IntersectionObserver(
@@ -59,12 +45,7 @@ export default function Home() {
       if (el) observer.observe(el)
     })
     return () => observer.disconnect()
-  }, [showContent])
-
-  // Always render a consistent placeholder for SSR and client
-  if (!showContent) {
-    return <main className="min-h-screen" />
-  }
+  }, [])
 
   return (
     <>

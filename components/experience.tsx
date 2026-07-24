@@ -56,7 +56,7 @@ export function Experience() {
             <div className="col-span-12 md:col-span-2 font-mono text-sm text-muted-foreground">
               <div className="text-signal">LOG_{String(i + 1).padStart(2, "0")}</div>
               <div className="mt-4">{item.period}</div>
-              <div className="mt-2 text-foreground">Charlotte, NC</div>
+              <div className="mt-2 text-foreground">{item.location}</div>
             </div>
 
             <div className="col-span-12 md:col-span-8">
