@@ -3,6 +3,7 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react"
+import { Nav } from "@/components/nav"
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null)
@@ -18,30 +19,12 @@ export function Hero() {
         <TelemetrySVG />
       </motion.div>
 
-      <nav className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-10">
-        <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-signal animate-pulse" />
-          <span className="font-mono text-xs tracking-widest">CZ / Portfolio</span>
-        </div>
-        <div className="hidden gap-8 md:flex">
-          {["education", "stack", "experience", "projects", "contact"].map((s) => (
-            <a key={s} href={`#${s}`} className="label hover:text-foreground transition-colors">
-              {s}
-            </a>
-          ))}
-        </div>
-        <a
-          href="#contact"
-          className="group flex items-center gap-2 border border-hairline px-4 py-2 text-xs font-mono uppercase tracking-widest hover:border-signal hover:text-signal transition-colors"
-        >
-          Available <span className="h-1.5 w-1.5 rounded-full bg-signal" />
-        </a>
-      </nav>
+      <Nav />
 
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-12 gap-6 px-6 pt-20 pb-32 md:px-10 md:pt-32">
         <div className="col-span-12 md:col-span-3 space-y-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}>
-            <div className="label mb-2">Subject</div>
+            <div className="label mb-2">Role</div>
             <div className="font-mono text-sm">AI Engineer</div>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>

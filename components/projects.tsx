@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useSpring } from "framer-motion"
 import { useState } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { useRouter } from "next/navigation"
@@ -65,12 +65,32 @@ export function Projects() {
 function ProjectRow({ project, index }: { project: ProjectItem; index: number }) {
   const [hover, setHover] = useState(false)
   const router = useRouter()
+  const rotateX = useMotionValue(0)
+  const rotateY = useMotionValue(0)
+  const springRotateX = useSpring(rotateX, { stiffness: 200, damping: 20 })
+  const springRotateY = useSpring(rotateY, { stiffness: 200, damping: 20 })
+
+  const resetTilt = () => {
+    rotateX.set(0)
+    rotateY.set(0)
+  }
+
+  const handlePreviewMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const px = (event.clientX - rect.left) / rect.width - 0.5
+    const py = (event.clientY - rect.top) / rect.height - 0.5
+    rotateY.set(px * 14)
+    rotateX.set(py * -14)
+  }
 
   return (
     <motion.button
       onClick={() => router.push(`/projects/${project.id}`)}
       onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      onMouseLeave={() => {
+        setHover(false)
+        resetTilt()
+      }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -100,8 +120,22 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
       </div>
 
       {hover && (
-        <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} className="pointer-events-none absolute right-20 top-1/2 hidden h-40 w-64 -translate-y-1/2 overflow-hidden border border-hairline lg:block">
-          <img src={project.image} alt="" className="h-full w-full object-cover" />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onMouseMove={handlePreviewMove}
+          onMouseLeave={resetTilt}
+          style={{ perspective: 800 }}
+          className="absolute right-20 top-1/2 hidden h-40 w-64 -translate-y-1/2 overflow-hidden border border-hairline lg:block"
+        >
+          <motion.img
+            src={project.image}
+            alt=""
+            style={{ rotateX: springRotateX, rotateY: springRotateY }}
+            className="h-full w-full object-cover"
+          />
         </motion.div>
       )}
     </motion.button>

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft, ArrowUpRight, Github, X } from "lucide-react"
 import { AmbientBackground } from "@/components/AmbientBackground"
+import { Nav } from "@/components/nav"
 
 type ProjectStudy = {
   title: string
@@ -113,12 +114,16 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-background px-6 py-12 text-foreground">
-        <div className="mx-auto max-w-5xl">
-          <Link href="/#projects" className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-            <ArrowLeft className="h-4 w-4" /> Back
-          </Link>
-          <p className="mt-10 text-sm text-muted-foreground">Project not found.</p>
+      <div className="min-h-screen bg-background text-foreground">
+        <AmbientBackground />
+        <Nav />
+        <div className="relative z-10 px-6 py-12">
+          <div className="mx-auto max-w-5xl">
+            <Link href="/#projects" className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+              <ArrowLeft className="h-4 w-4" /> Back
+            </Link>
+            <p className="mt-10 text-sm text-muted-foreground">Project not found.</p>
+          </div>
         </div>
       </div>
     )
@@ -127,10 +132,11 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <AmbientBackground />
+      <Nav />
       <div className="relative z-10 px-6 py-12 max-w-6xl mx-auto">
         <div className="mx-auto my-12 max-w-5xl border border-hairline bg-background">
           <div className="flex items-center justify-between border-b border-hairline px-6 py-4 md:px-10">
-            <div className="font-mono text-xs tracking-widest text-muted-foreground">CASE_STUDY / {project.title.toUpperCase()}</div>
+            <div className="label">Case study / {project.title}</div>
             <Link href="/#projects" className="grid h-9 w-9 place-items-center border border-hairline hover:border-signal hover:text-signal transition-colors">
               <X className="h-4 w-4" />
             </Link>
@@ -192,7 +198,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
 
             <div className="mt-16">
               {project.gallery.slice(1).map((img) => (
-                <div key={img.src} className="w-full max-w-5xl bg-black shadow-lg rounded-lg overflow-hidden mt-6">
+                <div key={img.src} className="w-full max-w-5xl border border-hairline bg-surface overflow-hidden mt-6">
                   <img src={img.src} alt={img.alt} className="object-contain w-full" />
                 </div>
               ))}
