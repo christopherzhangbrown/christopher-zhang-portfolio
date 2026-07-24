@@ -62,7 +62,9 @@ export function CursorTrail() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed z-[9998] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-signal/35"
+        className={`pointer-events-none fixed z-[9998] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-signal/35 transition-transform duration-200 ease-out ${
+          isOverText ? "scale-[2.5]" : "scale-100"
+        }`}
         style={{ left: trail.x, top: trail.y }}
       />
     </>
