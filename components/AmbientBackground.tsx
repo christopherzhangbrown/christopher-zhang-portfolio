@@ -22,7 +22,7 @@ export function AmbientBackground() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-background">
-      <motion.div style={{ x, y }}>
+      <motion.div className="absolute inset-0" style={{ x, y }}>
         <div
           className="absolute left-1/2 top-1/2 h-[1600px] w-[1600px] -translate-x-1/2 -translate-y-1/2 opacity-35 animate-[spin-slow_90s_linear_infinite]"
           style={{
