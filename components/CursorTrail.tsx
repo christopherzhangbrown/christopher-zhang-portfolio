@@ -21,7 +21,8 @@ export function CursorTrail() {
     const onMove = (event: MouseEvent) => {
       setCursor({ x: event.clientX, y: event.clientY })
       const el = document.elementFromPoint(event.clientX, event.clientY)
-      setIsOverText(!!el && TEXT_TAGS.has(el.tagName))
+      const isTextLeaf = !!el && el.childElementCount === 0 && !!el.textContent?.trim()
+      setIsOverText(!!el && (TEXT_TAGS.has(el.tagName) || isTextLeaf))
     }
 
     const onLeave = () => {
