@@ -13,21 +13,18 @@ const profiles = [
     handle: "github.com/christopher895",
     href: "https://github.com/christopher895",
     Icon: Github,
-    meta: "Projects, code, and experiments",
   },
   {
     name: "LinkedIn",
     handle: "linkedin.com/in/christopher-zhang1",
     href: "https://www.linkedin.com/in/christopher-zhang1/",
     Icon: Linkedin,
-    meta: "Professional updates and networking",
   },
   {
     name: "Email",
     handle: EMAIL,
     href: `mailto:${EMAIL}`,
     Icon: Mail,
-    meta: "Best way to reach me",
   },
 ]
 
@@ -110,7 +107,6 @@ export function Contact() {
                 <div className="mt-8">
                   <div className="font-display text-2xl">{p.name}</div>
                   <div className="mt-1 break-all font-mono text-sm text-muted-foreground">{p.handle}</div>
-                  <div className="label mt-3">{p.meta}</div>
                 </div>
               </motion.a>
             ))}
