@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useMotionValue, useSpring } from "framer-motion"
+import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion"
 import { useState } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { useRouter } from "next/navigation"
@@ -65,6 +65,7 @@ export function Projects() {
 function ProjectRow({ project, index }: { project: ProjectItem; index: number }) {
   const [hover, setHover] = useState(false)
   const router = useRouter()
+  const reduceMotion = useReducedMotion()
   const rotateX = useMotionValue(0)
   const rotateY = useMotionValue(0)
   const springRotateX = useSpring(rotateX, { stiffness: 200, damping: 20 })
@@ -76,6 +77,7 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
   }
 
   const handlePreviewMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (reduceMotion) return
     const rect = event.currentTarget.getBoundingClientRect()
     const px = (event.clientX - rect.left) / rect.width - 0.5
     const py = (event.clientY - rect.top) / rect.height - 0.5
