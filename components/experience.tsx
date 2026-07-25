@@ -66,8 +66,8 @@ export function Experience() {
 
               <ul className="mt-6 space-y-4 text-[color:color-mix(in_srgb,var(--foreground)_82%,white)]">
                 {item.bullets.map((b) => (
-                  <li key={b} className="flex gap-4">
-                    <span className="mt-1 inline-block h-0.5 w-6 bg-signal" />
+                  <li key={b} className="flex items-center gap-4">
+                    <span className="inline-block h-0.5 w-6 shrink-0 bg-signal" />
                     <span>{b}</span>
                   </li>
                 ))}

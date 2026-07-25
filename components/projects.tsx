@@ -113,8 +113,8 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
           ))}
         </div>
       </div>
-      <div className="hidden md:flex md:col-span-6 gap-4 text-sm text-[color:color-mix(in_srgb,var(--foreground)_82%,white)]">
-        <span className="mt-1 inline-block h-0.5 w-6 shrink-0 bg-signal" />
+      <div className="hidden md:flex md:col-span-6 items-center gap-4 text-sm text-[color:color-mix(in_srgb,var(--foreground)_82%,white)]">
+        <span className="inline-block h-0.5 w-6 shrink-0 bg-signal" />
         <span>{project.blurb}</span>
       </div>
       <div className="col-span-12 md:col-span-1 flex justify-end">
