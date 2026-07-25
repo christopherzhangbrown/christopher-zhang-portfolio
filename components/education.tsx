@@ -7,7 +7,7 @@ import { Section } from "@/components/Section"
 const items = [
   {
     school: "Brown University",
-    degree: "Sc.B. Computer Science — A.B. Business Economics",
+    degree: "Sc.B. Computer Science & A.B. Business Economics",
     year: "2024 — 2028",
     coursework: ["Software Engineering", "Computer Systems", "Data Structures and Algorithms", "Deep Learning", "Foundations of AI"],
     notes: "NCAA Division I Swimmer",
@@ -32,7 +32,10 @@ export function Education() {
             <div className="col-span-12 md:col-span-2 font-mono text-sm text-muted-foreground">{it.year}</div>
             <div className="col-span-12 md:col-span-5">
               <h3 className="font-display text-2xl tracking-tight md:text-3xl">{it.school}</h3>
-              <p className="mt-2 text-muted-foreground">{it.degree}</p>
+              <div className="mt-2 flex items-center gap-4 text-muted-foreground">
+                <span className="inline-block h-0.5 w-6 shrink-0 bg-signal" />
+                <p>{it.degree}</p>
+              </div>
               <p className="mt-3 text-sm text-muted-foreground">{it.notes}</p>
             </div>
             <div className="col-span-12 md:col-span-5">
