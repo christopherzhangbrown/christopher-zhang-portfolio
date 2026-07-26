@@ -17,6 +17,29 @@ type ProjectStudy = {
 }
 
 const projectData: Record<string, ProjectStudy> = {
+  "08": {
+    title: "AI Job Hunting Agent",
+    tag: "Automation · AI",
+    year: "2026",
+    problem: "Job hunting effectively means two manual chores that don't scale: watching 80+ company career pages by hand for new postings (easy to miss one), and hand-tailoring a resume for every posting so it doesn't get filtered by ATS keyword scans.",
+    contributions: [
+      "Built a scraper pipeline (Cheerio + snapshot diffing) across 20+ Greenhouse/Ashby/Lever/Amazon career pages, running on a guarded 15-minute cron, with email alerts on new matches.",
+      "Designed a generate → critique → revise AI loop that tailors a resume per job description against a resume-worded-style scoring rubric, grounded so the model can only select facts from a master resume, never invent them.",
+      "Built the Google-Doc-style web editor and LaTeX/Tectonic PDF pipeline, plus a Google Sheets application-log sync.",
+    ],
+    architecture: [
+      "Cron scraper → Postgres snapshot diff → keyword/location filter → Resend alert email",
+      "Next.js web app → Express API → Claude (headless CLI) generate/critique/revise loop",
+      "Tectonic (LaTeX) renders tailored Markdown → PDF, stored in Postgres",
+    ],
+    stack: ["Next.js", "TypeScript", "Tailwind", "Node.js/Express", "PostgreSQL", "Claude (Anthropic)", "Cheerio", "Playwright", "Tectonic/LaTeX", "Resend", "Google Sheets API"],
+    demo: "#",
+    repo: "https://github.com/christopher895/AI-Job-Agent",
+    gallery: [
+      { src: "/AI-Job-Agent/AI-Job-Resume.png", alt: "AI Job Hunting Agent resume editor, split view" },
+      { src: "/AI-Job-Agent/AI-Job-Home.png", alt: "AI Job Hunting Agent resume history dashboard" },
+    ],
+  },
   "01": {
     title: "AI Swim Start Analyzer",
     tag: "Computer Vision · Training",
@@ -161,8 +184,8 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
               <div className="col-span-12 md:col-span-3 label">Contributions</div>
               <ul className="col-span-12 md:col-span-9 space-y-3">
                 {project.contributions.map((c) => (
-                  <li key={c} className="flex gap-4 text-muted-foreground leading-relaxed">
-                    <span className="mt-2 h-px w-6 shrink-0 bg-signal/60" />
+                  <li key={c} className="flex items-center gap-4 text-muted-foreground leading-relaxed">
+                    <span className="inline-block h-0.5 w-6 shrink-0 bg-signal" />
                     <span>{c}</span>
                   </li>
                 ))}
@@ -180,9 +203,14 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
 
             <div className="mt-10 grid grid-cols-12 gap-6">
               <div className="col-span-12 md:col-span-3 label">Stack</div>
-              <div className="col-span-12 md:col-span-9 flex flex-wrap gap-2">
-                {project.stack.map((s) => (
-                  <span key={s} className="border border-hairline px-3 py-1 text-xs font-mono">{s}</span>
+              <div className="col-span-12 md:col-span-9 flex flex-wrap gap-x-6 gap-y-2 text-sm font-mono text-muted-foreground">
+                {project.stack.map((s, sIndex) => (
+                  <span
+                    key={s}
+                    className={`cursor-default transition-colors before:mr-2 before:text-muted-foreground before:transition-colors hover:text-[#d7b04c] hover:before:text-[#d7b04c] before:content-['•'] ${sIndex === 0 ? "before:content-['']" : ""}`}
+                  >
+                    {s}
+                  </span>
                 ))}
               </div>
             </div>

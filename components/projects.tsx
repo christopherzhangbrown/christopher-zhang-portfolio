@@ -17,6 +17,14 @@ type ProjectItem = {
 
 const projects: ProjectItem[] = [
   {
+    id: "08",
+    title: "AI Job Hunting Agent",
+    tags: ["Next.js", "TypeScript", "PostgreSQL", "Claude AI"],
+    image: "/AI-Job-Agent/AI-Job-Resume.png",
+    blurb: "Autonomous agent that scrapes job boards and auto-tailors your resume per role.",
+    detail: "Scraper pipeline, generate-critique-revise AI loop, and LaTeX resume rendering.",
+  },
+  {
     id: "06",
     title: "Dating Profile Analyzer",
     tags: ["React", "TypeScript", "Node.js", "Firebase", "Gemini AI"],
