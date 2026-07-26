@@ -69,7 +69,7 @@ export function Contact() {
           <div className="col-span-12 md:col-span-5">
             <div className="label mb-3">Resume</div>
             <a
-              href="/SWEResumeChristopherZhang.pdf"
+              href="/ChristopherZhangResume.pdf"
               target="_blank"
               rel="noreferrer"
               className="group flex flex-col justify-between border border-hairline p-4 hover:border-signal transition-colors"
