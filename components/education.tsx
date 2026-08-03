@@ -8,9 +8,9 @@ const items = [
   {
     school: "Brown University",
     degree: "Sc.B. Computer Science & A.B. Business Economics",
-    year: "2024 — 2028",
-    coursework: ["Software Engineering", "Computer Systems", "Data Structures and Algorithms", "Deep Learning", "Foundations of AI"],
-    notes: "NCAA Division I Swimmer",
+    year: "Expected May 2028",
+    coursework: ["SWE", "Data Structures and Algorithms", "AI", "Deep Learning", "Computer Systems", "Discrete Math"],
+    notes: "GPA: 3.93/4.00 · Varsity Student-Athlete",
   },
 ]
 

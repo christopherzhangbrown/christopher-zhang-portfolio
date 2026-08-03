@@ -16,25 +16,28 @@ type ExperienceItem = {
 const experiences: ExperienceItem[] = [
   {
     company: "Scout Motors",
-    role: "AI Engineering Intern",
+    role: "AI Engineer Intern",
     location: "Charlotte, NC",
-    period: "Summer 2026",
+    period: "May 2026 — Present",
     bullets: [
-      "Role in progress. Details coming soon."
+      "Engineered an AI security assistant using Copilot Studio and Jira, reducing projected support costs by $800K annually.",
+      "Designed and deployed a self-service developer platform automating application provisioning, repository creation, and Kubernetes deployments, reducing application onboarding from 7 steps to 1 across 4 standardized service templates.",
+      "Architected the platform backend with AWS Lambda, Amazon Bedrock, and Terraform to translate natural language requests into automated application deployment workflows.",
+      "Developed an MCP server and Go Kubernetes monitoring service using client-go informers, ingesting cluster state into PostgreSQL to enable application triage, health checks, environment comparison, and AI-assisted remediation.",
     ],
-    tags: ["TBD"],
+    tags: ["Copilot Studio", "Jira", "AWS", "Bedrock", "Terraform", "Go"],
   },
   {
     company: "Mandy",
-    role: "Software Engineering Intern",
+    role: "Software Engineer Intern",
     location: "Remote",
-    period: "Summer 2025",
+    period: "June 2025 — August 2025",
     bullets: [
-      "Built an AI tool that redesigns rooms from photos and suggests Amazon products, helping users explore 1,000+ unique decor items.",
-      "Developed a full-stack app for 1,000+ image uploads and layout generation using Next.js, TypeScript, IMGBB, and Vercel.",
-      "Built user account functionality with Clerk to track preferences and deliver tailored product recommendations and chatbot responses.",
+      "Built an AI-powered room redesign platform that transforms user-uploaded room images into personalized interior designs and generates relevant product recommendations.",
+      "Engineered a full-stack application using Next.js, TypeScript, Clerk, IMGBB, and Vercel, developing pipelines for image uploads, AI-generated redesigns, user onboarding, and personalized recommendations.",
+      "Created a recommendation pipeline mapping user preferences to Amazon furniture suggestions with personalized filtering.",
     ],
-    tags: ["TypeScript", "Next.js / React", "OpenAI", "Supabase"],
+    tags: ["Next.js", "TypeScript", "Clerk", "IMGBB", "Vercel"],
   },
 ]
 

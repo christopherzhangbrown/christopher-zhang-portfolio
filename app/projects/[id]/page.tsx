@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft, ArrowUpRight, Github, X } from "lucide-react"
+import { ArrowLeft, Github, X } from "lucide-react"
 import { AmbientBackground } from "@/components/AmbientBackground"
 import { Nav } from "@/components/nav"
 
@@ -11,59 +11,55 @@ type ProjectStudy = {
   contributions: string[]
   architecture: string[]
   stack: string[]
-  demo: string
-  repo: string
+  repo?: string
   gallery: { src: string; alt: string; className?: string }[]
 }
 
 const projectData: Record<string, ProjectStudy> = {
-  "08": {
+  "02": {
     title: "AI Job Hunting Agent",
     tag: "Automation · AI",
     year: "2026",
-    problem: "Job hunting effectively means two manual chores that don't scale: watching 80+ company career pages by hand for new postings (easy to miss one), and hand-tailoring a resume for every posting so it doesn't get filtered by ATS keyword scans.",
+    problem: "Job hunting means repeatedly scanning career pages, tailoring resumes, and tracking applications by hand, which makes it easy to miss strong roles or spend too long on each application.",
     contributions: [
-      "Built a scraper pipeline (Cheerio + snapshot diffing) across 20+ Greenhouse/Ashby/Lever/Amazon career pages, running on a guarded 15-minute cron, with email alerts on new matches.",
-      "Designed a generate → critique → revise AI loop that tailors a resume per job description against a resume-worded-style scoring rubric, grounded so the model can only select facts from a master resume, never invent them.",
-      "Built the Google-Doc-style web editor and LaTeX/Tectonic PDF pipeline, plus a Google Sheets application-log sync.",
+      "Built a Node.js and Cheerio scraping pipeline that checks career pages for new postings and surfaces relevant matches quickly.",
+      "Designed a Claude and GPT-4o tailoring flow that rewrites resumes for each role while keeping changes grounded in the master resume.",
+      "Stored application data in PostgreSQL and organized the workflow around resume generation, review, and tracking.",
     ],
     architecture: [
-      "Cron scraper → Postgres snapshot diff → keyword/location filter → Resend alert email",
-      "Next.js web app → Express API → Claude (headless CLI) generate/critique/revise loop",
-      "Tectonic (LaTeX) renders tailored Markdown → PDF, stored in Postgres",
+      "Next.js UI → Node.js services → Cheerio-based job ingestion",
+      "Claude and GPT-4o tailoring loop generates role-specific resume drafts",
+      "PostgreSQL stores jobs, resume versions, and application status",
     ],
-    stack: ["Next.js", "TypeScript", "Tailwind", "Node.js/Express", "PostgreSQL", "Claude (Anthropic)", "Cheerio", "Playwright", "Tectonic/LaTeX", "Resend", "Google Sheets API"],
-    demo: "#",
-    repo: "https://github.com/christopher895/AI-Job-Agent",
+    stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Cheerio", "Claude", "GPT-4o"],
     gallery: [
       { src: "/AI-Job-Agent/AI-Job-Resume.png", alt: "AI Job Hunting Agent resume editor, split view" },
       { src: "/AI-Job-Agent/AI-Job-Home.png", alt: "AI Job Hunting Agent resume history dashboard" },
     ],
   },
   "01": {
-    title: "AI Swim Start Analyzer",
+    title: "AI Swim Start Coach",
     tag: "Computer Vision · Training",
-    year: "2025",
-    problem: "Coaches needed fast biomechanical feedback during live starts, but common pose pipelines were too slow and too fragile under occlusion.",
+    year: "2026",
+    problem: "Swim-start analysis needed reliable pose tracking, biomechanical scoring, and coaching feedback despite noisy footage and occluded limbs.",
     contributions: [
-      "Built a MediaPipe-based analysis flow for live swim-start posture tracking.",
-      "Automated timing and angle measurements to turn raw video into coaching feedback.",
-      "Shipped a React interface for session review, metrics, and progress tracking.",
+      "Built a full-stack computer vision platform using RTMPose and a deterministic biomechanics engine that segments dives, computes joint-angle metrics, and generates performance scores, then produces LLM-generated coaching explanations.",
+      "Engineered a pose processing pipeline with temporal filtering, plausibility checks, adaptive confidence thresholds, and limb-label correction to enable reliable keypoint tracking on challenging swim footage.",
+      "Integrated Next.js, React, TypeScript, Python, OpenAI, and Modal into a production-ready workflow for analysis and coaching feedback.",
     ],
     architecture: [
-      "React UI → Python/OpenCV analysis → MediaPipe pose detection",
-      "Frame timing and angle scoring feed the coaching feedback layer",
-      "Session review view stores notes and exports training data",
+      "Next.js / React UI → Python pose pipeline → RTMPose keypoint inference",
+      "Deterministic biomechanics engine computes dive segmentation, angles, and scores",
+      "OpenAI-generated explanations turn numeric metrics into coaching feedback",
     ],
-    stack: ["React", "OpenCV", "MediaPipe", "Python", "Computer Vision"],
-    demo: "#",
+    stack: ["Next.js", "React", "TypeScript", "Python", "RTMPose", "OpenAI", "Modal"],
     repo: "#",
     gallery: [
       { src: "/AIStart/AIStart.png", alt: "AI Swim Start Analyzer dashboard" },
-      { src: "/AIStart/AIStartFeedback.png", alt: "AI Swim Start Analyzer feedback screen" },
+      { src: "/AIStart/AIStartFeedback.png", alt: "AI Swim Start Coach feedback screen" },
     ],
   },
-  "05": {
+  "04": {
     title: "TripPlanner",
     tag: "Planning · Maps",
     year: "2025",
@@ -79,14 +75,13 @@ const projectData: Record<string, ProjectStudy> = {
       "Test coverage with Vitest validates privacy and routing logic",
     ],
     stack: ["TypeScript", "React", "Express.js", "Node.js", "Firebase Firestore", "Mapbox GL"],
-    demo: "#",
     repo: "#",
     gallery: [
       { src: "/TravelPlanner/travel-planner-home.png", alt: "TripPlanner home screen" },
       { src: "/TravelPlanner/travel-planner-map-routes.png", alt: "TripPlanner route map" },
     ],
   },
-  "06": {
+  "03": {
     title: "Dating Profile Analyzer",
     tag: "AI · Vision",
     year: "2026",
@@ -102,14 +97,13 @@ const projectData: Record<string, ProjectStudy> = {
       "Gemini AI generates rewrite suggestions for profile bios",
     ],
     stack: ["React", "TypeScript", "Node.js", "Firebase", "Gemini AI", "TensorFlow.js"],
-    demo: "#",
     repo: "#",
     gallery: [
       { src: "/DatingProfile/dating-profile-home.png", alt: "Dating Profile Analyzer home screen" },
       { src: "/DatingProfile/dating-profile-dashboard.png", alt: "Dating Profile Analyzer dashboard" },
     ],
   },
-  "07": {
+  "05": {
     title: "Vision Transformer Evaluation Framework",
     tag: "Computer Vision · Research",
     year: "2026",
@@ -125,7 +119,6 @@ const projectData: Record<string, ProjectStudy> = {
       "Poster layout communicates methodology, metrics, and findings",
     ],
     stack: ["Python", "PyTorch", "Computer Vision", "ViT", "CNNs"],
-    demo: "#",
     repo: "#",
     gallery: [{ src: "/DLFinal/DL Final Poster.png", alt: "Vision Transformer Evaluation Framework poster" }],
   },
@@ -215,14 +208,13 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
               </div>
             </div>
 
-            <div className="mt-12 flex flex-wrap gap-3 border-t border-hairline pt-8">
-              <a href={project.demo} className="group inline-flex items-center gap-3 bg-foreground px-5 py-3 text-xs font-mono uppercase tracking-widest text-background hover:bg-signal transition-colors">
-                Live Demo <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-              <a href={project.repo} className="group inline-flex items-center gap-3 border border-hairline px-5 py-3 text-xs font-mono uppercase tracking-widest hover:border-signal hover:text-signal transition-colors">
-                <Github className="h-4 w-4" /> Repository
-              </a>
-            </div>
+            {project.repo && project.repo !== "#" && (
+              <div className="mt-12 flex flex-wrap gap-3 border-t border-hairline pt-8">
+                <a href={project.repo} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 border border-hairline px-5 py-3 text-xs font-mono uppercase tracking-widest hover:border-signal hover:text-signal transition-colors">
+                  <Github className="h-4 w-4" /> Repository
+                </a>
+              </div>
+            )}
 
             <div className="mt-16">
               {project.gallery.slice(1).map((img) => (

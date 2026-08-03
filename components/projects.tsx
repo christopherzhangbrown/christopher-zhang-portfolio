@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 import { Section } from "@/components/Section"
 
 type ProjectItem = {
-  id: string
+  slug: string
   title: string
   tags: string[]
   image: string
@@ -17,15 +17,23 @@ type ProjectItem = {
 
 const projects: ProjectItem[] = [
   {
-    id: "08",
-    title: "AI Job Hunting Agent",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Claude AI"],
-    image: "/AI-Job-Agent/AI-Job-Resume.png",
-    blurb: "Autonomous agent that scrapes job boards and auto-tailors your resume per role.",
-    detail: "Scraper pipeline, generate-critique-revise AI loop, and LaTeX resume rendering.",
+    slug: "01",
+    title: "AI Swim Start Coach",
+    tags: ["Next.js", "React", "TypeScript", "Python", "RTMPose", "OpenAI", "Modal"],
+    image: "/AIStart/AIStart.png",
+    blurb: "Computer vision platform that segments dives, scores biomechanics, and generates coaching explanations.",
+    detail: "Pose processing pipeline with temporal filtering, plausibility checks, adaptive confidence thresholds, and limb-label correction.",
   },
   {
-    id: "06",
+    slug: "02",
+    title: "AI Job Hunting Agent",
+    tags: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Cheerio", "Claude", "GPT-4o"],
+    image: "/AI-Job-Agent/AI-Job-Resume.png",
+    blurb: "AI resume workflow that finds roles, tailors resumes, and tracks applications.",
+    detail: "Node.js and Cheerio scraping pipeline with GPT-4o-driven tailoring, Postgres storage, and application tracking.",
+  },
+  {
+    slug: "03",
     title: "Dating Profile Analyzer",
     tags: ["React", "TypeScript", "Node.js", "Firebase", "Gemini AI"],
     image: "/DatingProfile/dating-profile-home.png",
@@ -33,7 +41,7 @@ const projects: ProjectItem[] = [
     detail: "Face-aware image scoring, bio analysis, and practical profile rewrites.",
   },
   {
-    id: "05",
+    slug: "04",
     title: "TripPlanner",
     tags: ["TypeScript", "React", "Express.js", "Firebase"],
     image: "/TravelPlanner/travel-planner-home.png",
@@ -41,15 +49,7 @@ const projects: ProjectItem[] = [
     detail: "A* optimization, map overlays, and pseudonymized analytics.",
   },
   {
-    id: "01",
-    title: "AI Swim Start Analyzer",
-    tags: ["React", "OpenCV", "MediaPipe"],
-    image: "/AIStart/AIStart.png",
-    blurb: "Computer vision assistant for start mechanics.",
-    detail: "Video-based posture, angle, and timing feedback for training sessions.",
-  },
-  {
-    id: "07",
+    slug: "05",
     title: "Vision Transformer Evaluation Framework",
     tags: ["Python", "PyTorch", "ViT", "CNNs", "Computer Vision"],
     image: "/DLFinal/DL%20Final%20Poster.png",
@@ -63,7 +63,7 @@ export function Projects() {
     <Section id="projects" index="004 — Projects" title="Projects." subtitle="Selected work — click any project to open a short case study.">
       <div>
         {projects.map((p, i) => (
-          <ProjectRow key={p.id} project={p} index={i} />
+          <ProjectRow key={p.slug} project={p} index={i} />
         ))}
       </div>
     </Section>
@@ -95,7 +95,7 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
 
   return (
     <motion.button
-      onClick={() => router.push(`/projects/${project.id}`)}
+      onClick={() => router.push(`/projects/${project.slug}`)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => {
         setHover(false)
