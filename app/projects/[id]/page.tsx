@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft, Github, X } from "lucide-react"
+import { ArrowLeft, ExternalLink, Github, X } from "lucide-react"
 import { AmbientBackground } from "@/components/AmbientBackground"
 import { Nav } from "@/components/nav"
 
@@ -12,6 +12,7 @@ type ProjectStudy = {
   architecture: string[]
   stack: string[]
   repo?: string
+  live?: string
   gallery: { src: string; alt: string; className?: string }[]
 }
 
@@ -32,6 +33,7 @@ const projectData: Record<string, ProjectStudy> = {
       "PostgreSQL stores jobs, resume versions, and application status",
     ],
     stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Cheerio", "Claude", "GPT-4o"],
+    live: "https://web-production-d867c.up.railway.app/playground",
     gallery: [
       { src: "/AI-Job-Agent/AI-Job-Resume.png", alt: "AI Job Hunting Agent resume editor, split view" },
       { src: "/AI-Job-Agent/AI-Job-Home.png", alt: "AI Job Hunting Agent resume history dashboard" },
@@ -204,11 +206,18 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
               </div>
             </div>
 
-            {project.repo && (
+            {(project.repo || project.live) && (
               <div className="mt-12 flex flex-wrap gap-3 border-t border-hairline pt-8">
-                <a href={project.repo} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 border border-hairline px-5 py-3 text-xs font-mono uppercase tracking-widest hover:border-signal hover:text-signal transition-colors">
-                  <Github className="h-4 w-4" /> Repository
-                </a>
+                {project.live && (
+                  <a href={project.live} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 border border-hairline px-5 py-3 text-xs font-mono uppercase tracking-widest hover:border-signal hover:text-signal transition-colors">
+                    <ExternalLink className="h-4 w-4" /> Live Demo
+                  </a>
+                )}
+                {project.repo && (
+                  <a href={project.repo} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 border border-hairline px-5 py-3 text-xs font-mono uppercase tracking-widest hover:border-signal hover:text-signal transition-colors">
+                    <Github className="h-4 w-4" /> Repository
+                  </a>
+                )}
               </div>
             )}
 
