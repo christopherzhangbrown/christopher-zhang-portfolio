@@ -54,7 +54,7 @@ export function Hero() {
           </h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.7 }} className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Hi! I'm Christopher Zhang, a Brown University Sc.B. Computer Science & A.B. Business Economics student-athlete with a 3.93 GPA, currently interning as an AI Engineer at Scout Motors.
+            Hi! I'm Christopher Zhang, a Brown University Sc.B. Computer Science & A.B. Business Economics student-athlete, currently interning as an AI Engineer at Scout Motors.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.85 }} className="mt-12 flex flex-wrap items-center gap-4">
