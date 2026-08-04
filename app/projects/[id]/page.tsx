@@ -53,7 +53,6 @@ const projectData: Record<string, ProjectStudy> = {
       "OpenAI-generated explanations turn numeric metrics into coaching feedback",
     ],
     stack: ["Next.js", "React", "TypeScript", "Python", "RTMPose", "OpenAI", "Modal"],
-    repo: "#",
     gallery: [
       { src: "/AIStart/AIStart.png", alt: "AI Swim Start Analyzer dashboard" },
       { src: "/AIStart/AIStartFeedback.png", alt: "AI Swim Start Coach feedback screen" },
@@ -75,7 +74,6 @@ const projectData: Record<string, ProjectStudy> = {
       "Test coverage with Vitest validates privacy and routing logic",
     ],
     stack: ["TypeScript", "React", "Express.js", "Node.js", "Firebase Firestore", "Mapbox GL"],
-    repo: "#",
     gallery: [
       { src: "/TravelPlanner/travel-planner-home.png", alt: "TripPlanner home screen" },
       { src: "/TravelPlanner/travel-planner-map-routes.png", alt: "TripPlanner route map" },
@@ -97,7 +95,6 @@ const projectData: Record<string, ProjectStudy> = {
       "Gemini AI generates rewrite suggestions for profile bios",
     ],
     stack: ["React", "TypeScript", "Node.js", "Firebase", "Gemini AI", "TensorFlow.js"],
-    repo: "#",
     gallery: [
       { src: "/DatingProfile/dating-profile-home.png", alt: "Dating Profile Analyzer home screen" },
       { src: "/DatingProfile/dating-profile-dashboard.png", alt: "Dating Profile Analyzer dashboard" },
@@ -119,7 +116,6 @@ const projectData: Record<string, ProjectStudy> = {
       "Poster layout communicates methodology, metrics, and findings",
     ],
     stack: ["Python", "PyTorch", "Computer Vision", "ViT", "CNNs"],
-    repo: "#",
     gallery: [{ src: "/DLFinal/DL Final Poster.png", alt: "Vision Transformer Evaluation Framework poster" }],
   },
 }
@@ -208,7 +204,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
               </div>
             </div>
 
-            {project.repo && project.repo !== "#" && (
+            {project.repo && (
               <div className="mt-12 flex flex-wrap gap-3 border-t border-hairline pt-8">
                 <a href={project.repo} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 border border-hairline px-5 py-3 text-xs font-mono uppercase tracking-widest hover:border-signal hover:text-signal transition-colors">
                   <Github className="h-4 w-4" /> Repository
