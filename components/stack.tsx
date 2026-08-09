@@ -7,8 +7,7 @@ import {
   SiPython,
   SiJavascript,
   SiTypescript,
-  SiHtml5,
-  SiCss3,
+  SiGo,
   SiReact,
   SiNodedotjs,
   SiNextdotjs,
@@ -58,8 +57,7 @@ const groups: { title: string; items: Tech[] }[] = [
       { name: "Python", Icon: SiPython, color: "#3776AB", bg: "rgba(55,118,171,0.12)" },
       { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E", bg: "rgba(247,223,30,0.12)" },
       { name: "TypeScript", Icon: SiTypescript, color: "#3178C6", bg: "rgba(49,120,198,0.12)" },
-      { name: "HTML", Icon: SiHtml5, color: "#E34F26", bg: "rgba(227,79,38,0.12)" },
-      { name: "CSS", Icon: SiCss3, color: "#1572B6", bg: "rgba(21,114,182,0.12)" },
+      { name: "Go", Icon: SiGo, color: "#00ADD8", bg: "rgba(0,173,216,0.12)" },
     ],
   },
   {
@@ -122,7 +120,7 @@ export function Stack() {
                   key={t.name}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ x: 4, filter: "brightness(1.15)" }}
+                  whileHover={{ filter: "brightness(1.2)" }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.3 }}
                   className="flex items-center gap-2.5"
@@ -135,7 +133,7 @@ export function Stack() {
                   </span>
                   <div className="min-w-0" style={{ color: t.color }}>
                     <div className="font-mono text-sm text-foreground">{t.name}</div>
-                    {t.detail && <div className="mt-0.5 font-mono text-[10px] text-muted-foreground">{t.detail}</div>}
+                    {t.detail && <div className="mt-0.5 font-mono text-xs text-muted-foreground">{t.detail}</div>}
                   </div>
                 </motion.div>
               ))}

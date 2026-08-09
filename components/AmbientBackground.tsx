@@ -38,9 +38,9 @@ export function AmbientBackground() {
           { top: "48%", left: "35%", size: 5, delay: "0s", dur: "14s", anim: "float-c" },
           { top: "65%", left: "88%", size: 5, delay: "2s", dur: "11s", anim: "float-a" },
           { top: "80%", left: "18%", size: 4, delay: "1s", dur: "10s", anim: "float-b" },
-          { top: "130%", left: "22%", size: 5, delay: "1.5s", dur: "10s", anim: "float-c" },
-          { top: "180%", left: "70%", size: 4, delay: "0.8s", dur: "12s", anim: "float-a" },
-          { top: "230%", left: "40%", size: 6, delay: "2.4s", dur: "11s", anim: "float-b" },
+          { top: "72%", left: "52%", size: 5, delay: "1.5s", dur: "10s", anim: "float-c" },
+          { top: "34%", left: "62%", size: 4, delay: "0.8s", dur: "12s", anim: "float-a" },
+          { top: "90%", left: "72%", size: 6, delay: "2.4s", dur: "11s", anim: "float-b" },
         ].map((d, i) => (
           <div
             key={i}
@@ -59,17 +59,19 @@ export function AmbientBackground() {
 
       <div className="noise absolute -inset-[10%] opacity-40" />
 
-      <svg className="absolute inset-0 h-full w-full opacity-40" preserveAspectRatio="none" viewBox="0 0 1600 4000">
-        <line x1="120" y1="200" x2="420" y2="520" stroke="var(--signal)" strokeWidth="1" strokeDasharray="6 10" className="animate-[dash-flow_6s_linear_infinite]" />
-        <line x1="420" y1="520" x2="300" y2="900" stroke="currentColor" strokeWidth="1" opacity="0.3" strokeDasharray="4 12" className="animate-[dash-flow_8s_linear_infinite]" />
-        <line x1="1200" y1="1400" x2="1450" y2="1750" stroke="var(--signal)" strokeWidth="1" strokeDasharray="6 10" className="animate-[dash-flow_7s_linear_infinite]" />
-        <line x1="1450" y1="1750" x2="1150" y2="2100" stroke="currentColor" strokeWidth="1" opacity="0.3" strokeDasharray="4 12" className="animate-[dash-flow_9s_linear_infinite]" />
-        <line x1="200" y1="2600" x2="500" y2="2950" stroke="var(--signal)" strokeWidth="1" strokeDasharray="6 10" className="animate-[dash-flow_6.5s_linear_infinite]" />
-        <line x1="1300" y1="3300" x2="1000" y2="3650" stroke="currentColor" strokeWidth="1" opacity="0.3" strokeDasharray="4 12" className="animate-[dash-flow_7.5s_linear_infinite]" />
-        {[[120, 200], [420, 520], [1200, 1400], [1450, 1750], [200, 2600], [500, 2950], [1300, 3300]].map(([cx, cy], i) => (
+      {/* viewBox matches a landscape viewport so the schematic keeps its geometry
+          instead of being squashed ~5:1 by preserveAspectRatio="none". */}
+      <svg className="absolute inset-0 h-full w-full opacity-40" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1600 1000">
+        <line x1="120" y1="180" x2="420" y2="380" stroke="var(--signal)" strokeWidth="1" strokeDasharray="6 10" className="animate-[dash-flow_6s_linear_infinite]" />
+        <line x1="420" y1="380" x2="300" y2="640" stroke="currentColor" strokeWidth="1" opacity="0.3" strokeDasharray="4 12" className="animate-[dash-flow_8s_linear_infinite]" />
+        <line x1="1180" y1="240" x2="1430" y2="440" stroke="var(--signal)" strokeWidth="1" strokeDasharray="6 10" className="animate-[dash-flow_7s_linear_infinite]" />
+        <line x1="1430" y1="440" x2="1150" y2="700" stroke="currentColor" strokeWidth="1" opacity="0.3" strokeDasharray="4 12" className="animate-[dash-flow_9s_linear_infinite]" />
+        <line x1="240" y1="780" x2="540" y2="900" stroke="var(--signal)" strokeWidth="1" strokeDasharray="6 10" className="animate-[dash-flow_6.5s_linear_infinite]" />
+        <line x1="1260" y1="820" x2="980" y2="940" stroke="currentColor" strokeWidth="1" opacity="0.3" strokeDasharray="4 12" className="animate-[dash-flow_7.5s_linear_infinite]" />
+        {[[120, 180], [420, 380], [1180, 240], [1430, 440], [240, 780], [540, 900], [1260, 820]].map(([cx, cy], i) => (
           <circle key={i} cx={cx} cy={cy} r="3" fill="var(--signal)" />
         ))}
-        {[[300, 900], [1150, 2100], [1000, 3650]].map(([cx, cy], i) => (
+        {[[300, 640], [1150, 700], [980, 940]].map(([cx, cy], i) => (
           <circle key={i} cx={cx} cy={cy} r="2.5" fill="currentColor" opacity="0.5" />
         ))}
       </svg>

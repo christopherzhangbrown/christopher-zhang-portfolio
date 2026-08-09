@@ -1,9 +1,9 @@
 "use client"
 
-import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion"
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion"
 import { useState } from "react"
 import { ArrowUpRight } from "lucide-react"
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Section } from "@/components/Section"
 
 type ProjectItem = {
@@ -13,6 +13,7 @@ type ProjectItem = {
   image: string
   blurb: string
   detail: string
+  live?: boolean
 }
 
 const projects: ProjectItem[] = [
@@ -31,6 +32,7 @@ const projects: ProjectItem[] = [
     image: "/AI-Job-Agent/AI-Job-Resume.png",
     blurb: "AI resume workflow that finds roles, tailors resumes, and tracks applications.",
     detail: "Node.js and Cheerio scraping pipeline with GPT-4o-driven tailoring, Postgres storage, and application tracking.",
+    live: true,
   },
   {
     slug: "03",
@@ -60,8 +62,8 @@ const projects: ProjectItem[] = [
 
 export function Projects() {
   return (
-    <Section id="projects" index="004 — Projects" title="Projects." subtitle="Selected work — click any project to open a short case study.">
-      <div>
+    <Section id="projects" index="004 — Projects" title="Projects." subtitle="Selected work — open any project for a short case study.">
+      <div className="border-t border-hairline">
         {projects.map((p, i) => (
           <ProjectRow key={p.slug} project={p} index={i} />
         ))}
@@ -72,7 +74,6 @@ export function Projects() {
 
 function ProjectRow({ project, index }: { project: ProjectItem; index: number }) {
   const [hover, setHover] = useState(false)
-  const router = useRouter()
   const reduceMotion = useReducedMotion()
   const rotateX = useMotionValue(0)
   const rotateY = useMotionValue(0)
@@ -94,64 +95,87 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
   }
 
   return (
-    <motion.button
-      onClick={() => router.push(`/projects/${project.slug}`)}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, delay: index * 0.08 }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => {
         setHover(false)
         resetTilt()
       }}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.08 }}
-      className="group relative grid w-full grid-cols-12 items-center gap-6 border-b border-hairline bg-transparent px-2 py-8 text-left transition-colors hover:bg-surface/50"
+      className="group relative border-b border-hairline transition-colors hover:bg-surface/50"
     >
-      <div className="col-span-2 md:col-span-1 font-mono text-sm text-signal">/{String(index + 1).padStart(2, "0")}</div>
-      <div className="col-span-10 md:col-span-4">
-        <div className="font-display text-2xl tracking-tight md:text-4xl">{project.title}</div>
-        <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm font-mono text-muted-foreground">
+      <Link
+        href={`/projects/${project.slug}`}
+        aria-label={`${project.title} — case study`}
+        className="grid w-full grid-cols-12 items-center gap-x-6 gap-y-3 px-2 py-8 text-left"
+      >
+        <div className="col-span-2 font-mono text-sm text-signal md:col-span-1">/{String(index + 1).padStart(2, "0")}</div>
+
+        <div className="col-span-10 md:col-span-4">
+          <div className="font-display text-2xl tracking-tight md:text-4xl">{project.title}</div>
+          {project.live && (
+            <div className="mt-2 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-signal">
+              <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+              Live demo
+            </div>
+          )}
+        </div>
+
+        <div className="col-span-12 flex items-start gap-4 text-sm text-[color:color-mix(in_srgb,var(--foreground)_82%,transparent)] md:col-span-6">
+          <span className="mt-2 inline-block h-0.5 w-6 shrink-0 bg-signal" />
+          <span>
+            {project.blurb}{" "}
+            <span className="text-muted-foreground">{project.detail}</span>
+          </span>
+        </div>
+
+        <div className="col-span-12 flex justify-end md:col-span-1">
+          <span className="grid h-10 w-10 place-items-center border border-hairline-strong transition-colors group-hover:border-signal group-hover:text-signal">
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </span>
+        </div>
+
+        <div className="col-span-12 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm text-muted-foreground md:col-start-2 md:col-span-11">
           {project.tags.map((tag, tagIndex) => (
             <span
               key={tag}
-              className={`group cursor-default transition-colors before:mr-2 before:text-muted-foreground before:transition-colors hover:text-[#d7b04c] hover:before:text-[#d7b04c] before:content-['•'] ${tagIndex === 0 ? "before:content-['']" : ""}`}
+              className={`before:mr-2 before:text-muted-foreground before:content-['•'] ${tagIndex === 0 ? "before:content-['']" : ""}`}
             >
               {tag}
             </span>
           ))}
         </div>
-      </div>
-      <div className="hidden md:flex md:col-span-6 items-center gap-4 text-sm text-[color:color-mix(in_srgb,var(--foreground)_82%,white)]">
-        <span className="inline-block h-0.5 w-6 shrink-0 bg-signal" />
-        <span>{project.blurb}</span>
-      </div>
-      <div className="col-span-12 md:col-span-1 flex justify-end">
-        <span className="grid h-10 w-10 place-items-center border border-hairline group-hover:border-signal group-hover:text-signal transition-colors">
-          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </span>
-      </div>
+      </Link>
 
-      {hover && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
-          onMouseMove={handlePreviewMove}
-          onMouseLeave={resetTilt}
-          style={{ perspective: 800 }}
-          className="absolute right-20 top-1/2 hidden h-40 w-64 -translate-y-1/2 overflow-hidden border border-hairline lg:block"
-        >
-          <motion.img
-            src={project.image}
-            alt=""
-            style={{ rotateX: springRotateX, rotateY: springRotateY }}
-            className="h-full w-full object-cover"
-          />
-        </motion.div>
-      )}
-    </motion.button>
+      <AnimatePresence>
+        {hover && !reduceMotion && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.25 }}
+            onMouseMove={handlePreviewMove}
+            onMouseLeave={resetTilt}
+            style={{ perspective: 800 }}
+            aria-hidden="true"
+            className="pointer-events-none absolute right-24 top-1/2 hidden h-40 w-64 -translate-y-1/2 overflow-hidden border border-hairline bg-surface xl:block"
+          >
+            <motion.img
+              src={project.image}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              width={256}
+              height={160}
+              style={{ rotateX: springRotateX, rotateY: springRotateY }}
+              className="h-full w-full object-cover"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   )
 }
-
-// Modal removed: project rows navigate to their case-study pages

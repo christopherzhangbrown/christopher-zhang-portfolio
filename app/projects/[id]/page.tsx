@@ -131,7 +131,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
       <div className="min-h-screen bg-background text-foreground">
         <AmbientBackground />
         <Nav />
-        <div className="relative z-10 px-6 py-12">
+        <div className="relative z-10 px-6 pb-12 pt-28">
           <div className="mx-auto max-w-5xl">
             <Link href="/#projects" className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
               <ArrowLeft className="h-4 w-4" /> Back
@@ -147,11 +147,15 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
     <div className="min-h-screen bg-background text-foreground">
       <AmbientBackground />
       <Nav />
-      <div className="relative z-10 px-6 py-12 max-w-6xl mx-auto">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pb-12 pt-28">
         <div className="mx-auto my-12 max-w-5xl border border-hairline bg-background">
           <div className="flex items-center justify-between border-b border-hairline px-6 py-4 md:px-10">
             <div className="label">Case study / {project.title}</div>
-            <Link href="/#projects" className="grid h-9 w-9 place-items-center border border-hairline hover:border-signal hover:text-signal transition-colors">
+            <Link
+              href="/#projects"
+              aria-label="Back to projects"
+              className="grid h-11 w-11 place-items-center border border-hairline-strong transition-colors hover:border-signal hover:text-signal"
+            >
               <X className="h-4 w-4" />
             </Link>
           </div>
@@ -198,7 +202,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
                 {project.stack.map((s, sIndex) => (
                   <span
                     key={s}
-                    className={`cursor-default transition-colors before:mr-2 before:text-muted-foreground before:transition-colors hover:text-[#d7b04c] hover:before:text-[#d7b04c] before:content-['•'] ${sIndex === 0 ? "before:content-['']" : ""}`}
+                    className={`cursor-default transition-colors before:mr-2 before:text-muted-foreground before:transition-colors before:content-['•'] hover:text-signal hover:before:text-signal ${sIndex === 0 ? "before:content-['']" : ""}`}
                   >
                     {s}
                   </span>
@@ -209,12 +213,12 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
             {(project.repo || project.live) && (
               <div className="mt-12 flex flex-wrap gap-3 border-t border-hairline pt-8">
                 {project.live && (
-                  <a href={project.live} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 border border-hairline px-5 py-3 text-xs font-mono uppercase tracking-widest hover:border-signal hover:text-signal transition-colors">
+                  <a href={project.live} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 border border-hairline-strong px-5 py-3 font-mono text-xs uppercase tracking-widest transition-colors hover:border-signal hover:text-signal">
                     <ExternalLink className="h-4 w-4" /> Live Demo
                   </a>
                 )}
                 {project.repo && (
-                  <a href={project.repo} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 border border-hairline px-5 py-3 text-xs font-mono uppercase tracking-widest hover:border-signal hover:text-signal transition-colors">
+                  <a href={project.repo} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 border border-hairline-strong px-5 py-3 font-mono text-xs uppercase tracking-widest transition-colors hover:border-signal hover:text-signal">
                     <Github className="h-4 w-4" /> Repository
                   </a>
                 )}
@@ -231,15 +235,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
           </div>
         </div>
       </div>
-    </div>
-  )
-}
-
-function DetailRow({ label, content }: { label: string; content: React.ReactNode }) {
-  return (
-    <div className="grid grid-cols-12 gap-6">
-      <div className="col-span-12 font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground md:col-span-3">{label}</div>
-      <div className="col-span-12 md:col-span-9">{content}</div>
     </div>
   )
 }
