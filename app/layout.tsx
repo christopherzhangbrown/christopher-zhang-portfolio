@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { CursorTrail } from "@/components/CursorTrail"
 import { ScrollProgress } from "@/components/ScrollProgress"
+import { MotionProvider } from "@/components/MotionProvider"
 import "./globals.css"
 
 const spaceGrotesk = Space_Grotesk({
@@ -21,8 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 })
 
-const TITLE = "Christopher Zhang — Portfolio"
-const DESCRIPTION = "Christopher Zhang's portfolio of projects, experience, and contact links."
+const TITLE = "Christopher Zhang — AI Engineer"
+const DESCRIPTION =
+  "I build AI systems that run in production. AI Engineer Intern at Scout Motors; Computer Science and Business Economics at Brown."
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://christopher-zhang-portfolio.vercel.app"),
@@ -52,9 +54,17 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        <CursorTrail />
-        <ScrollProgress />
-        {children}
+        {/* Framer Motion bakes `opacity: 0` into the SSR markup for every
+            scroll-triggered arrival. Without JS those never resolve, so the page
+            below the hero would stay blank. */}
+        <noscript>
+          <style>{`main [style*="opacity"], footer [style*="opacity"] { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
+        <MotionProvider>
+          <CursorTrail />
+          <ScrollProgress />
+          {children}
+        </MotionProvider>
         <Analytics />
       </body>
     </html>

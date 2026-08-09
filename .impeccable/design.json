@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-08T00:00:00Z",
+  "title": "Design System: Christopher Zhang Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "instrument-amber": {
+        "role": "primary",
+        "displayName": "Instrument Amber",
+        "canonical": "oklch(0.82 0.17 78)",
+        "tonalRamp": [
+          "oklch(0.15 0.17 78)",
+          "oklch(0.26 0.17 78)",
+          "oklch(0.37 0.17 78)",
+          "oklch(0.49 0.17 78)",
+          "oklch(0.60 0.17 78)",
+          "oklch(0.71 0.17 78)",
+          "oklch(0.82 0.17 78)",
+          "oklch(0.95 0.09 78)"
+        ]
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Hairline Strong",
+        "canonical": "oklch(0.49 0.01 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.01 250)",
+          "oklch(0.24 0.01 250)",
+          "oklch(0.33 0.01 250)",
+          "oklch(0.42 0.01 250)",
+          "oklch(0.49 0.01 250)",
+          "oklch(0.62 0.01 250)",
+          "oklch(0.79 0.01 250)",
+          "oklch(0.95 0.01 250)"
+        ]
+      },
+      "drift-violet": {
+        "role": "secondary",
+        "displayName": "Drift Violet",
+        "canonical": "oklch(0.55 0.12 260 / 0.14)",
+        "tonalRamp": [
+          "oklch(0.15 0.12 260)",
+          "oklch(0.26 0.12 260)",
+          "oklch(0.37 0.12 260)",
+          "oklch(0.48 0.12 260)",
+          "oklch(0.55 0.12 260)",
+          "oklch(0.66 0.12 260)",
+          "oklch(0.80 0.10 260)",
+          "oklch(0.95 0.04 260)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(0.13 0.005 250)",
+        "tonalRamp": [
+          "oklch(0.13 0.005 250)",
+          "oklch(0.165 0.006 250)",
+          "oklch(0.21 0.006 250)",
+          "oklch(0.28 0.008 250)",
+          "oklch(0.45 0.008 250)",
+          "oklch(0.62 0.01 250)",
+          "oklch(0.80 0.007 250)",
+          "oklch(0.97 0.005 250)"
+        ]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Bone",
+        "canonical": "oklch(0.97 0.005 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.005 250)",
+          "oklch(0.27 0.005 250)",
+          "oklch(0.38 0.005 250)",
+          "oklch(0.50 0.005 250)",
+          "oklch(0.61 0.005 250)",
+          "oklch(0.73 0.005 250)",
+          "oklch(0.85 0.005 250)",
+          "oklch(0.97 0.005 250)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "oklch(0.165 0.006 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.006 250)",
+          "oklch(0.165 0.006 250)",
+          "oklch(0.21 0.006 250)",
+          "oklch(0.28 0.006 250)",
+          "oklch(0.45 0.006 250)",
+          "oklch(0.62 0.006 250)",
+          "oklch(0.80 0.006 250)",
+          "oklch(0.95 0.006 250)"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Surface 2",
+        "canonical": "oklch(0.21 0.006 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.006 250)",
+          "oklch(0.21 0.006 250)",
+          "oklch(0.30 0.006 250)",
+          "oklch(0.41 0.006 250)",
+          "oklch(0.52 0.006 250)",
+          "oklch(0.64 0.006 250)",
+          "oklch(0.80 0.006 250)",
+          "oklch(0.95 0.006 250)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(0.36 0.008 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.008 250)",
+          "oklch(0.22 0.008 250)",
+          "oklch(0.28 0.008 250)",
+          "oklch(0.39 0.008 250)",
+          "oklch(0.51 0.008 250)",
+          "oklch(0.64 0.008 250)",
+          "oklch(0.80 0.008 250)",
+          "oklch(0.95 0.008 250)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "oklch(0.62 0.01 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.01 250)",
+          "oklch(0.26 0.01 250)",
+          "oklch(0.37 0.01 250)",
+          "oklch(0.49 0.01 250)",
+          "oklch(0.62 0.01 250)",
+          "oklch(0.73 0.01 250)",
+          "oklch(0.85 0.01 250)",
+          "oklch(0.95 0.01 250)"
+        ]
+      },
+      "destructive": {
+        "role": "tertiary",
+        "displayName": "Destructive Red",
+        "canonical": "oklch(0.6 0.22 25)",
+        "tonalRamp": [
+          "oklch(0.15 0.22 25)",
+          "oklch(0.26 0.22 25)",
+          "oklch(0.37 0.22 25)",
+          "oklch(0.49 0.22 25)",
+          "oklch(0.60 0.22 25)",
+          "oklch(0.71 0.18 25)",
+          "oklch(0.83 0.12 25)",
+          "oklch(0.95 0.05 25)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the hero and nothing else. Space Grotesk at 8.5vw with 0.88 line-height."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles, always ending in a period."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Row subjects: a school, a company, a project, a profile."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Hero intro paragraph and section subtitles, capped at 42rem."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Bullets and case-study prose, held to a 9-of-12 column measure."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "The annotation system: section indices, field names, metadata. The .label utility."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Interactive monospace: nav links, button text, tag lists, dates, architecture lines."
+      }
+    },
+    "shadows": [
+      {
+        "name": "node-glow",
+        "value": "0 0 12px var(--signal)",
+        "purpose": "The only box-shadow in the system. Ambient background nodes only, where it reads as emitted light rather than cast shadow. Content never casts a shadow."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-expo-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The hero's name blocks rising from y:80 over 0.9s. Reserved for the largest entrance on the page."
+      },
+      {
+        "name": "arrival",
+        "value": "opacity 0→1, translateY 20px→0, 0.6s",
+        "purpose": "The universal entrance. Triggered by whileInView with once:true and a -80px root margin."
+      },
+      {
+        "name": "stagger",
+        "value": "index * 0.08s",
+        "purpose": "Cascade delay down any list of rows, cards, or tags."
+      },
+      {
+        "name": "state",
+        "value": "150ms transition-colors",
+        "purpose": "All hover and focus state changes. Color only — never position, scale, or elevation."
+      },
+      {
+        "name": "nav-settle",
+        "value": "300ms transition-[background-color,border-color,padding]",
+        "purpose": "The nav condensing past 24px of scroll."
+      },
+      {
+        "name": "spring-progress",
+        "value": "stiffness 300, damping 40, restDelta 0.001",
+        "purpose": "The top scroll-progress bar."
+      },
+      {
+        "name": "spring-ambient",
+        "value": "stiffness 40, damping 20",
+        "purpose": "The ambient field's ±16px pointer parallax. Deliberately slow and heavy."
+      },
+      {
+        "name": "spring-tilt",
+        "value": "stiffness 200, damping 20",
+        "purpose": "The 14° project preview tilt tracking the pointer."
+      },
+      {
+        "name": "cursor-lerp",
+        "value": "0.18 per frame",
+        "purpose": "The trailing amber ring chasing the cursor dot."
+      },
+      {
+        "name": "ambient-loops",
+        "value": "spin-slow 90s, dash-flow 6-9s, float-a/b/c 9-14s, label-glow 3s, blink 1s step-end",
+        "purpose": "Continuous loops, permitted only in the ambient field and on status indicators."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "container",
+        "value": "80rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The page's main action. Bone fill that turns Instrument Amber on hover; the arrow nudges, the button never moves.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">View Selected Work<svg class=\"ds-btn-primary__icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"/><polyline points=\"7 7 17 7 17 17\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--foreground, oklch(0.97 0.005 250)); color: var(--background, oklch(0.13 0.005 250)); padding: 1rem 1.5rem; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; border: none; border-radius: 0; transition: background-color 150ms ease; } .ds-btn-primary__icon { width: 1rem; height: 1rem; transition: transform 150ms ease; } .ds-btn-primary:hover { background: var(--signal, oklch(0.82 0.17 78)); } .ds-btn-primary:hover .ds-btn-primary__icon { transform: translate(2px, -2px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--signal, oklch(0.82 0.17 78)); outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "The secondary action. A hairline rectangle that borders and colors amber on hover.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Initiate Contact</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 0.75rem; background: transparent; color: var(--foreground, oklch(0.97 0.005 250)); padding: 1rem 1.5rem; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; border: 1px solid var(--hairline, oklch(0.28 0.008 250)); border-radius: 0; transition: border-color 150ms ease, color 150ms ease; } .ds-btn-ghost:hover { border-color: var(--signal, oklch(0.82 0.17 78)); color: var(--signal, oklch(0.82 0.17 78)); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--signal, oklch(0.82 0.17 78)); outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Icon Square",
+      "kind": "button",
+      "refersTo": "icon-square",
+      "description": "44px bordered square holding a single 16px glyph. Used for the social row and, at 36px, the case-study close control.",
+      "html": "<a class=\"ds-icon-square\" href=\"#\" aria-label=\"GitHub\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22\"/></svg></a>",
+      "css": ".ds-icon-square { display: grid; place-items: center; height: 2.75rem; width: 2.75rem; color: var(--foreground, oklch(0.97 0.005 250)); border: 1px solid var(--hairline, oklch(0.28 0.008 250)); border-radius: 0; transition: border-color 150ms ease, color 150ms ease; } .ds-icon-square svg { width: 1rem; height: 1rem; } .ds-icon-square:hover { border-color: var(--signal, oklch(0.82 0.17 78)); color: var(--signal, oklch(0.82 0.17 78)); } .ds-icon-square:focus-visible { outline: 2px solid var(--signal, oklch(0.82 0.17 78)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Eyebrow Label",
+      "kind": "chip",
+      "refersTo": "eyebrow",
+      "description": "The annotation system. Monospace, uppercase, 0.18em tracking. Section indices carry a slow 3s glow.",
+      "html": "<div class=\"ds-eyebrow ds-eyebrow--glow\">001 &mdash; Education</div><div class=\"ds-eyebrow\" style=\"margin-top:1rem\">Location</div>",
+      "css": "@keyframes ds-label-glow { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } } .ds-eyebrow { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-foreground, oklch(0.62 0.01 250)); } .ds-eyebrow--glow { animation: ds-label-glow 3s ease-in-out infinite; }"
+    },
+    {
+      "name": "Tag List",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Monospace technology list separated by interpuncts. No background, no border, no radius. Hovers to Amber Dim.",
+      "html": "<div class=\"ds-tags\"><span class=\"ds-tag\">Next.js</span><span class=\"ds-tag\">TypeScript</span><span class=\"ds-tag\">PostgreSQL</span><span class=\"ds-tag\">Claude</span></div>",
+      "css": ".ds-tags { display: flex; flex-wrap: wrap; column-gap: 1.5rem; row-gap: 0.5rem; } .ds-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.875rem; color: var(--muted-foreground, oklch(0.62 0.01 250)); cursor: default; transition: color 150ms ease; } .ds-tag::before { content: '\\2022'; margin-right: 0.5rem; color: var(--muted-foreground, oklch(0.62 0.01 250)); transition: color 150ms ease; } .ds-tag:first-child::before { content: ''; margin-right: 0; } .ds-tag:hover, .ds-tag:hover::before { color: #d7b04c; }"
+    },
+    {
+      "name": "Content Row",
+      "kind": "card",
+      "refersTo": "row",
+      "description": "The system's primary content unit and the reason the page reads as a report: a 12-column grid row divided by hairlines, indexed in amber, with amber-dashed bullets. Replaces the card entirely.",
+      "html": "<div class=\"ds-rows\"><div class=\"ds-row\"><div class=\"ds-row__meta\"><div class=\"ds-row__index\">/01</div><div class=\"ds-row__date\">May 2026 &mdash; Present</div></div><div class=\"ds-row__body\"><h3 class=\"ds-row__title\">Scout Motors</h3><ul class=\"ds-row__list\"><li><span class=\"ds-dash\"></span><span>Engineered an AI security assistant using Copilot Studio and Jira.</span></li><li><span class=\"ds-dash\"></span><span>Designed and deployed a self-service developer platform.</span></li></ul></div><div class=\"ds-row__role\">AI Engineer Intern</div></div></div>",
+      "css": ".ds-rows { border-top: 1px solid var(--hairline, oklch(0.28 0.008 250)); border-bottom: 1px solid var(--hairline, oklch(0.28 0.008 250)); } .ds-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1.5rem; padding: 2.5rem 0; transition: background-color 150ms ease; } .ds-row:hover { background: color-mix(in oklab, var(--surface, oklch(0.165 0.006 250)) 50%, transparent); } .ds-row__meta { grid-column: span 2; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.875rem; color: var(--muted-foreground, oklch(0.62 0.01 250)); } .ds-row__index { color: var(--signal, oklch(0.82 0.17 78)); } .ds-row__date { margin-top: 1rem; } .ds-row__body { grid-column: span 8; } .ds-row__title { font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif; font-size: 1.875rem; letter-spacing: -0.025em; margin: 0; color: var(--foreground, oklch(0.97 0.005 250)); } .ds-row__list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; color: color-mix(in srgb, var(--foreground, oklch(0.97 0.005 250)) 82%, white); } .ds-row__list li { display: flex; align-items: center; gap: 1rem; } .ds-dash { display: inline-block; height: 0.125rem; width: 1.5rem; flex-shrink: 0; background: var(--signal, oklch(0.82 0.17 78)); } .ds-row__role { grid-column: span 2; text-align: right; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted-foreground, oklch(0.62 0.01 250)); }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Fixed bar, transparent at rest, condensing to 80% Ink with a 12px backdrop blur and a hairline rule past 24px of scroll. Shown here in its scrolled state.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav__brand\" href=\"#\"><span class=\"ds-dot\"></span><span>CZ / Portfolio</span></a><div class=\"ds-nav__links\"><a href=\"#\">education</a><a href=\"#\">stack</a><a href=\"#\">experience</a><a href=\"#\">projects</a><a href=\"#\">contact</a></div><a class=\"ds-nav__cta\" href=\"#\">Available <span class=\"ds-dot ds-dot--static\"></span></a></nav>",
+      "css": "@keyframes ds-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } } .ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 1rem 2.5rem; background: color-mix(in oklab, var(--background, oklch(0.13 0.005 250)) 80%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--hairline, oklch(0.28 0.008 250)); } .ds-nav__brand { display: flex; align-items: center; gap: 0.5rem; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--foreground, oklch(0.97 0.005 250)); text-decoration: none; } .ds-dot { height: 0.5rem; width: 0.5rem; border-radius: 9999px; background: var(--signal, oklch(0.82 0.17 78)); animation: ds-pulse 2s ease-in-out infinite; } .ds-dot--static { height: 0.375rem; width: 0.375rem; animation: none; } .ds-nav__links { display: flex; gap: 2rem; } .ds-nav__links a { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-foreground, oklch(0.62 0.01 250)); text-decoration: none; transition: color 150ms ease; } .ds-nav__links a:hover { color: var(--foreground, oklch(0.97 0.005 250)); } .ds-nav__cta { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--foreground, oklch(0.97 0.005 250)); text-decoration: none; border: 1px solid var(--hairline, oklch(0.28 0.008 250)); transition: border-color 150ms ease, color 150ms ease; } .ds-nav__cta:hover { border-color: var(--signal, oklch(0.82 0.17 78)); color: var(--signal, oklch(0.82 0.17 78)); }"
+    },
+    {
+      "name": "Section Header",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The Label Rail in its canonical form: a numbered monospace index in the left three columns, a period-terminated display headline and lead subtitle in the right nine.",
+      "html": "<header class=\"ds-section-header\"><div class=\"ds-section-header__index\">004 &mdash; Projects</div><div class=\"ds-section-header__body\"><h2 class=\"ds-section-header__title\">Projects.</h2><p class=\"ds-section-header__sub\">Selected work &mdash; click any project to open a short case study.</p></div></header>",
+      "css": ".ds-section-header { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: end; gap: 1.5rem; } .ds-section-header__index { grid-column: span 3; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-foreground, oklch(0.62 0.01 250)); } .ds-section-header__body { grid-column: span 9; } .ds-section-header__title { font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif; font-size: 4.5rem; line-height: 1; letter-spacing: -0.05em; margin: 0; color: var(--foreground, oklch(0.97 0.005 250)); } .ds-section-header__sub { margin: 1rem 0 0; max-width: 42rem; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 1.125rem; line-height: 1.625; color: var(--muted-foreground, oklch(0.62 0.01 250)); }"
+    },
+    {
+      "name": "Terminal Footer",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The North Star made literal: a monospace prompt that types itself in when scrolled into view and leaves an underscore blinking on a 1s step-end loop.",
+      "html": "<footer class=\"ds-footer\"><div class=\"ds-footer__line\"><span class=\"ds-dot\"></span><span>christopher@zhang:~$ still building<span class=\"ds-caret\">_</span></span></div><div>&copy; 2026 Christopher Zhang.</div></footer>",
+      "css": "@keyframes ds-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } } .ds-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 2rem 2.5rem; border-top: 1px solid var(--hairline, oklch(0.28 0.008 250)); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; color: var(--muted-foreground, oklch(0.62 0.01 250)); } .ds-footer__line { display: flex; align-items: center; gap: 0.5rem; } .ds-caret { display: inline-block; margin-left: 0.125rem; width: 0.5em; animation: ds-blink 1s step-end infinite; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Terminal",
+    "overview": "This is a developer's console after hours. The room is dark, one amber indicator is lit, and the machine is still running: the footer types `christopher@zhang:~$ still building` one character at a time and leaves a cursor blinking. Everything is annotated the way a terminal annotates — uppercase monospace labels in the margin (`// 001 — INTRODUCTION`, `ROLE`, `STATUS`), numeric indices on every row (`/01`, `/02`), a live status dot that pulses next to \"Open to opportunities.\" The interface does not present the work; it *reports* it.\n\nThe structure is drawn entirely with 1px rules. There are no cards, no shadows, no raised panels — content sits directly on the ground plane and is divided by hairlines, the way a schematic or a terminal window divides regions. Depth is not stacked, it is *behind*: a fixed ambient field of drifting nodes, dashed connector lines, a 90-second conic sweep, and a fine noise grid sits at z-0 while all content floats at z-10 over it. Gradient scrims at the top and bottom of every section fade that field out at the seams, so sections dissolve into the dark instead of ending. Even the pointer is part of the fiction: the native cursor is suppressed and replaced by a mix-blend-difference reticle with an amber ring lagging behind it.\n\nThe type does the reporting in three voices, and they never trade jobs. Space Grotesk states things at enormous scale with tight negative tracking. Inter explains them in comfortable, unhurried paragraphs. JetBrains Mono annotates, indexes, and labels — and it is the only voice permitted to shout in uppercase. Motion is the last layer of the metaphor: nothing pops or bounces, everything *arrives* — a short rise from below with an expo-out curve, staggered ~80ms down a list, once, never again.\n\nThis world is explicitly not a light editorial page and explicitly not a generic dark SaaS template. Both were rejected. The absence of rounded cards, soft shadows, and gradient CTAs is not an oversight; it is the identity.",
+    "keyCharacteristics": [
+      "Near-black ground (oklch(0.13 0.005 250)) with a single warm amber accent and nothing else chromatic in the content layer",
+      "Structure from hairline rules and a 12-column grid, never from cards or shadows",
+      "Square corners by default; radius exists only for dots and one 28px icon chip",
+      "Monospace uppercase labels as the annotation system — indices, eyebrows, metadata, status",
+      "A living ambient field behind everything, and a custom cursor in front of everything",
+      "Motion that arrives once and settles; loops are reserved for the ambient layer and status indicators"
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Instrument Amber means live or actionable — a status, an index, an interactive state, a focus ring. It is never decoration, never a fill for a large area, and never used to differentiate two things that are both static. Its scarcity is what makes the pulsing dot read as a signal instead of a bullet.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ambient-Only Violet Rule",
+        "body": "Drift Violet exists behind the content plane and nowhere else. Any violet on a border, a label, or a piece of text is a bug.",
+        "section": "colors"
+      },
+      {
+        "name": "The Monochrome Content Rule",
+        "body": "Outside the accent, the content layer is one hue family (blue-black, ~250°). Third-party brand colors are permitted in exactly one place — the technology icons in the Skills section, where the real logo color is the information.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three-Voice Rule",
+        "body": "Space Grotesk states, Inter explains, JetBrains Mono annotates. A voice never takes another's job: no monospace paragraphs, no display-face metadata, no Inter labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Uppercase-Is-Mono Rule",
+        "body": "Uppercase belongs to JetBrains Mono only, always with generous tracking (0.18em for labels, 0.1em for buttons and nav). Display and body type are never set in all caps.",
+        "section": "typography"
+      },
+      {
+        "name": "The Full-Stop Rule",
+        "body": "Section titles end in a period. It is a small thing and it is load-bearing: it makes the headings read as declarations rather than navigation.",
+        "section": "typography"
+      },
+      {
+        "name": "The Label Rail Rule",
+        "body": "Every major region reserves its left three columns for a monospace label and nothing else. The rail is what makes the page read as annotated rather than merely aligned. Do not fill it with body content.",
+        "section": "layout"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "Structure is expressed with 1px Hairline rules and grid alignment — never with a filled card, an outlined box with radius, or a shadow. If a region needs separation, rule it.",
+        "section": "layout"
+      },
+      {
+        "name": "The Numbered Section Rule",
+        "body": "Every top-level section carries a zero-padded ordinal in its label (001 — Education … 005 — Contact), and every row inside carries its own (/01, /02). The document is indexed like a system report.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat-Content Rule",
+        "body": "Nothing in the content layer casts a shadow. Depth lives behind the content, never under it. A box-shadow on a button, card, row, or image is a violation of the world.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Scrim Seam Rule",
+        "body": "Sections fade into the ground at both edges with an Ink-to-transparent gradient. Sections never end at a hard horizontal edge against the ambient field.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square-By-Default Rule",
+        "body": "Radius is reserved for circles (things that emit light) and the single 28px logo chip. Any other rounded corner is off-system.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Amber Dash Rule",
+        "body": "List items are marked with a 1.5rem × 0.125rem Instrument Amber rule, not a bullet character, a checkmark, or an icon. Monospace tag lists are the exception: they use interpuncts (•) as separators between items.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do build structure from 1px Hairline rules and the 12-column grid. Rule a region; never box it.",
+      "Do reserve the left three columns for a monospace label (the Label Rail Rule) in any new section or field group.",
+      "Do number new sections and rows (006 — …, /06) — the index system is continuous across the site.",
+      "Do keep Instrument Amber scarce and meaningful: status, index, interactive state, focus. Nothing else.",
+      "Do end section titles with a period.",
+      "Do mark list items with the 1.5rem × 0.125rem amber dash rather than a bullet glyph or icon.",
+      "Do enter new content with the standard arrival (y: 20 → 0, opacity 0 → 1, ~0.6s, once: true, ~80ms stagger).",
+      "Do paint Ink-to-transparent scrims at the top and bottom of any new full-width section so it fades into the ambient field.",
+      "Do guard any new motion behind useReducedMotion() or the global reduced-motion override, and any pointer-dependent effect behind a coarse-pointer check."
+    ],
+    "donts": [
+      "Don't add a box-shadow to anything in the content layer. The single permitted shadow is the ambient node glow.",
+      "Don't introduce rounded corners. Radius belongs to circles and the 28px logo chip only.",
+      "Don't introduce a new hue. The content layer is blue-black plus Instrument Amber; the only exception is real brand color on technology logos in Skills.",
+      "Don't reintroduce a second gold. #d7b04c was removed from the system; Instrument Amber is the only accent.",
+      "Don't put a bare border-hairline on anything interactive — controls take border-hairline-strong, which is the border that clears 3:1.",
+      "Don't gate the visibility of real content on JS. Framer Motion writes opacity: 0 into the SSR markup; anything above the fold animates in CSS instead.",
+      "Don't set display or body type in uppercase. Uppercase is monospace-only, always with ≥0.1em tracking.",
+      "Don't use monospace for paragraphs or Inter for labels — the three voices don't trade jobs.",
+      "Don't animate position or scale on hover for content elements. Color changes and 2–4px icon nudges are the vocabulary; rows and buttons hold still.",
+      "Don't loop an animation in the content layer. Loops belong to the ambient field and to status indicators that genuinely indicate liveness.",
+      "Don't drift toward a light editorial page or a generic dark SaaS template (rounded cards, soft shadows, gradient CTA buttons). Both were explicitly rejected."
+    ]
+  }
+}

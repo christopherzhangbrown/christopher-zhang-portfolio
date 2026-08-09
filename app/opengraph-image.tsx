@@ -38,7 +38,7 @@ export default function OpengraphImage() {
               width: 10,
               height: 10,
               borderRadius: "50%",
-              background: "#d7b04c",
+              background: "#ffb407",
             }}
           />
           CZ / Portfolio
@@ -60,12 +60,23 @@ export default function OpengraphImage() {
           style={{
             display: "flex",
             marginTop: 36,
-            fontSize: 28,
+            fontSize: 30,
+            color: "#f5f5f5",
+            letterSpacing: 0.5,
+          }}
+        >
+          I build AI systems that run in production.
+        </div>
+        <div
+          style={{
+            display: "flex",
+            marginTop: 14,
+            fontSize: 24,
             color: "#8b93a1",
             letterSpacing: 0.5,
           }}
         >
-          Software Engineer — Brown University
+          AI Engineer Intern · Scout Motors — Brown University
         </div>
       </div>
     ),

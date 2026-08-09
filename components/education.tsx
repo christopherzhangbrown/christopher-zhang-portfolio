@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
 import { Section } from "@/components/Section"
 
 const items = [
@@ -15,8 +14,6 @@ const items = [
 ]
 
 export function Education() {
-  const [hovered, setHovered] = useState<number | null>(null)
-
   return (
     <Section id="education" index="001 — Education" title="Academic background.">
       <div className="divide-y divide-hairline border-y border-hairline">
@@ -29,24 +26,24 @@ export function Education() {
             transition={{ duration: 0.7, delay: i * 0.1 }}
             className="group grid grid-cols-12 gap-6 py-10 transition-colors hover:bg-surface/50"
           >
-            <div className="col-span-12 md:col-span-2 font-mono text-sm text-muted-foreground">{it.year}</div>
+            <div className="col-span-12 font-mono text-sm text-muted-foreground md:col-span-2">{it.year}</div>
             <div className="col-span-12 md:col-span-5">
               <h3 className="font-display text-2xl tracking-tight md:text-3xl">{it.school}</h3>
-              <div className="mt-2 flex items-center gap-4 text-muted-foreground">
-                <span className="inline-block h-0.5 w-6 shrink-0 bg-signal" />
+              <div className="mt-2 flex items-start gap-4 text-muted-foreground">
+                <span className="mt-2.5 inline-block h-0.5 w-6 shrink-0 bg-signal" />
                 <p>{it.degree}</p>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">{it.notes}</p>
             </div>
             <div className="col-span-12 md:col-span-5">
               <div className="label mb-3">Coursework</div>
-              <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-mono text-muted-foreground">
+              <div className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm text-muted-foreground">
                 {it.coursework.map((c, idx) => (
                   <span
                     key={c}
-                    onMouseEnter={() => setHovered(idx)}
-                    onMouseLeave={() => setHovered(null)}
-                    className={`group cursor-pointer transition-colors before:mr-2 before:text-muted-foreground before:transition-colors hover:text-[#d7b04c] hover:before:text-[#d7b04c] before:content-['•'] ${idx === 0 ? "before:content-['']" : ""} ${hovered === idx ? "text-[#d7b04c]" : ""}`}
+                    className={`cursor-default transition-colors before:mr-2 before:text-muted-foreground before:transition-colors before:content-['•'] hover:text-signal hover:before:text-signal ${
+                      idx === 0 ? "before:content-['']" : ""
+                    }`}
                   >
                     {c}
                   </span>

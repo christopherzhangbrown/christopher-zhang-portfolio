@@ -29,12 +29,18 @@ const profiles = [
 ]
 
 export function Contact() {
-  const [copied, setCopied] = useState(false)
+  const [status, setStatus] = useState<"idle" | "copied" | "failed">("idle")
+  const copied = status === "copied"
 
-  const copy = () => {
-    navigator.clipboard.writeText(EMAIL)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1800)
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL)
+      setStatus("copied")
+      setTimeout(() => setStatus("idle"), 1800)
+    } catch {
+      setStatus("failed")
+      setTimeout(() => setStatus("idle"), 4000)
+    }
   }
 
   return (
@@ -47,10 +53,11 @@ export function Contact() {
           className="grid grid-cols-12 gap-6 border-t border-hairline pt-12"
         >
           <div className="col-span-12 md:col-span-7">
-            <div className="label mb-3">Direct line</div>
+            <div className="label mb-3">Email</div>
             <button
               onClick={copy}
-              className="group flex w-full items-start justify-between gap-4 border border-hairline px-5 py-5 text-left hover:border-signal transition-colors md:items-center md:px-6"
+              aria-label={`Copy email address ${EMAIL}`}
+              className="group flex w-full items-start justify-between gap-4 border border-hairline-strong px-5 py-5 text-left transition-colors hover:border-signal md:items-center md:px-6"
             >
               <span className="flex min-w-0 items-start gap-4 md:items-center">
                 <Mail className="h-5 w-5 text-signal" />
@@ -64,6 +71,18 @@ export function Contact() {
                 <Copy className="h-4 w-4 text-muted-foreground group-hover:text-foreground" />
               )}
             </button>
+            <p aria-live="polite" className="mt-2 min-h-5 font-mono text-xs text-muted-foreground">
+              {status === "copied" && "Copied to clipboard."}
+              {status === "failed" && (
+                <>
+                  Copy blocked by your browser —{" "}
+                  <a href={`mailto:${EMAIL}`} className="text-signal underline underline-offset-2">
+                    open in mail
+                  </a>{" "}
+                  instead.
+                </>
+              )}
+            </p>
           </div>
 
           <div className="col-span-12 md:col-span-5">
@@ -72,7 +91,7 @@ export function Contact() {
               href="/ChristopherZhangResume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="group flex flex-col justify-between border border-hairline p-4 hover:border-signal transition-colors"
+              className="group flex flex-col justify-between border border-hairline-strong p-4 hover:border-signal transition-colors"
             >
               <div className="flex items-start justify-between">
                 <FileDown className="h-6 w-6 text-signal" />
@@ -80,8 +99,7 @@ export function Contact() {
               </div>
               <div className="mt-4">
                 <div className="font-display text-2xl tracking-tight">Download PDF</div>
-                <div className="label mt-2">PDF · Updated 2026</div>
-                
+                <div className="label mt-2">Opens in a new tab</div>
               </div>
             </a>
           </div>
