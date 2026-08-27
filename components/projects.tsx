@@ -14,16 +14,19 @@ type ProjectItem = {
   blurb: string
   detail: string
   live?: boolean
+  liveLabel?: string
 }
 
 const projects: ProjectItem[] = [
   {
     slug: "01",
-    title: "AI Swim Start Coach",
-    tags: ["Next.js", "React", "TypeScript", "Python", "RTMPose", "OpenAI", "Modal"],
-    image: "/AIStart/AIStart.png",
-    blurb: "Computer vision platform that segments dives, scores biomechanics, and generates coaching explanations.",
-    detail: "Pose processing pipeline with temporal filtering, plausibility checks, adaptive confidence thresholds, and limb-label correction.",
+    title: "SwimVolt",
+    tags: ["Next.js", "TypeScript", "Python", "RTMPose", "Modal", "Postgres", "Stripe"],
+    image: "/SwimVolt/swimvolt-hero.jpg",
+    blurb: "Turns a ten-second phone clip into 45 biomechanical measurements of a racing start, and names the three worth fixing.",
+    detail: "RTMPose on a Modal T4, deterministic scoring in TypeScript, and repeatability measured by filming every dive twice. Live with 100+ users.",
+    live: true,
+    liveLabel: "Live — swimvolt.com",
   },
   {
     slug: "02",
@@ -119,7 +122,7 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
           {project.live && (
             <div className="mt-2 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-signal">
               <span className="h-1.5 w-1.5 rounded-full bg-signal" />
-              Live demo
+              {project.liveLabel ?? "Live demo"}
             </div>
           )}
         </div>
