@@ -24,7 +24,7 @@ A personal portfolio for Christopher Zhang that presents his engineering work, e
 
 ## Positioning
 
-**Ships real AI systems** — not demos or notebooks. Production pipelines, platforms, and agents that people actually use. This is the one thing a visitor should remember, and it is backed by real work rather than asserted: the Scout Motors self-service developer platform and Kubernetes monitoring service, the AI Swim Start Coach computer-vision pipeline, and the AI Job Hunting Agent.
+**Ships real AI systems** — not demos or notebooks. Production pipelines, platforms, and agents that people actually use. This is the one thing a visitor should remember, and it is backed by real work rather than asserted: the Scout Motors self-service developer platform and Kubernetes monitoring service, SwimVolt (a launched computer-vision product at swimvolt.com), and the AI Job Hunting Agent.
 
 The secondary, undeclared advantage is that the AI work is paired with a Business Economics degree and real deployment/infrastructure surface (AWS, Kubernetes, Terraform, Argo CD) — unusual at the undergraduate internship level.
 
@@ -64,7 +64,7 @@ The secondary, undeclared advantage is that the AI work is paired with a Busines
 - **Scout Motors**, AI Engineer Intern, Charlotte NC, May 2026 — Present. AI security assistant (Copilot Studio, Jira) with a **projected $800K annual support-cost reduction**; a self-service developer platform reducing application onboarding **from 7 steps to 1 across 4 standardized service templates**; platform backend on AWS Lambda, Amazon Bedrock, and Terraform; an MCP server and Go Kubernetes monitoring service using client-go informers ingesting cluster state into PostgreSQL.
 - **Mandy**, Software Engineer Intern, Remote, June 2025 — August 2025. AI room-redesign platform on Next.js, TypeScript, Clerk, IMGBB, Vercel, with an Amazon furniture recommendation pipeline.
 - **Brown University**, Sc.B. Computer Science & A.B. Business Economics, expected May 2028, GPA 3.93/4.00, varsity student-athlete.
-- **Five projects** with written case studies and real product screenshots in `public/`: AI Swim Start Coach (`/AIStart`), AI Job Hunting Agent (`/AI-Job-Agent`, live demo on Railway), Dating Profile Analyzer (`/DatingProfile`), TripPlanner (`/TravelPlanner`), Vision Transformer Evaluation Framework (`/DLFinal`, poster).
+- **Five projects** with written case studies and real product screenshots in `public/`: SwimVolt (`/SwimVolt`, live at swimvolt.com), AI Job Hunting Agent (`/AI-Job-Agent`, live demo on Railway), Dating Profile Analyzer (`/DatingProfile`), TripPlanner (`/TravelPlanner`), Vision Transformer Evaluation Framework (`/DLFinal`, poster).
 - **Resume PDF:** `public/ChristopherZhangResume.pdf`.
 
 **Absences that must not be filled by invention:**
