@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowUpRight, Check, Copy, FileDown, Github, Linkedin, Mail } from "lucide-react"
+import { ArrowUpRight, Check, Copy, Github, Linkedin, Mail } from "lucide-react"
 import { useState } from "react"
 import { Section } from "@/components/Section"
 
@@ -52,26 +52,32 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="grid grid-cols-12 gap-6 border-t border-hairline pt-12"
         >
-          <div className="col-span-12 md:col-span-7">
+          <div className="col-span-12 flex flex-col md:col-span-7">
             <div className="label mb-3">Email</div>
             <button
               onClick={copy}
               aria-label={`Copy email address ${EMAIL}`}
-              className="group flex w-full items-start justify-between gap-4 border border-hairline-strong px-5 py-5 text-left transition-colors hover:border-signal md:items-center md:px-6"
+              className="group flex flex-1 flex-col justify-between gap-6 border border-hairline-strong px-5 py-5 text-left transition-colors hover:border-signal md:px-6"
             >
-              <span className="flex min-w-0 items-start gap-4 md:items-center">
+              <span className="flex w-full items-center justify-between gap-4">
                 <Mail className="h-5 w-5 text-signal" />
-                <span className="min-w-0 break-all font-display text-lg tracking-tight leading-tight md:text-2xl">
+                {copied ? (
+                  <Check className="h-4 w-4 text-signal" />
+                ) : (
+                  <Copy className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground" />
+                )}
+              </span>
+              <span className="block w-full min-w-0">
+                <span className="block min-w-0 break-all font-display text-xl leading-tight tracking-tight md:text-2xl">
                   {EMAIL}
                 </span>
+                <span className="label mt-2 block">{copied ? "Copied to clipboard" : "Click to copy"}</span>
               </span>
-              {copied ? (
-                <Check className="h-4 w-4 text-signal" />
-              ) : (
-                <Copy className="h-4 w-4 text-muted-foreground group-hover:text-foreground" />
-              )}
             </button>
-            <p aria-live="polite" className="mt-2 min-h-5 font-mono text-xs text-muted-foreground">
+            <p
+              aria-live="polite"
+              className={`font-mono text-xs text-muted-foreground ${status === "failed" ? "mt-2" : "sr-only"}`}
+            >
               {status === "copied" && "Copied to clipboard."}
               {status === "failed" && (
                 <>
@@ -85,23 +91,25 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="col-span-12 md:col-span-5">
-            <div className="label mb-3">Resume</div>
-            <a
-              href="/ChristopherZhangResume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="group flex flex-col justify-between border border-hairline-strong p-4 hover:border-signal transition-colors"
-            >
-              <div className="flex items-start justify-between">
-                <FileDown className="h-6 w-6 text-signal" />
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-all group-hover:text-signal group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <div className="col-span-12 flex flex-col md:col-span-5">
+            <div className="label mb-3">Availability</div>
+            <div className="flex flex-1 flex-col justify-between border border-hairline-strong px-5 py-5 md:px-6">
+              <div className="flex items-center justify-between gap-4">
+                <span className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-signal">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-signal motion-safe:animate-pulse" />
+                  Open
+                </span>
+                <span className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                  SWE / AI
+                </span>
               </div>
-              <div className="mt-4">
-                <div className="font-display text-2xl tracking-tight">Download PDF</div>
-                <div className="label mt-2">Opens in a new tab</div>
+              <div>
+                <div className="font-display text-2xl leading-tight tracking-tight">Summer 2027 internships</div>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Happy to talk through any project here — email is the fastest way to reach me.
+                </p>
               </div>
-            </a>
+            </div>
           </div>
         </motion.div>
         <div className="mt-12">

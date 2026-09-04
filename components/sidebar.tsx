@@ -72,8 +72,8 @@ export function Sidebar() {
             <a href="https://www.linkedin.com/in/christopher-zhang1" target="_blank" rel="noopener noreferrer" className="block hover:text-signal transition-colors">
               LinkedIn
             </a>
-            <a href="/ChristopherZhangResume.pdf" target="_blank" rel="noopener noreferrer" className="block hover:text-signal transition-colors">
-              Resume
+            <a href="mailto:christopher_zhang@brown.edu" className="block hover:text-signal transition-colors">
+              Email
             </a>
           </div>
         </div>
