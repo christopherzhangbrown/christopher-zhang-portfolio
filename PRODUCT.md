@@ -50,7 +50,7 @@ The secondary, undeclared advantage is that the AI work is paired with a Busines
 - No custom domain — the Vercel subdomain is the canonical URL for now.
 - Only one project (AI Job Hunting Agent) has a live demo link; no case study currently links a public repo. Whether more repos get linked is undecided.
 - `public/profilepic.jpg` exists (2.9 MB) but is unused. Whether a photo of Christopher belongs on the site is undecided.
-- Two resume PDFs sit in `public/`; `ChristopherZhangResume.pdf` is the one linked. The second is an unlinked duplicate.
+- The resume PDF has been removed from `public/` and is no longer downloadable from the site. It circulates privately; the site links email instead.
 
 ## Brand Commitments
 
@@ -65,7 +65,7 @@ The secondary, undeclared advantage is that the AI work is paired with a Busines
 - **Mandy**, Software Engineer Intern, Remote, June 2025 — August 2025. AI room-redesign platform on Next.js, TypeScript, Clerk, IMGBB, Vercel, with an Amazon furniture recommendation pipeline.
 - **Brown University**, Sc.B. Computer Science & A.B. Business Economics, expected May 2028, GPA 3.93/4.00, varsity student-athlete.
 - **Five projects** with written case studies and real product screenshots in `public/`: SwimVolt (`/SwimVolt`, live at swimvolt.com), AI Job Hunting Agent (`/AI-Job-Agent`, live demo on Railway), Dating Profile Analyzer (`/DatingProfile`), TripPlanner (`/TravelPlanner`), Vision Transformer Evaluation Framework (`/DLFinal`, poster).
-- **Resume PDF:** `public/ChristopherZhangResume.pdf`.
+- **Resume:** kept off the site by choice — it is shared privately, not hosted in `public/`.
 
 **Absences that must not be filled by invention:**
 - No testimonials, references, quotes, endorsements, or named recommenders exist.
