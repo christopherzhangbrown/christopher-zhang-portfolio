@@ -18,7 +18,7 @@ const experiences: ExperienceItem[] = [
     company: "Scout Motors",
     role: "AI Engineer Intern",
     location: "Charlotte, NC",
-    period: "May 2026 — Present",
+    period: "May 2026 — August 2026",
     bullets: [
       "Engineered an AI security assistant using Copilot Studio and Jira, reducing projected support costs by $800K annually.",
       "Designed and deployed a self-service developer platform automating application provisioning, repository creation, and Kubernetes deployments, reducing application onboarding from 7 steps to 1 across 4 standardized service templates.",

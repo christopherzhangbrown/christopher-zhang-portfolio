@@ -66,7 +66,7 @@ export function Hero() {
             style={{ animationDelay: "0.7s" }}
           >
             Hi! I&apos;m Christopher Zhang, a Brown University Sc.B. Computer Science &amp; A.B.
-            Business Economics student-athlete, currently interning as an AI Engineer at Scout Motors.
+            Business Economics student-athlete, most recently an AI Engineer intern at Scout Motors.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center gap-4 rise" style={{ animationDelay: "0.85s" }}>
