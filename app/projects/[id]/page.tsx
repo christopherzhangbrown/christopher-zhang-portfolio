@@ -54,7 +54,7 @@ const projectData: Record<string, ProjectStudy> = {
     tag: "Computer Vision · Sports",
     year: "2026",
     problem: "You can't see your own start. It's the one part of the race that happens behind you, it's over in about a second, and a coach on deck is watching an entire lane at once. So the feedback you get is “that felt slow,” never “your back knee was at 91° coming off the block.”",
-    built: "SwimVolt turns a ten-second phone clip into 45 biomechanical measurements across the four phases of a racing start: setup, launch, flight, and entry. Each one gets compared to a technique target, and the three that matter most for that dive become the corrections you actually see. I built the whole thing myself, from talking to coaches through the CV pipeline, the product, billing, and deploy. It's live at swimvolt.com with 100+ users.",
+    built: "SwimVolt turns a ten-second phone clip into 49 biomechanical measurements across the four phases of a racing start: setup, launch, flight, and entry. Each one gets compared to a technique target, and the three that matter most for that dive become the corrections you actually see. I built the whole thing myself, from talking to coaches through the CV pipeline, the product, billing, and deploy. It's live at swimvolt.com with 150+ users.",
     demo: [
       {
         src: "/SwimVolt/swimvolt-results.jpg",
@@ -72,12 +72,12 @@ const projectData: Record<string, ProjectStudy> = {
     architecture: [
       "Next.js 15 / React 19 on Vercel → HMAC ticket against a per-account quota → FastAPI + RTMPose on a Modal T4",
       "Model loaded once per container at startup, not once per request",
-      "Phase detection, all 45 measurements and every coaching rule run client-side, deterministic TypeScript",
+      "Phase detection, all 49 measurements and every coaching rule run client-side, deterministic TypeScript",
       "Neon Postgres and Cloudflare R2 store the result; the server never scores the dive",
     ],
     architectureNotes: [
-      "I split it that way on purpose. Pose inference needs a T4 and a warm 200MB model, so it gets its own service, with an HMAC ticket minted against a per-account quota in front of it. A public URL that spends GPU seconds is a bill anyone can run up.",
-      "Everything after pose inference runs in milliseconds and is deterministic TypeScript. The server only stores the result. That way the expensive half scales on its own, and the half that decides what a swimmer gets told is testable in-process — about 2,100 TypeScript tests and 166 Python tests.",
+      "I split it that way on purpose. Pose inference needs a T4 and half a gigabyte of warm model weights, so it gets its own service, with an HMAC ticket minted against a per-account quota in front of it. A public URL that spends GPU seconds is a bill anyone can run up.",
+      "Everything after pose inference runs in milliseconds and is deterministic TypeScript. The server only stores the result. That way the expensive half scales on its own, and the half that decides what a swimmer gets told is testable in-process — about 3,400 TypeScript tests and 250+ Python tests.",
     ],
     engineering: [
       {
@@ -98,21 +98,21 @@ const projectData: Record<string, ProjectStudy> = {
       },
       {
         title: "The production surface",
-        body: "Stripe subscriptions over a free tier, Firebase auth, presigned R2 uploads that run in parallel with the 30 to 85 second GPU pass, an H.264 transcode path because iPhone HEVC decodes fine on the GPU but renders black in Chrome, an age gate, and GPS stripping at upload time. A raw phone capture pins the pool a frequently-teenage swimmer trains at to within about nine metres.",
+        body: "Stripe subscriptions over a free tier, Firebase auth, presigned R2 uploads that run in parallel with the 15 to 45 second GPU pass, an H.264 transcode path because iPhone HEVC decodes fine on the GPU but renders black in Chrome, a Compare view that ghosts an elite reference dive over your own, an age gate, and GPS stripping at upload time. A raw phone capture pins the pool a frequently-teenage swimmer trains at to within about nine metres.",
       },
     ],
     research: [
       {
         question: "How reliable is a measurement?",
-        answer: "I filmed dives with two phones at once, scored both takes, and measured how often each metric's verdict flips between them. A metric only gets to count as a repeated fault if it flips 10% of the time or less, which lets in 19 of the 45. The rest still get shown, just without a verdict attached.",
+        answer: "Two ways. First, a stability harness re-analyses the same dive 300 times with small camera tilts and keypoint jitter, and measures how often each metric's verdict flips. Every metric a swimmer sees has to flip 10% of the time or less, and 19 of the 49 clear that bar. The rest are coach-only. Second, I filmed 12 dives with two phones at once and scored both takes. Three metrics agreed every time and four flipped often, front knee worst at 80%. The /research page shows both, so nobody has to take the numbers on trust.",
       },
       {
         question: "Are the phase boundaries in the right place?",
-        answer: "I hand-labelled 14 clips frame by frame and checked the detector against them. Mean error is 1.5 frames or better on launch, foot-off, and entry.",
+        answer: "I hand-labelled 15 clips frame by frame and checked the detector against them. Mean error is 1.5 frames or better on launch, foot-off, and entry.",
       },
       {
         question: "Where do the targets come from?",
-        answer: "Two come from published biomechanics literature, nineteen from a rule table I built with a USA Swimming high-performance consultant, and nine are still my own estimate. There's a public /research page that prints that breakdown per metric. If a number the app is coaching on isn't backed by anything yet, it says so.",
+        answer: "Of the 34 metrics with a target, two come from published biomechanics literature, twenty are set by coaching rules shaped by a review with a USA Swimming high-performance consultant, and twelve are still my own estimate. There's a public /research page that prints that breakdown per metric. If a number the app is coaching on isn't backed by anything yet, it says so.",
       },
     ],
     stack: ["Next.js 15", "React 19", "TypeScript", "Python", "FastAPI", "RTMPose", "Modal", "Neon Postgres", "Cloudflare R2", "Firebase Auth", "Stripe", "Vercel"],
