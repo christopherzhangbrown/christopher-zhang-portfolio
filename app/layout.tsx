@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const TITLE = "Christopher Zhang — AI Engineer"
 const DESCRIPTION =
-  "I build AI systems that run in production. AI Engineer Intern at Scout Motors; Computer Science and Business Economics at Brown."
+  "I build AI systems that run in production. AI Engineering Intern at Scout Motors; Computer Science and Business Economics at Brown."
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://christopher-zhang-portfolio.vercel.app"),

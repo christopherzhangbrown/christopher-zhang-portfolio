@@ -11,7 +11,7 @@ const PROFILES = [
 ]
 
 const META = [
-  { label: "Role", value: "AI Engineer Intern", delay: "0.1s" },
+  { label: "Role", value: "AI Engineering Intern", delay: "0.1s" },
   { label: "Location", value: "Charlotte, NC", delay: "0.2s" },
 ]
 
@@ -66,7 +66,7 @@ export function Hero() {
             style={{ animationDelay: "0.7s" }}
           >
             Hi! I&apos;m Christopher Zhang, a Brown University Sc.B. Computer Science &amp; A.B.
-            Business Economics student-athlete, most recently an AI Engineer intern at Scout Motors.
+            Business Economics student-athlete, most recently an AI Engineering intern at Scout Motors.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center gap-4 rise" style={{ animationDelay: "0.85s" }}>

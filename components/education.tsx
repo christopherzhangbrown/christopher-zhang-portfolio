@@ -8,7 +8,7 @@ const items = [
     school: "Brown University",
     degree: "Sc.B. Computer Science & A.B. Business Economics",
     year: "Expected May 2028",
-    coursework: ["SWE", "Data Structures and Algorithms", "AI", "Deep Learning", "Computer Systems", "Discrete Math"],
+    coursework: ["SWE", "Data Structures and Algorithms", "Artificial Intelligence", "Deep Learning", "Computer Systems", "Discrete Math"],
     notes: "GPA: 3.93/4.00 · Varsity Student-Athlete",
   },
 ]

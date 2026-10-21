@@ -76,7 +76,7 @@ export default function OpengraphImage() {
             letterSpacing: 0.5,
           }}
         >
-          AI Engineer Intern · Scout Motors — Brown University
+          AI Engineering Intern · Scout Motors — Brown University
         </div>
       </div>
     ),
