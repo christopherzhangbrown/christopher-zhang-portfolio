@@ -16,28 +16,38 @@ type ExperienceItem = {
 const experiences: ExperienceItem[] = [
   {
     company: "Scout Motors",
-    role: "AI Engineer Intern",
+    role: "AI Engineering Intern",
     location: "Charlotte, NC",
     period: "May 2026 — August 2026",
     bullets: [
-      "Engineered an AI security assistant using Copilot Studio and Jira, reducing projected support costs by $800K annually.",
       "Designed and deployed a self-service developer platform automating application provisioning, repository creation, and Kubernetes deployments, reducing application onboarding from 7 steps to 1 across 4 standardized service templates.",
       "Architected the platform backend with AWS Lambda, Amazon Bedrock, and Terraform to translate natural language requests into automated application deployment workflows.",
       "Developed an MCP server and Go Kubernetes monitoring service using client-go informers, ingesting cluster state into PostgreSQL to enable application triage, health checks, environment comparison, and AI-assisted remediation.",
+      "Engineered an AI security assistant integrating Copilot Studio and Jira, projected to reduce annual support costs by $800K.",
     ],
     tags: ["Copilot Studio", "Jira", "AWS", "Bedrock", "Terraform", "Go"],
   },
   {
     company: "Mandy",
-    role: "Software Engineer Intern",
+    role: "Software Engineering Intern",
     location: "Remote",
     period: "June 2025 — August 2025",
     bullets: [
-      "Built an AI-powered room redesign platform that transforms user-uploaded room images into personalized interior designs and generates relevant product recommendations.",
-      "Engineered a full-stack application using Next.js, TypeScript, Clerk, IMGBB, and Vercel, developing pipelines for image uploads, AI-generated redesigns, user onboarding, and personalized recommendations.",
-      "Created a recommendation pipeline mapping user preferences to Amazon furniture suggestions with personalized filtering.",
+      "Developed and deployed an AI-powered room redesign feature transforming user-uploaded photos into personalized interior designs.",
+      "Built a furniture recommendation pipeline using Next.js and TypeScript to match AI-generated redesigns to Amazon listings filtered by user budget and style preferences.",
     ],
     tags: ["Next.js", "TypeScript", "Clerk", "IMGBB", "Vercel"],
+  },
+  {
+    company: "Full Stack @Brown",
+    role: "Developer",
+    location: "Providence, RI",
+    period: "September 2025 — Present",
+    bullets: [
+      "Shipped a production Next.js platform replacing the Brown Brain Bee's previous website, integrating a CMS API and full-text search.",
+      "Launched a full-stack publishing system replacing Brown Music Review's old site, with article management and email alerts.",
+    ],
+    tags: ["Next.js"],
   },
 ]
 

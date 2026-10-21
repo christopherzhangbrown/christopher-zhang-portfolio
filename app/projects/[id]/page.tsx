@@ -33,16 +33,16 @@ const projectData: Record<string, ProjectStudy> = {
     year: "2026",
     problem: "Job hunting means repeatedly scanning career pages, tailoring resumes, and tracking applications by hand, which makes it easy to miss strong roles or spend too long on each application.",
     contributions: [
-      "Built a Node.js and Cheerio scraping pipeline that checks career pages for new postings and surfaces relevant matches quickly.",
-      "Designed a Claude and GPT-4o tailoring flow that rewrites resumes for each role while keeping changes grounded in the master resume.",
-      "Stored application data in PostgreSQL and organized the workflow around resume generation, review, and tracking.",
+      "Automated monitoring of 110+ company career pages every 15 minutes, diffing against the last snapshot and emailing ranked alerts for new matching roles.",
+      "Designed a suggest-and-approve tailoring flow: Claude proposes job-specific edits against a fixed master resume, and only the ones I check off are applied. Used across 150+ applications.",
+      "Labelled every suggestion as grounded or extrapolated deterministically, so an edit that adds a keyword or number the master resume doesn't contain gets flagged before it reaches the checklist.",
     ],
     architecture: [
-      "Next.js UI → Node.js services → Cheerio-based job ingestion",
-      "Claude and GPT-4o tailoring loop generates role-specific resume drafts",
-      "PostgreSQL stores jobs, resume versions, and application status",
+      "Next.js UI → Node.js + Express API → node-cron monitor polling ATS APIs",
+      "Claude suggests discrete edits; Cheerio fetches and cleans pasted job descriptions",
+      "PostgreSQL stores jobs, snapshots, resume versions, and application status",
     ],
-    stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Cheerio", "Claude", "GPT-4o"],
+    stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Cheerio", "Claude"],
     live: "https://web-production-d867c.up.railway.app/playground",
     gallery: [
       { src: "/AI-Job-Agent/AI-Job-Resume.png", alt: "AI Job Hunting Agent resume editor, split view" },
@@ -54,7 +54,7 @@ const projectData: Record<string, ProjectStudy> = {
     tag: "Computer Vision · Sports",
     year: "2026",
     problem: "You can't see your own start. It's the one part of the race that happens behind you, it's over in about a second, and a coach on deck is watching an entire lane at once. So the feedback you get is “that felt slow,” never “your back knee was at 91° coming off the block.”",
-    built: "SwimVolt turns a ten-second phone clip into 49 biomechanical measurements across the four phases of a racing start: setup, launch, flight, and entry. Each one gets compared to a technique target, and the three that matter most for that dive become the corrections you actually see. I built the whole thing myself, from talking to coaches through the CV pipeline, the product, billing, and deploy. It's live at swimvolt.com with 150+ users.",
+    built: "SwimVolt turns a ten-second phone clip into 49 biomechanical measurements across the four phases of a racing start: setup, launch, flight, and entry. Each one gets compared to a technique target, and the three that matter most for that dive become the corrections you actually see. I built the whole thing myself, from talking to coaches through the CV pipeline, the product, billing, and deploy. It's live at swimvolt.com with 200+ users.",
     demo: [
       {
         src: "/SwimVolt/swimvolt-results.jpg",
