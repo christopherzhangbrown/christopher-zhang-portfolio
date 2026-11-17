@@ -31,23 +31,23 @@ const projectData: Record<string, ProjectStudy> = {
     title: "DiveVolt",
     tag: "Video Platform · Computer Vision",
     year: "2026",
-    problem: "Diving coaches film every practice, but the footage piles up as untitled clips on an iPad. Finding one diver's last few attempts at a 105B means scrolling a camera roll, so the video rarely gets used after the moment it was shot.",
-    built: "DiveVolt is the whole coaching loop for a diving team. On deck, an iPad on a tripod plays every dive on the pool TV a few seconds after the diver lands. Tap Keep and the clip is saved, its dive code read from the video, and filed into that diver's folder by dive group and board. After practice, coaches step through it frame by frame, draw on it, line it up against an earlier attempt or an elite dive, and send the diver a private link. I built all of it: the iPhone and iPad app, the web app coaches use on a laptop, the ops site, and the pose and analysis pipeline behind them. It's live at divevolt.com and has been piloted with the Brown diving team.",
+    problem: "Diving coaches film every practice. The clips pile up on an iPad with no names on them, so pulling up one diver's last few 105Bs means scrolling through a camera roll, and most of that video rarely gets looked at again once practice is over.",
+    built: "DiveVolt covers coaching from the pool deck to the diver's phone. An iPad on a tripod replays each dive on the pool TV a few seconds after the diver hits the water. If the coach taps Keep, the clip is saved, the app works out which dive it was from the video, and it goes into that diver's folder under the right dive group and board. Later, a coach can step through it frame by frame, draw on it, put it next to an earlier attempt or an elite dive, and send the diver a private link. I built every piece of it myself, from the iPhone and iPad app and the web app to the ops site and the pose and analysis pipeline underneath. It's live at divevolt.com, and the Brown diving team has been piloting it.",
     demo: [
       {
         src: "/DiveVolt/divevolt-review.jpg",
         alt: "DiveVolt review screen: a 105B forward two-and-a-half pike from 3 m paused at the top of the dive, a skeleton drawn on the diver, and a panel showing height off the board, hip angle and knee angle against their target ranges",
-        caption: "Paused at the top of a 105B. The pike is measured on the frame and checked against where it should be.",
+        caption: "The top of a 105B. The pike gets measured right on the frame, next to where it should be.",
       },
       {
         src: "/DiveVolt/divevolt-compare.jpg",
         alt: "DiveVolt compare view: two of the same diver's 105B attempts side by side, both paused at the top of the dive, with the note “Lined up at hurdle, takeoff, top, entry”",
-        caption: "Two attempts a week apart, lined up automatically at hurdle, takeoff, top and entry.",
+        caption: "Two of her 105Bs, about a week apart. The app lines them up at the hurdle, takeoff, top and entry on its own.",
       },
       {
         src: "/DiveVolt/divevolt-folder.jpg",
         alt: "A diver's folder in DiveVolt: 74 clips grouped into Front, Back, Gainer, Inward and Twister, with a 1 m / 3 m filter",
-        caption: "Each diver's folder, grouped by dive and filtered by board.",
+        caption: "Her folder, sorted by dive group, with a 1 m / 3 m filter on top.",
       },
     ],
     architecture: [
@@ -57,39 +57,39 @@ const projectData: Record<string, ProjectStudy> = {
       "Middleware splits hosts, so the admin pages don't exist on the coach app's address",
     ],
     architectureNotes: [
-      "The iOS app is a Capacitor shell around the same Next.js app, plus one native Swift plugin. It drives the second screen: with a TV connected over AirPlay or HDMI, the TV shows only the replay while the iPad keeps the controls. Everything else ships with a normal web deploy, so a fix reaches the iPad, the laptop and the diver's link together.",
-      "The pose pass and the transcoder are separate Modal apps behind a shared secret, and dev refuses to send footage to the live pose app unless explicitly overridden. The ops site reads Modal's bill back per month, per day and per clip, so I can see what each clip costs to analyse.",
+      "The iOS app is the same Next.js app inside a Capacitor shell, plus one native Swift plugin for the TV. Connect a TV over AirPlay or HDMI and it shows just the replay. The iPad keeps the controls. Since everything else is plain web code, one deploy updates the iPad, the laptop and every diver's link at once.",
+      "Pose and transcoding run as two separate Modal apps that share a secret. In dev, the app won't send footage to the live pose app unless I override it on purpose. The ops site pulls Modal's bill (by month, by day, by clip), so I know what analysing any single clip cost me.",
     ],
     engineering: [
       {
         title: "Instant replay without a replay box",
-        body: "Replay mode records the camera as fragmented MP4 with MediaRecorder and plays it back through MediaSource, a set number of seconds behind live. Tapping Keep stitches the fragments from just before the tap into a normal MP4 and queues it for upload, so a coach can decide to save a dive after watching it, not before.",
+        body: "Replay mode records the camera with MediaRecorder as fragmented MP4 and plays it back through MediaSource on a set delay behind live. When the coach taps Keep, the fragments from just before the tap get stitched into a regular MP4 and queued for upload. You watch the dive first. Then you decide if it's worth saving.",
       },
       {
-        title: "Following a diver who is upside down",
-        body: "Pose models assume people are upright, so in the air each frame is posed on a crop rotated until the diver looks upright, keeping the most confident skeleton that joins up with the last one. The flight itself is solved as one gravity parabola, fit with RANSAC over every moving blob and detector box. After the tracker once followed a teammate onto the mats beside the pool, each new pick also has to stay close to the last confirmed position, stay about the same size, and fall with the curve.",
+        title: "Tracking someone who's upside down",
+        body: "Pose models expect people standing up, and a diver halfway through a somersault isn't. So each airborne frame gets posed on a crop rotated until the diver looks upright, and I keep whichever skeleton is most confident while still lining up with the frame before. The flight is solved as a single gravity parabola, fit with RANSAC across every moving blob and detector box. Then the tracker once followed a teammate onto the mats next to the pool. Since then, a new pick has to stay near the last confirmed position, be roughly the same size, and drop along the curve.",
       },
       {
         title: "Reading the dive code blind",
-        body: "The code is read from the pose alone. The clip's existing label is never a hint, and auto-sort and its accuracy script call the same function, so the score measures exactly what the app files. When the read isn't sure, the Tag screen says “Looks like 303B” and the coach confirms with one tap instead of typing.",
+        body: "The dive code comes from the pose and nothing else. The clip's current label is never used as a hint. Auto-sort and the accuracy script call the exact same function, which means the accuracy number measures what the app actually files. When the read is unsure, the Tag screen shows something like “Looks like 303B” and the coach taps once to confirm.",
       },
       {
-        title: "Hiding a number instead of guessing",
-        body: "Every measurement says whether tracking was clear or so-so. A number is hidden, with the reason, when tracking is unsure (tucks, blur, splash) or the dive's timing is physically impossible. Each clip also records where the camera stood, and measurements that position could distort get a caveat or are dropped. Compare warns when two clips were filmed from different spots.",
+        title: "When in doubt, hide the number",
+        body: "Each measurement is marked as clear or so-so tracking. If tracking is shaky (tucks, blur, splash) or the timing is physically impossible, the number disappears and the app says why. Clips also remember where the camera was standing. Anything that angle could throw off gets a caveat or gets dropped, and Compare warns you when two clips were shot from different spots.",
       },
       {
-        title: "Footage of teenagers, handled like it",
-        body: "Before upload, the phone blanks the video's GPS, make and model in place without re-encoding. A per-diver consent box gates both share links and sending footage to the pose service. Diver links are private and revocable. Native 120 and 240 fps slow motion is stored as filmed, and big files go up in parts that retry without duplicating.",
+        title: "Privacy for the divers",
+        body: "Before anything uploads, the phone wipes the video's GPS, make and model by editing the file in place, with no re-encode. Every diver has a consent box. It controls share links and whether their footage goes to the pose service at all. Diver links are private, and a coach can revoke one whenever. Slow motion at 120 or 240 fps is stored exactly as filmed, and big files go up in parts that retry without creating duplicates.",
       },
     ],
     research: [
       {
         question: "How often does it get the dive right?",
-        answer: "On 32 clips with a known dive number (three Brown 3 m dives plus elite and college footage), the engine named 25 correctly. Five of the seven misses were refusals: filmed from the stands with people in the way, the tracker lost the diver and said so rather than guessing. Twisting dives are flagged low confidence because a side camera sees twists poorly.",
+        answer: "I tested it on 32 clips where the dive number was already known: three Brown dives off the 3 m, plus elite and college footage. It got 25 right. Five of the seven misses were refusals. Those clips were filmed from the stands with people in the way, so the tracker lost the diver and said so instead of guessing. Twisting dives get marked low confidence, because a camera off to the side has a hard time seeing twists.",
       },
       {
         question: "Where do the checkpoints come from?",
-        answer: "They're objective positions, not grades: thigh about 90° to the trunk in the hurdle, the shape the dive code's letter names (pike, tuck or straight), and an entry within 5° of vertical. Only the checkpoints that apply to the dive are shown, and the sources are written up in the repo's research notes.",
+        answer: "They're positions anyone can check, and none of them is a grade. In the hurdle, the thigh should sit around 90° to the trunk. In the air, the diver holds whatever shape the code's letter calls for (pike, tuck or straight), and the entry should be within 5° of vertical. The app only shows the checkpoints that apply to that dive. Sources are written up in the repo's research notes.",
       },
     ],
     stack: ["Next.js 15", "React 19", "TypeScript", "Capacitor", "Swift", "Python", "YOLOX", "RTMPose", "Modal", "ffmpeg", "Neon Postgres", "Vercel Blob", "Vercel"],
