@@ -19,6 +19,16 @@ type ProjectItem = {
 
 const projects: ProjectItem[] = [
   {
+    slug: "06",
+    title: "DiveVolt",
+    tags: ["Next.js", "TypeScript", "Capacitor", "Swift", "Python", "RTMPose", "Modal", "Postgres"],
+    image: "/DiveVolt/divevolt-review.jpg",
+    blurb: "Video coaching for diving teams. Each dive replays on the deck TV, then lands in the right diver's folder with checkpoints drawn on the frame.",
+    detail: "The iPhone/iPad app, web app and ops site share one codebase, and a pose pass on Modal figures out the dive code from the video itself. Brown's diving team is piloting it.",
+    live: true,
+    liveLabel: "Live — divevolt.com",
+  },
+  {
     slug: "01",
     title: "SwimVolt",
     tags: ["Next.js", "TypeScript", "Python", "RTMPose", "Modal", "Postgres", "Stripe"],
