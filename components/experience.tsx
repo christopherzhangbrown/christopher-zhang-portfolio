@@ -55,7 +55,6 @@ export function Experience() {
   return (
     <Section
       id="experience"
-      index="003 — Experience"
       title="Work experience."
       subtitle="Roles where I shipped production systems."
     >
@@ -70,8 +69,7 @@ export function Experience() {
             className="group grid grid-cols-12 gap-6 py-10 transition-colors hover:bg-surface/50"
           >
             <div className="col-span-12 font-mono text-sm text-muted-foreground md:col-span-2">
-              <div className="text-signal">/{String(i + 1).padStart(2, "0")}</div>
-              <div className="mt-4">{item.period}</div>
+              <div>{item.period}</div>
               <div className="mt-2 text-foreground">{item.location}</div>
             </div>
 

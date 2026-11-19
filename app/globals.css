@@ -1,17 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@keyframes spin-slow { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-@keyframes dash-flow { to { stroke-dashoffset: -200; } }
-@keyframes float-a { 0%,100% { transform: translate(0,0); opacity:0.6; } 50% { transform: translate(18px,-24px); opacity:1; } }
-@keyframes float-b { 0%,100% { transform: translate(0,0); opacity:0.5; } 50% { transform: translate(-22px,18px); opacity:0.9; } }
-@keyframes float-c { 0%,100% { transform: translate(0,0); opacity:0.3; } 50% { transform: translate(14px,20px); opacity:0.7; } }
-@keyframes label-glow { 0%,100% { opacity:0.55; } 50% { opacity:1; } }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 @keyframes rise-in { from { opacity: 0; transform: translateY(var(--rise, 20px)); } to { opacity: 1; transform: none; } }
-@keyframes telemetry-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
-@keyframes telemetry-dot { 0% { opacity: 0; } 60% { opacity: 0.8; } 100% { opacity: 0.3; } }
-@keyframes type-in { from { width: 0; } to { width: var(--type-width); } }
 
 @theme inline {
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
@@ -160,11 +150,6 @@
     border-color: var(--color-hairline);
   }
 
-  .noise {
-    background-image: radial-gradient(color-mix(in oklab, var(--foreground) 4%, transparent) 1px, transparent 1px);
-    background-size: 3px 3px;
-  }
-
   /* The hero's entrance is CSS, not JS: its markup ships visible-by-default so a
      failed or slow hydration can never leave the page's most important content
      at opacity 0. The reduced-motion block below collapses these to their end
@@ -173,63 +158,12 @@
     animation: rise-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  /* The closing terminal beat. The text is present and readable by default; a
-     scroll-driven timeline types it in where the browser supports one. It can
-     never end up empty, which is what a JS-gated reveal risked. */
-  .typewriter {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    vertical-align: bottom;
-    width: var(--type-width);
-  }
-
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .typewriter {
-        animation: type-in 1s steps(var(--type-steps), end) both;
-        animation-timeline: view();
-        animation-range: entry 10% entry 80%;
-      }
-    }
-  }
-
-  /* The hero's ambient telemetry curve. Drawn in CSS on a pathLength="1" path so
-     it can never sit at zero length waiting on a JS frame. */
-  .telemetry-draw {
-    stroke-dasharray: 1;
-    animation: telemetry-draw 2.5s ease-in-out both;
-  }
-
-  .telemetry-dot {
-    animation: telemetry-dot 1.5s ease-out both;
-  }
-
   .label {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-muted-foreground);
-  }
-}
-
-/* Unlayered on purpose: Tailwind utilities (e.g. cursor-pointer/cursor-default
-   on tag pills) live in @layer utilities, and a layered !important loses to
-   an unlayered !important. This must sit outside any @layer to reliably win.
-
-   Scoped to precise pointers with motion allowed, so the custom cursor is only
-   substituted where CursorTrail actually renders one. Anyone relying on an
-   enlarged or high-contrast system cursor keeps it. */
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  * {
-    cursor: none !important;
-  }
-}
-
-@media (prefers-contrast: more) {
-  * {
-    cursor: auto !important;
   }
 }
 

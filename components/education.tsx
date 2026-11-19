@@ -15,7 +15,7 @@ const items = [
 
 export function Education() {
   return (
-    <Section id="education" index="001 — Education" title="Academic background.">
+    <Section id="education" title="Academic background.">
       <div className="divide-y divide-hairline border-y border-hairline">
         {items.map((it, i) => (
           <motion.div

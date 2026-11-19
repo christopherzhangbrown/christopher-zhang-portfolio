@@ -1,7 +1,6 @@
 "use client"
 
-import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion"
-import { useState } from "react"
+import { motion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { Section } from "@/components/Section"
@@ -22,11 +21,11 @@ const projects: ProjectItem[] = [
     slug: "06",
     title: "DiveVolt",
     tags: ["Next.js", "TypeScript", "Capacitor", "Swift", "Python", "RTMPose", "Modal", "Postgres"],
-    image: "/DiveVolt/divevolt-review.jpg",
+    image: "/DiveVolt/divevolt-compare.jpg",
     blurb: "Video coaching for diving teams. Each dive replays on the deck TV, then lands in the right diver's folder with checkpoints drawn on the frame.",
     detail: "The iPhone/iPad app, web app and ops site share one codebase, and a pose pass on Modal figures out the dive code from the video itself. Brown's diving team is piloting it.",
     live: true,
-    liveLabel: "Live — divevolt.com",
+    liveLabel: "Live at divevolt.com",
   },
   {
     slug: "01",
@@ -36,15 +35,15 @@ const projects: ProjectItem[] = [
     blurb: "Turns a ten-second phone clip into 49 biomechanical measurements of a racing start, and names the three worth fixing.",
     detail: "RTMPose on a Modal T4, deterministic scoring in TypeScript, and a metric only counts toward your faults once it survives a stability test. Live with 200+ users.",
     live: true,
-    liveLabel: "Live — swimvolt.com",
+    liveLabel: "Live at swimvolt.com",
   },
   {
     slug: "02",
     title: "AI Job Hunting Agent",
     tags: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Cheerio", "Claude"],
-    image: "/AI-Job-Agent/AI-Job-Resume.png",
+    image: "/AI-Job-Agent/AI-Job-Home.png",
     blurb: "Watches 110+ company career pages every 15 minutes and emails ranked alerts when a matching role opens.",
-    detail: "Claude suggests job-specific resume edits that only apply once I approve them — used across 150+ applications.",
+    detail: "Claude suggests job-specific resume edits that only apply once I approve them. I have used it across 150+ applications.",
     live: true,
   },
   {
@@ -75,7 +74,7 @@ const projects: ProjectItem[] = [
 
 export function Projects() {
   return (
-    <Section id="projects" index="004 — Projects" title="Projects." subtitle="Selected work — open any project for a short case study.">
+    <Section id="projects" title="Projects." subtitle="Open any project for the full case study.">
       <div className="border-t border-hairline">
         {projects.map((p, i) => (
           <ProjectRow key={p.slug} project={p} index={i} />
@@ -86,109 +85,64 @@ export function Projects() {
 }
 
 function ProjectRow({ project, index }: { project: ProjectItem; index: number }) {
-  const [hover, setHover] = useState(false)
-  const reduceMotion = useReducedMotion()
-  const rotateX = useMotionValue(0)
-  const rotateY = useMotionValue(0)
-  const springRotateX = useSpring(rotateX, { stiffness: 200, damping: 20 })
-  const springRotateY = useSpring(rotateY, { stiffness: 200, damping: 20 })
-
-  const resetTilt = () => {
-    rotateX.set(0)
-    rotateY.set(0)
-  }
-
-  const handlePreviewMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (reduceMotion) return
-    const rect = event.currentTarget.getBoundingClientRect()
-    const px = (event.clientX - rect.left) / rect.width - 0.5
-    const py = (event.clientY - rect.top) / rect.height - 0.5
-    rotateY.set(px * 14)
-    rotateX.set(py * -14)
-  }
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.08 }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => {
-        setHover(false)
-        resetTilt()
-      }}
-      className="group relative border-b border-hairline transition-colors hover:bg-surface/50"
+      transition={{ duration: 0.6, delay: Math.min(index, 2) * 0.06 }}
+      className="group border-b border-hairline"
     >
       <Link
         href={`/projects/${project.slug}`}
-        aria-label={`${project.title} — case study`}
-        className="grid w-full grid-cols-12 items-center gap-x-6 gap-y-3 px-2 py-8 text-left"
+        className="grid w-full grid-cols-12 gap-x-6 gap-y-5 py-8 text-left md:py-10"
       >
-        <div className="col-span-2 font-mono text-sm text-signal md:col-span-1">/{String(index + 1).padStart(2, "0")}</div>
+        <div className="col-span-12 overflow-hidden border border-hairline bg-surface md:col-span-5">
+          <img
+            src={project.image}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width={640}
+            height={400}
+            className="aspect-[16/10] w-full object-cover object-top"
+          />
+        </div>
 
-        <div className="col-span-10 md:col-span-4">
-          <div className="font-display text-2xl tracking-tight md:text-4xl">{project.title}</div>
-          {project.live && (
-            <div className="mt-2 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-signal">
-              <span className="h-1.5 w-1.5 rounded-full bg-signal" />
-              {project.liveLabel ?? "Live demo"}
+        <div className="col-span-12 flex flex-col md:col-span-7">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="font-display text-2xl tracking-tight transition-colors group-hover:text-signal md:text-4xl">
+                {project.title}
+              </h3>
+              {project.live && (
+                <div className="mt-2 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-signal">
+                  <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+                  {project.liveLabel ?? "Live demo"}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-
-        <div className="col-span-12 flex items-start gap-4 text-sm text-[color:color-mix(in_srgb,var(--foreground)_82%,transparent)] md:col-span-6">
-          <span className="mt-2 inline-block h-0.5 w-6 shrink-0 bg-signal" />
-          <span>
-            {project.blurb}{" "}
-            <span className="text-muted-foreground">{project.detail}</span>
-          </span>
-        </div>
-
-        <div className="col-span-12 flex justify-end md:col-span-1">
-          <span className="grid h-10 w-10 place-items-center border border-hairline-strong transition-colors group-hover:border-signal group-hover:text-signal">
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </span>
-        </div>
-
-        <div className="col-span-12 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm text-muted-foreground md:col-start-2 md:col-span-11">
-          {project.tags.map((tag, tagIndex) => (
-            <span
-              key={tag}
-              className={`before:mr-2 before:text-muted-foreground before:content-['•'] ${tagIndex === 0 ? "before:content-['']" : ""}`}
-            >
-              {tag}
+            <span className="grid h-10 w-10 shrink-0 place-items-center border border-hairline-strong transition-colors group-hover:border-signal group-hover:text-signal">
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
-          ))}
+          </div>
+
+          <p className="mt-5 max-w-[62ch] text-[color:color-mix(in_srgb,var(--foreground)_82%,transparent)]">
+            {project.blurb} <span className="text-muted-foreground">{project.detail}</span>
+          </p>
+
+          <div className="mt-auto flex flex-wrap gap-x-6 gap-y-2 pt-6 font-mono text-sm text-muted-foreground">
+            {project.tags.map((tag, tagIndex) => (
+              <span
+                key={tag}
+                className={`before:mr-2 before:text-muted-foreground before:content-['•'] ${tagIndex === 0 ? "before:content-['']" : ""}`}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </Link>
-
-      <AnimatePresence>
-        {hover && !reduceMotion && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 8 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.25 }}
-            onMouseMove={handlePreviewMove}
-            onMouseLeave={resetTilt}
-            style={{ perspective: 800 }}
-            aria-hidden="true"
-            className="pointer-events-none absolute right-24 top-1/2 hidden h-40 w-64 -translate-y-1/2 overflow-hidden border border-hairline bg-surface xl:block"
-          >
-            <motion.img
-              src={project.image}
-              alt=""
-              loading="lazy"
-              decoding="async"
-              width={256}
-              height={160}
-              style={{ rotateX: springRotateX, rotateY: springRotateY }}
-              className="h-full w-full object-cover"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.div>
   )
 }

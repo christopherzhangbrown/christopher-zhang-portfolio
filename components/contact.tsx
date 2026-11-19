@@ -20,12 +20,6 @@ const profiles = [
     href: "https://www.linkedin.com/in/christopher-zhang1/",
     Icon: Linkedin,
   },
-  {
-    name: "Email",
-    handle: EMAIL,
-    href: `mailto:${EMAIL}`,
-    Icon: Mail,
-  },
 ]
 
 export function Contact() {
@@ -44,7 +38,7 @@ export function Contact() {
   }
 
   return (
-    <Section id="contact" index="005 — Contact" title="Let's connect.">
+    <Section id="contact" title="Let's connect.">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -81,11 +75,11 @@ export function Contact() {
               {status === "copied" && "Copied to clipboard."}
               {status === "failed" && (
                 <>
-                  Copy blocked by your browser —{" "}
+                  Your browser blocked copying.{" "}
                   <a href={`mailto:${EMAIL}`} className="text-signal underline underline-offset-2">
-                    open in mail
-                  </a>{" "}
-                  instead.
+                    Open it in your mail app
+                  </a>
+                  .
                 </>
               )}
             </p>
@@ -96,7 +90,7 @@ export function Contact() {
             <div className="flex flex-1 flex-col justify-between border border-hairline-strong px-5 py-5 md:px-6">
               <div className="flex items-center justify-between gap-4">
                 <span className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-signal">
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-signal motion-safe:animate-pulse" />
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-signal" />
                   Open
                 </span>
                 <span className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
@@ -106,14 +100,14 @@ export function Contact() {
               <div>
                 <div className="font-display text-2xl leading-tight tracking-tight">Summer 2027 internships</div>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Happy to talk through any project here — email is the fastest way to reach me.
+                  Happy to talk through any project here. Email is the fastest way to reach me.
                 </p>
               </div>
             </div>
           </div>
         </motion.div>
         <div className="mt-12">
-          <div className="grid divide-y divide-hairline border-y border-hairline md:grid-cols-3 md:divide-x md:divide-y-0">
+          <div className="grid divide-y divide-hairline border-y border-hairline md:grid-cols-2 md:divide-x md:divide-y-0">
             {profiles.map((p, i) => (
               <motion.a
                 key={p.name}

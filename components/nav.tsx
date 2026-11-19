@@ -4,10 +4,10 @@ import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 
 const SECTIONS = [
-  { id: "education", label: "Education" },
-  { id: "stack", label: "Stack" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
+  { id: "education", label: "Education" },
+  { id: "stack", label: "Skills" },
   { id: "contact", label: "Contact" },
 ]
 
@@ -39,8 +39,7 @@ export function Nav() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 md:py-5">
         <a href="/" className="flex items-center gap-2" aria-label="Christopher Zhang, home">
-          <span className="h-2 w-2 rounded-full bg-signal motion-safe:animate-pulse" />
-          <span className="font-mono text-xs tracking-widest">CZ / Portfolio</span>
+          <span className="font-display text-base tracking-tight">Christopher Zhang</span>
         </a>
 
         <div className="hidden gap-8 md:flex">
@@ -56,7 +55,7 @@ export function Nav() {
             href="/#contact"
             className="hidden items-center gap-2 border border-hairline-strong px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:border-signal hover:text-signal md:flex"
           >
-            Available <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+            Summer 2027 <span className="h-1.5 w-1.5 rounded-full bg-signal" />
           </a>
 
           <button
