@@ -55,7 +55,7 @@ export function Experience() {
   return (
     <Section
       id="experience"
-      index="003 — Experience"
+      index="001 — Experience"
       title="Work experience."
       subtitle="Roles where I shipped production systems."
     >

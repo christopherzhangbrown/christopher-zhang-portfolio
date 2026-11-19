@@ -1,5 +1,7 @@
+import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowLeft, ExternalLink, Github, X } from "lucide-react"
+import { notFound } from "next/navigation"
+import { ArrowLeft, ArrowRight, ExternalLink, Github, X } from "lucide-react"
 import { AmbientBackground } from "@/components/AmbientBackground"
 import { Nav } from "@/components/nav"
 
@@ -117,7 +119,6 @@ const projectData: Record<string, ProjectStudy> = {
     stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Cheerio", "Claude"],
     live: "https://web-production-d867c.up.railway.app/playground",
     gallery: [
-      { src: "/AI-Job-Agent/AI-Job-Resume.png", alt: "AI Job Hunting Agent resume editor, split view" },
       { src: "/AI-Job-Agent/AI-Job-Home.png", alt: "AI Job Hunting Agent resume history dashboard" },
     ],
   },
@@ -256,33 +257,35 @@ const projectData: Record<string, ProjectStudy> = {
   },
 }
 
+/** Same order as the homepage list, so "next project" follows what the visitor saw. */
+const ORDER = ["06", "01", "02", "03", "04", "05"]
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params
+  const project = projectData[id]
+  if (!project) return { title: "Project not found · Christopher Zhang" }
+  return {
+    title: `${project.title} · Christopher Zhang`,
+    description: project.problem,
+  }
+}
+
 export default async function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const project = projectData[id]
 
-  if (!project) {
-    return (
-      <div className="min-h-screen bg-background text-foreground">
-        <AmbientBackground />
-        <Nav />
-        <div className="relative z-10 px-6 pb-12 pt-28">
-          <div className="mx-auto max-w-5xl">
-            <Link href="/#projects" className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-              <ArrowLeft className="h-4 w-4" /> Back
-            </Link>
-            <p className="mt-10 text-sm text-muted-foreground">Project not found.</p>
-          </div>
-        </div>
-      </div>
-    )
-  }
+  if (!project) notFound()
+
+  const at = ORDER.indexOf(id)
+  const prevId = at > 0 ? ORDER[at - 1] : null
+  const nextId = at >= 0 && at < ORDER.length - 1 ? ORDER[at + 1] : null
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <AmbientBackground />
       <Nav />
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pb-12 pt-28">
-        <div className="mx-auto my-12 max-w-5xl border border-hairline bg-background">
+      <div className="relative z-10 mx-auto max-w-6xl pb-12 pt-28 md:px-6">
+        <div className="mx-auto my-12 max-w-5xl border-y border-hairline bg-background md:border">
           <div className="flex items-center justify-between border-b border-hairline px-6 py-4 md:px-10">
             <div className="label">Case study / {project.title}</div>
             <Link
@@ -295,24 +298,24 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
           </div>
 
           <div className="aspect-[16/9] overflow-hidden border-b border-hairline">
-            <img src={project.gallery[0].src} alt={project.title} className="h-full w-full object-cover" loading="lazy" />
+            <img src={project.gallery[0].src} alt={project.gallery[0].alt} className="h-full w-full object-cover object-top" fetchPriority="high" />
           </div>
 
           <div className="px-6 py-10 md:px-10 md:py-14">
             <div className="label mb-3">{project.tag} · {project.year}</div>
-            <h3 className="font-display text-4xl tracking-tighter md:text-6xl">{project.title}</h3>
+            <h1 className="font-display text-4xl tracking-tighter md:text-6xl">{project.title}</h1>
 
             {/* Metrics section removed per request */}
 
             <div className="mt-12 grid grid-cols-12 gap-6">
               <div className="col-span-12 md:col-span-3 label">Problem</div>
-              <p className="col-span-12 md:col-span-9 leading-relaxed text-muted-foreground">{project.problem}</p>
+              <p className="col-span-12 max-w-[68ch] leading-relaxed text-muted-foreground md:col-span-9">{project.problem}</p>
             </div>
 
             {project.built && (
               <div className="mt-10 grid grid-cols-12 gap-6">
                 <div className="col-span-12 md:col-span-3 label">What I built</div>
-                <p className="col-span-12 md:col-span-9 leading-relaxed text-muted-foreground">{project.built}</p>
+                <p className="col-span-12 max-w-[68ch] leading-relaxed text-muted-foreground md:col-span-9">{project.built}</p>
               </div>
             )}
 
@@ -370,7 +373,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
                   ))}
                 </ul>
                 {project.architectureNotes?.map((n) => (
-                  <p key={n} className="leading-relaxed text-muted-foreground">{n}</p>
+                  <p key={n} className="max-w-[68ch] leading-relaxed text-muted-foreground">{n}</p>
                 ))}
               </div>
             </div>
@@ -382,7 +385,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
                   {project.engineering.map((e) => (
                     <li key={e.title} className="border-l border-signal/40 pl-5">
                       <h4 className="font-display text-lg tracking-tight md:text-xl">{e.title}</h4>
-                      <p className="mt-2 leading-relaxed text-muted-foreground">{e.body}</p>
+                      <p className="mt-2 max-w-[68ch] leading-relaxed text-muted-foreground">{e.body}</p>
                     </li>
                   ))}
                 </ul>
@@ -396,7 +399,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
                   {project.research.map((r) => (
                     <li key={r.question}>
                       <h4 className="font-display text-lg tracking-tight md:text-xl">{r.question}</h4>
-                      <p className="mt-2 leading-relaxed text-muted-foreground">{r.answer}</p>
+                      <p className="mt-2 max-w-[68ch] leading-relaxed text-muted-foreground">{r.answer}</p>
                     </li>
                   ))}
                 </ul>
@@ -432,14 +435,69 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
               </div>
             )}
 
-            <div className="mt-16">
-              {project.gallery.slice(1).map((img) => (
-                <div key={img.src} className="w-full max-w-5xl border border-hairline bg-surface overflow-hidden mt-6">
-                  <img src={img.src} alt={img.alt} className="object-contain w-full" />
-                </div>
-              ))}
-            </div>
+            {project.gallery.length > 1 && (
+              <div className="mt-16 space-y-6">
+                {project.gallery.slice(1).map((img) => (
+                  <div key={img.src} className="w-full overflow-hidden border border-hairline bg-surface">
+                    <img src={img.src} alt={img.alt} className="w-full object-contain" loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
+
+          <nav aria-label="More projects" className="grid grid-cols-2 border-t border-hairline">
+            {prevId ? (
+              <Link
+                href={`/projects/${prevId}`}
+                className="group flex flex-col gap-2 px-6 py-6 transition-colors hover:bg-surface/50 md:px-10"
+              >
+                <span className="label inline-flex items-center gap-2">
+                  <ArrowLeft className="h-3 w-3" /> Previous
+                </span>
+                <span className="font-display text-lg tracking-tight transition-colors group-hover:text-signal md:text-2xl">
+                  {projectData[prevId].title}
+                </span>
+              </Link>
+            ) : (
+              <Link
+                href="/#projects"
+                className="group flex flex-col gap-2 px-6 py-6 transition-colors hover:bg-surface/50 md:px-10"
+              >
+                <span className="label inline-flex items-center gap-2">
+                  <ArrowLeft className="h-3 w-3" /> Back
+                </span>
+                <span className="font-display text-lg tracking-tight transition-colors group-hover:text-signal md:text-2xl">
+                  All projects
+                </span>
+              </Link>
+            )}
+            {nextId ? (
+              <Link
+                href={`/projects/${nextId}`}
+                className="group flex flex-col items-end gap-2 border-l border-hairline px-6 py-6 text-right transition-colors hover:bg-surface/50 md:px-10"
+              >
+                <span className="label inline-flex items-center gap-2">
+                  Next <ArrowRight className="h-3 w-3" />
+                </span>
+                <span className="font-display text-lg tracking-tight transition-colors group-hover:text-signal md:text-2xl">
+                  {projectData[nextId].title}
+                </span>
+              </Link>
+            ) : (
+              <Link
+                href="/#projects"
+                className="group flex flex-col items-end gap-2 border-l border-hairline px-6 py-6 text-right transition-colors hover:bg-surface/50 md:px-10"
+              >
+                <span className="label inline-flex items-center gap-2">
+                  Back <ArrowRight className="h-3 w-3" />
+                </span>
+                <span className="font-display text-lg tracking-tight transition-colors group-hover:text-signal md:text-2xl">
+                  All projects
+                </span>
+              </Link>
+            )}
+          </nav>
         </div>
       </div>
     </div>

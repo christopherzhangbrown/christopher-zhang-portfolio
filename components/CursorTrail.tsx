@@ -13,11 +13,18 @@ export function CursorTrail() {
 
   // Only take over the pointer on devices that actually have a precise one.
   useEffect(() => {
+    // Hand the pointer back under prefers-contrast: more, matching the CSS that
+    // restores the system cursor there, so nobody gets two cursors at once.
     const query = window.matchMedia("(hover: hover) and (pointer: fine)")
-    const sync = () => setEnabled(query.matches)
+    const contrast = window.matchMedia("(prefers-contrast: more)")
+    const sync = () => setEnabled(query.matches && !contrast.matches)
     sync()
     query.addEventListener("change", sync)
-    return () => query.removeEventListener("change", sync)
+    contrast.addEventListener("change", sync)
+    return () => {
+      query.removeEventListener("change", sync)
+      contrast.removeEventListener("change", sync)
+    }
   }, [])
 
   useEffect(() => {

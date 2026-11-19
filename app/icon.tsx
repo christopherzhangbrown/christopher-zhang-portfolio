@@ -26,7 +26,7 @@ export default function Icon() {
             width: 5,
             height: 5,
             borderRadius: "50%",
-            background: "#d7b04c",
+            background: "#ffb407",
             marginRight: 3,
             marginBottom: 1,
           }}

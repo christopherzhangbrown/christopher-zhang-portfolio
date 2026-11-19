@@ -42,7 +42,7 @@ const projects: ProjectItem[] = [
     slug: "02",
     title: "AI Job Hunting Agent",
     tags: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Cheerio", "Claude"],
-    image: "/AI-Job-Agent/AI-Job-Resume.png",
+    image: "/AI-Job-Agent/AI-Job-Home.png",
     blurb: "Watches 110+ company career pages every 15 minutes and emails ranked alerts when a matching role opens.",
     detail: "Claude suggests job-specific resume edits that only apply once I approve them — used across 150+ applications.",
     live: true,
@@ -75,7 +75,7 @@ const projects: ProjectItem[] = [
 
 export function Projects() {
   return (
-    <Section id="projects" index="004 — Projects" title="Projects." subtitle="Selected work — open any project for a short case study.">
+    <Section id="projects" index="002 — Projects" title="Projects." subtitle="Selected work — open any project for a short case study.">
       <div className="border-t border-hairline">
         {projects.map((p, i) => (
           <ProjectRow key={p.slug} project={p} index={i} />
@@ -128,7 +128,7 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
         <div className="col-span-2 font-mono text-sm text-signal md:col-span-1">/{String(index + 1).padStart(2, "0")}</div>
 
         <div className="col-span-10 md:col-span-4">
-          <div className="font-display text-2xl tracking-tight md:text-4xl">{project.title}</div>
+          <h3 className="font-display text-2xl tracking-tight md:text-4xl">{project.title}</h3>
           {project.live && (
             <div className="mt-2 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-signal">
               <span className="h-1.5 w-1.5 rounded-full bg-signal" />
@@ -149,6 +149,18 @@ function ProjectRow({ project, index }: { project: ProjectItem; index: number })
           <span className="grid h-10 w-10 place-items-center border border-hairline-strong transition-colors group-hover:border-signal group-hover:text-signal">
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </span>
+        </div>
+
+        <div className="col-span-12 overflow-hidden border border-hairline bg-surface md:col-start-2 md:col-span-6 xl:hidden">
+          <img
+            src={project.image}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width={640}
+            height={360}
+            className="aspect-[16/9] w-full object-cover object-top"
+          />
         </div>
 
         <div className="col-span-12 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm text-muted-foreground md:col-start-2 md:col-span-11">

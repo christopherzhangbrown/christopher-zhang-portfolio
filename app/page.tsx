@@ -11,7 +11,7 @@ import { Contact } from "@/components/contact"
 import { Nav } from "@/components/nav"
 import { AmbientBackground } from "@/components/AmbientBackground"
 
-const SECTION_IDS = ["home", "education", "stack", "experience", "projects", "contact"]
+const SECTION_IDS = ["home", "experience", "projects", "education", "stack", "contact"]
 
 export default function Home() {
   useEffect(() => {
@@ -56,10 +56,10 @@ export default function Home() {
       <Nav />
       <main className="relative z-10 text-foreground">
         <Hero />
-        <Education />
-        <Stack />
         <Experience />
         <Projects />
+        <Education />
+        <Stack />
         <Contact />
       </main>
       <Footer />

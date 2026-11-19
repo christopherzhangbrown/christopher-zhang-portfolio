@@ -20,12 +20,6 @@ const profiles = [
     href: "https://www.linkedin.com/in/christopher-zhang1/",
     Icon: Linkedin,
   },
-  {
-    name: "Email",
-    handle: EMAIL,
-    href: `mailto:${EMAIL}`,
-    Icon: Mail,
-  },
 ]
 
 export function Contact() {
@@ -113,7 +107,7 @@ export function Contact() {
           </div>
         </motion.div>
         <div className="mt-12">
-          <div className="grid divide-y divide-hairline border-y border-hairline md:grid-cols-3 md:divide-x md:divide-y-0">
+          <div className="grid divide-y divide-hairline border-y border-hairline md:grid-cols-2 md:divide-x md:divide-y-0">
             {profiles.map((p, i) => (
               <motion.a
                 key={p.name}

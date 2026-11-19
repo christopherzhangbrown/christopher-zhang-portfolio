@@ -11,8 +11,8 @@ const PROFILES = [
 ]
 
 const META = [
-  { label: "Role", value: "AI Engineering Intern", delay: "0.1s" },
-  { label: "Location", value: "Charlotte, NC", delay: "0.2s" },
+  { label: "Studying", value: "CS & Economics, Brown '28", delay: "0.1s" },
+  { label: "Based in", value: "Providence, RI", delay: "0.2s" },
 ]
 
 export function Hero() {
@@ -38,17 +38,15 @@ export function Hero() {
             </div>
           ))}
           <div className="rise" style={{ animationDelay: "0.3s" }}>
-            <div className="label mb-2">Status</div>
+            <div className="label mb-2">Looking for</div>
             <div className="flex items-start gap-2 font-mono text-sm">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-signal motion-safe:animate-pulse" />
-              Open to opportunities
+              Summer 2027 SWE / AI internships
             </div>
           </div>
         </div>
 
         <div className="order-1 col-span-12 md:order-2 md:col-span-9">
-          <div className="label mb-8 rise">// 001 — Introduction</div>
-
           <h1 className="font-display text-[clamp(3.25rem,12vw,8rem)] leading-[0.88] tracking-tighter">
             {["Christopher", "Zhang."].map((word, i) => (
               <span
@@ -65,8 +63,9 @@ export function Hero() {
             className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground rise md:text-xl"
             style={{ animationDelay: "0.7s" }}
           >
-            Hi! I&apos;m Christopher Zhang, a Brown University Sc.B. Computer Science &amp; A.B.
-            Business Economics student-athlete, most recently an AI Engineering intern at Scout Motors.
+            I build AI products and ship them. At Scout Motors I built a self-service developer platform
+            that took application onboarding from 7 steps to 1. On my own, I launched SwimVolt and
+            DiveVolt, computer-vision products for swimmers and diving coaches.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center gap-4 rise" style={{ animationDelay: "0.85s" }}>
@@ -81,7 +80,7 @@ export function Hero() {
               href="#contact"
               className="group inline-flex items-center gap-3 border border-hairline-strong px-6 py-4 font-mono text-sm uppercase tracking-widest transition-colors hover:border-foreground"
             >
-              Initiate Contact
+              Get in touch
             </a>
             <div className="ml-2 flex items-center gap-1">
               {PROFILES.map(({ Icon, href, label }) => (

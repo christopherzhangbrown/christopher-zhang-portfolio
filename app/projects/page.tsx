@@ -1,6 +1,5 @@
 "use client"
 
-import { Sidebar } from "@/components/sidebar"
 import { Nav } from "@/components/nav"
 import { Projects } from "@/components/projects"
 import { Footer } from "@/components/footer"
@@ -11,7 +10,6 @@ export default function ProjectsPage() {
     <>
       <AmbientBackground />
       <Nav />
-      <Sidebar />
       <main className="relative z-10 text-foreground">
         <Projects />
       </main>

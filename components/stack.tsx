@@ -114,7 +114,7 @@ export function Stack() {
   return (
     <Section
       id="stack"
-      index="002 — Skills"
+      index="004 — Skills"
       title="Skills."
       subtitle="Programming languages, frameworks, data stores, and delivery tooling I use to build and ship."
     >
