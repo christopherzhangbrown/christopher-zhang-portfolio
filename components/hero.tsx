@@ -18,7 +18,7 @@ export function Hero() {
         <aside className="order-2 col-span-12 md:order-1 md:col-span-3">
           <img
             src="/christopher-zhang.jpg"
-            alt="Christopher Zhang on the rocks by the ocean, smiling"
+            alt="Christopher Zhang smiling in a Brown Bears T-shirt, with the Hollywood sign behind him"
             width={640}
             height={800}
             fetchPriority="high"
