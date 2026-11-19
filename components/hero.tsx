@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react"
 
 const PROFILES = [
@@ -102,30 +101,6 @@ export function Hero() {
               ))}
             </div>
           </div>
-
-          <Link
-            href="/projects/06"
-            className="group mt-16 block rise"
-            style={{ animationDelay: "0.6s" }}
-          >
-            <figure>
-              <div className="overflow-hidden border border-hairline bg-surface transition-colors group-hover:border-hairline-strong">
-                <img
-                  src="/DiveVolt/divevolt-review.jpg"
-                  alt="DiveVolt's review screen: a diver paused at the top of a 105B with her pike angle measured on the frame"
-                  width={1485}
-                  height={812}
-                  className="w-full"
-                />
-              </div>
-              <figcaption className="mt-3 flex items-center justify-between gap-4 text-sm text-muted-foreground">
-                <span>DiveVolt, measuring a diver&apos;s pike at the top of a 105B.</span>
-                <span className="inline-flex shrink-0 items-center gap-1 text-foreground transition-colors group-hover:text-signal">
-                  Case study <ArrowUpRight className="h-3.5 w-3.5" />
-                </span>
-              </figcaption>
-            </figure>
-          </Link>
         </div>
       </div>
     </section>

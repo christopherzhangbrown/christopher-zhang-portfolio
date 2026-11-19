@@ -121,7 +121,7 @@ components:
 
 **Creative North Star: "The Night Terminal"**
 
-This is a developer's desk after hours, not a costume of one. The room is dark and one amber indicator is lit: the status dot next to what Christopher is looking for. The page leads with the person and the work, his photo beside his name and a real frame from DiveVolt measuring a dive, and lets the evidence carry the technical identity instead of terminal props. Monospace is kept for what it is good at, metadata, tags, dates and labels, and never used as decoration.
+This is a developer's desk after hours, not a costume of one. The room is dark and one amber indicator is lit: the status dot next to what Christopher is looking for. The page leads with the person and the work, his photo beside his name and real product frames in every project row, and lets the evidence carry the technical identity instead of terminal props. Monospace is kept for what it is good at, metadata, tags, dates and labels, and never used as decoration.
 
 The structure is drawn entirely with 1px rules. There are no cards, no shadows, no raised panels: content sits directly on the ground plane and is divided by hairlines, the way a schematic divides regions. There is no ambient background, no custom cursor and no looping decoration. An earlier version had a drifting node field, a conic sweep, a mix-blend cursor, numbered section labels and a typed terminal footer; they were removed in November 2026 because together they read as a template rather than as this person.
 
@@ -134,7 +134,7 @@ This world is explicitly not a light editorial page and explicitly not a generic
 - Structure from hairline rules and a 12-column grid, never from cards or shadows
 - Square corners by default; radius exists only for dots and one 28px icon chip
 - Monospace uppercase labels for metadata and field names only, never as eyebrows above headings
-- Real imagery first: a photo of Christopher in the hero, product frames in the hero and in every project row
+- Real imagery first: a photo of Christopher in the hero and a product frame in every project row
 - Motion that arrives once and settles; nothing loops
 
 ## Colors
@@ -283,7 +283,7 @@ Both are flat. Internal padding steps: `1.5rem` mobile, `2.5rem` at md.
 
 ### Signature Components
 
-**The Hero.** The left rail holds a 4:5 portrait of Christopher in a hairline frame, then three metadata pairs (Studying, Based in, Looking for). The right nine columns hold the name, a positioning paragraph built from verified facts, the actions, and a full-width DiveVolt review frame that links to its case study. The product frame is the first evidence a visitor sees.
+**The Hero.** The left rail holds a 4:5 portrait of Christopher in a hairline frame, then three metadata pairs (Studying, Based in, Looking for). The right nine columns hold the name, a positioning paragraph built from verified facts, the actions, and nothing else. Product images start in the Projects section, which leads with DiveVolt.
 
 **The Scroll Progress Bar.** A 2px Instrument Amber rule pinned to the top of the viewport at `z-60`, scaling from the left edge on a spring (stiffness 300, damping 40).
 
