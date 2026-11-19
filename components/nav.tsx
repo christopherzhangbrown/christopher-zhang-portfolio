@@ -39,8 +39,7 @@ export function Nav() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 md:py-5">
         <a href="/" className="flex items-center gap-2" aria-label="Christopher Zhang, home">
-          <span className="h-2 w-2 rounded-full bg-signal motion-safe:animate-pulse" />
-          <span className="font-mono text-xs tracking-widest">CZ / Portfolio</span>
+          <span className="font-display text-base tracking-tight">Christopher Zhang</span>
         </a>
 
         <div className="hidden gap-8 md:flex">

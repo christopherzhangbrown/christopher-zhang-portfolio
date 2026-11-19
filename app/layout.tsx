@@ -2,7 +2,6 @@ import type { ReactNode } from "react"
 import type { Metadata } from "next"
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { CursorTrail } from "@/components/CursorTrail"
 import { ScrollProgress } from "@/components/ScrollProgress"
 import { MotionProvider } from "@/components/MotionProvider"
 import "./globals.css"
@@ -24,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const TITLE = "Christopher Zhang — AI Engineer"
 const DESCRIPTION =
-  "I build AI systems that run in production. AI Engineering Intern at Scout Motors; Computer Science and Business Economics at Brown."
+  "I build AI products and ship them. Previously an AI Engineering Intern at Scout Motors; Computer Science and Business Economics at Brown."
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://christopher-zhang-portfolio.vercel.app"),
@@ -61,7 +60,6 @@ export default function RootLayout({
           <style>{`main [style*="opacity"], footer [style*="opacity"] { opacity: 1 !important; transform: none !important; }`}</style>
         </noscript>
         <MotionProvider>
-          <CursorTrail />
           <ScrollProgress />
           {children}
         </MotionProvider>

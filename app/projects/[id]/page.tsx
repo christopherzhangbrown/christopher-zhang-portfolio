@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, ExternalLink, Github, X } from "lucide-react"
-import { AmbientBackground } from "@/components/AmbientBackground"
 import { Nav } from "@/components/nav"
 
 type ProjectStudy = {
@@ -282,7 +281,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <AmbientBackground />
       <Nav />
       <div className="relative z-10 mx-auto max-w-6xl pb-12 pt-28 md:px-6">
         <div className="mx-auto my-12 max-w-5xl border-y border-hairline bg-background md:border">

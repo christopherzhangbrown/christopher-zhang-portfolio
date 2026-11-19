@@ -9,7 +9,6 @@ import { Projects } from "@/components/projects"
 import { Footer } from "@/components/footer"
 import { Contact } from "@/components/contact"
 import { Nav } from "@/components/nav"
-import { AmbientBackground } from "@/components/AmbientBackground"
 
 const SECTION_IDS = ["home", "experience", "projects", "education", "stack", "contact"]
 
@@ -52,7 +51,6 @@ export default function Home() {
 
   return (
     <>
-      <AmbientBackground />
       <Nav />
       <main className="relative z-10 text-foreground">
         <Hero />

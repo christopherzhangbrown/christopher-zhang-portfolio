@@ -114,7 +114,6 @@ export function Stack() {
   return (
     <Section
       id="stack"
-      index="004 — Skills"
       title="Skills."
       subtitle="Programming languages, frameworks, data stores, and delivery tooling I use to build and ship."
     >
@@ -129,8 +128,7 @@ export function Stack() {
             className="grid grid-cols-12 gap-6 border-b border-hairline px-2 py-8"
           >
             <div className="col-span-12 md:col-span-3">
-              <div className="label">/{String(gi + 1).padStart(2, "0")}</div>
-              <h3 className="mt-2 font-display text-xl tracking-tight md:text-2xl">{g.title}</h3>
+              <h3 className="font-display text-xl tracking-tight md:text-2xl">{g.title}</h3>
             </div>
             <div className="col-span-12 md:col-span-9 flex flex-wrap gap-x-9 gap-y-7">
               {g.items.map((t) => (

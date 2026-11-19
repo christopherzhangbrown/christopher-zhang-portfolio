@@ -5,32 +5,17 @@ import type { ReactNode } from "react"
 
 interface SectionProps {
   id: string
-  index?: string
   title?: string
   subtitle?: string
   children?: ReactNode
 }
 
-export function Section({ id, index, title, subtitle, children }: SectionProps) {
+export function Section({ id, title, subtitle, children }: SectionProps) {
   return (
-    <section id={id} className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+    <section id={id} className="relative">
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24">
         <div className="mb-12 grid grid-cols-12 items-start gap-6">
-          <div className="col-span-12 md:col-span-3">
-            {index && (
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.45 }}
-                className="label"
-              >
-                {index}
-              </motion.div>
-            )}
-          </div>
+          <div className="hidden md:col-span-3 md:block" />
           <div className="col-span-12 md:col-span-9">
             {title && (
               <motion.h2
