@@ -15,8 +15,7 @@ export function Section({ id, title, subtitle, children }: SectionProps) {
     <section id={id} className="relative">
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24">
         <div className="mb-12 grid grid-cols-12 items-start gap-6">
-          <div className="hidden md:col-span-3 md:block" />
-          <div className="col-span-12 md:col-span-9">
+          <div className="col-span-12">
             {title && (
               <motion.h2
                 initial={{ opacity: 0, y: 18 }}
@@ -34,7 +33,7 @@ export function Section({ id, title, subtitle, children }: SectionProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.12 }}
-                className="mt-4 max-w-2xl text-muted-foreground md:text-lg"
+                className="mt-4 max-w-3xl text-muted-foreground md:text-lg"
               >
                 {subtitle}
               </motion.p>

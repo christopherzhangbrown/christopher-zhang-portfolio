@@ -55,7 +55,7 @@ export function Nav() {
             href="/#contact"
             className="hidden items-center gap-2 border border-hairline-strong px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:border-signal hover:text-signal md:flex"
           >
-            Summer 2027 <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+            Available <span className="h-1.5 w-1.5 rounded-full bg-signal" />
           </a>
 
           <button
