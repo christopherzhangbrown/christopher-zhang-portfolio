@@ -67,9 +67,8 @@ export function Hero() {
             className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground rise md:text-xl"
             style={{ animationDelay: "0.4s" }}
           >
-            I build AI products and ship them. At Scout Motors I built a self-service developer platform
-            that took application onboarding from 7 steps to 1. On my own, I launched SwimVolt and
-            DiveVolt, computer-vision products for swimmers and diving coaches.
+            Hi! I&apos;m Christopher Zhang, a Brown University Sc.B. Computer Science &amp; A.B.
+            Business Economics student-athlete, most recently an AI Engineering intern at Scout Motors.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4 rise" style={{ animationDelay: "0.5s" }}>
