@@ -51,7 +51,7 @@ export function Hero() {
             className="rise mb-8 aspect-[4/5] w-24 border border-hairline object-cover md:hidden"
           />
 
-          <h1 className="font-display text-[clamp(3.25rem,11vw,7.5rem)] leading-[0.9] tracking-[-0.04em]">
+          <h1 className="font-display text-[clamp(3.25rem,10.5vw,9.5rem)] leading-[0.9] tracking-[-0.04em]">
             {["Christopher", "Zhang."].map((word, i) => (
               <span
                 key={word}
@@ -64,7 +64,7 @@ export function Hero() {
           </h1>
 
           <p
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground rise md:text-xl"
+            className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground rise md:text-xl"
             style={{ animationDelay: "0.4s" }}
           >
             Hi! I&apos;m Christopher Zhang, a Brown University Sc.B. Computer Science &amp; A.B.

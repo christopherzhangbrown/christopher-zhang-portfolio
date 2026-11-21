@@ -278,7 +278,7 @@ Both are flat. Internal padding steps: `1.5rem` mobile, `2.5rem` at md.
 - **Style:** fixed full-width bar, transparent with a transparent bottom border at rest. Past 24px of scroll it transitions over 300ms to `Ink` at 80% opacity with a `12px` backdrop blur and a `Hairline` bottom border, while its vertical padding tightens from `1.5rem` to `1rem`. A spacer div matching the measured nav height keeps content from jumping.
 - **Brand:** `Christopher Zhang` in Space Grotesk at `1rem`. No dot, no monospace.
 - **Links:** `.label` styling (0.7rem mono, uppercase, 0.18em tracking, `Muted`), hovering to `Bone`. Desktop only.
-- **CTA:** a ghost pill reading `Summer 2027` with a static 6px amber dot, bordering and coloring to amber on hover.
+- **CTA:** a ghost pill reading `Available` with a static 6px amber dot, bordering and coloring to amber on hover.
 - **Mobile:** the link row is replaced by a menu button that opens a ruled list of the same links.
 
 ### Signature Components
